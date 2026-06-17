@@ -6,7 +6,6 @@ import LaunchAtLogin
 import Sparkle
 import SwiftUI
 
-@MainActor
 final class PreferencesVM: ObservableObject {
     @Published
     var preferences = Preferences()
@@ -87,22 +86,22 @@ final class PreferencesVM: ObservableObject {
         if let callback = callback {
             container.viewContext.performAndWait {
                 callback()
-                didSave = save()
+                didSave = saveViewContext()
             }
         } else {
-            didSave = save()
+            didSave = saveViewContext()
         }
 
         return didSave
+    }
 
-        func save() -> Bool {
-            do {
-                try container.viewContext.save()
-                return true
-            } catch {
-                print("saveAppCustomization error: \(error.localizedDescription)")
-                return false
-            }
+    private func saveViewContext() -> Bool {
+        do {
+            try container.viewContext.save()
+            return true
+        } catch {
+            print("saveAppCustomization error: \(error.localizedDescription)")
+            return false
         }
     }
 }
@@ -137,7 +136,8 @@ enum CJKVFixStrategy: String, CaseIterable, Codable, Equatable, Identifiable {
 extension PreferencesVM {
     private func watchKeyboardConfigsChange() {
         mainStorage.keyboardConfigs
-            .assign(to: &$keyboardConfigs)
+            .sink(receiveValue: { [weak self] in self?.keyboardConfigs = $0 })
+            .store(in: cancelBag)
     }
 }
 
@@ -152,7 +152,8 @@ extension PreferencesVM {
         updaterController?.updater
             .publisher(for: \.automaticallyChecksForUpdates)
             .removeDuplicates()
-            .assign(to: &$automaticallyChecksForUpdates)
+            .sink(receiveValue: { [weak self] in self?.automaticallyChecksForUpdates = $0 })
+            .store(in: cancelBag)
 
         $automaticallyChecksForUpdates
             .dropFirst()
@@ -162,7 +163,8 @@ extension PreferencesVM {
         updaterController?.updater
             .publisher(for: \.canCheckForUpdates)
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
-            .assign(to: &$canChecksForUpdates)
+            .sink(receiveValue: { [weak self] in self?.canChecksForUpdates = $0 })
+            .store(in: cancelBag)
     }
 
     func checkUpdates() {
@@ -375,28 +377,28 @@ struct Preferences {
     // MARK: - Shortcuts
 
     @CodableUserDefault(Preferences.Key.shortcutTriggerMode)
-    var shortcutTriggerMode = ShortcutTriggerMode.keyboardShortcut
+    var shortcutTriggerMode: ShortcutTriggerMode?
 
     @CodableUserDefault(Preferences.Key.singleModifierTrigger)
-    var singleModifierTrigger = SingleModifierTrigger.singlePress
+    var singleModifierTrigger: SingleModifierTrigger?
 
     @CodableUserDefault(Preferences.Key.shortcutModeInputSourceMapping)
-    var shortcutModeInputSourceMapping = [String: ShortcutTriggerMode]()
+    var shortcutModeInputSourceMapping: [String: ShortcutTriggerMode]?
 
     @CodableUserDefault(Preferences.Key.shortcutModeGroupMapping)
-    var shortcutModeGroupMapping = [String: ShortcutTriggerMode]()
+    var shortcutModeGroupMapping: [String: ShortcutTriggerMode]?
 
     @CodableUserDefault(Preferences.Key.singleModifierTriggerInputSourceMapping)
-    var singleModifierTriggerInputSourceMapping = [String: SingleModifierTrigger]()
+    var singleModifierTriggerInputSourceMapping: [String: SingleModifierTrigger]?
 
     @CodableUserDefault(Preferences.Key.singleModifierTriggerGroupMapping)
-    var singleModifierTriggerGroupMapping = [String: SingleModifierTrigger]()
+    var singleModifierTriggerGroupMapping: [String: SingleModifierTrigger]?
 
     @CodableUserDefault(Preferences.Key.singleModifierInputSourceMapping)
-    var singleModifierInputSourceMapping = [String: ModifierCombo]()
+    var singleModifierInputSourceMapping: [String: ModifierCombo]?
 
     @CodableUserDefault(Preferences.Key.singleModifierGroupMapping)
-    var singleModifierGroupMapping = [String: ModifierCombo]()
+    var singleModifierGroupMapping: [String: ModifierCombo]?
 
     // MARK: - App Rules
 
@@ -466,22 +468,22 @@ struct Preferences {
     var isShowInputSourcesLabel = true
 
     @CodableUserDefault(Preferences.Key.indicatorInfo)
-    var indicatorInfo = IndicatorInfo.iconAndTitle
+    var indicatorInfo: IndicatorInfo?
 
     @CodableUserDefault(Preferences.Key.indicatorSize)
-    var indicatorSize = IndicatorSize.medium
+    var indicatorSize: IndicatorSize?
 
     @UserDefault(Preferences.Key.isAutoAppearanceMode)
     var isAutoAppearanceMode = true
 
     @CodableUserDefault(Preferences.Key.appearanceMode)
-    var appearanceMode = AppearanceMode.dark
+    var appearanceMode: AppearanceMode?
 
     @CodableUserDefault(Preferences.Key.indicatorBackground)
-    var indicatorBackground = IndicatorColor.background
+    var indicatorBackground: IndicatorColor?
 
     @CodableUserDefault(Preferences.Key.indicatorForgeground)
-    var indicatorForgeground = IndicatorColor.forgeground
+    var indicatorForgeground: IndicatorColor?
 
     @UserDefault(Preferences.Key.tryToDisplayIndicatorNearCursor)
     var tryToDisplayIndicatorNearCursor = true
@@ -490,13 +492,13 @@ struct Preferences {
     var isEnableAlwaysOnIndicator = false
 
     @CodableUserDefault(Preferences.Key.indicatorPosition)
-    var indicatorPosition = IndicatorPosition.nearMouse
+    var indicatorPosition: IndicatorPosition?
 
     @CodableUserDefault(Preferences.Key.indicatorPositionAlignment)
-    var indicatorPositionAlignment = IndicatorPosition.Alignment.bottomRight
+    var indicatorPositionAlignment: IndicatorPosition.Alignment?
 
     @CodableUserDefault(Preferences.Key.indicatorPositionSpacing)
-    var indicatorPositionSpacing = IndicatorPosition.Spacing.s
+    var indicatorPositionSpacing: IndicatorPosition.Spacing?
 }
 
 extension Preferences {
@@ -525,31 +527,73 @@ extension Preferences {
         }
     }
 
-    var indicatorBackgroundColor: Color {
+    var indicatorBackgroundNSColor: NSColor {
         get {
             switch appearanceMode {
             case .dark?:
-                return indicatorBackground?.dark ?? IndicatorColor.background.dark
+                return NSColor(hex: indicatorBackground?.darkHex ?? IndicatorColor.background.darkHex)
             default:
-                return indicatorBackground?.light ?? IndicatorColor.background.light
+                return NSColor(hex: indicatorBackground?.lightHex ?? IndicatorColor.background.lightHex)
             }
         }
 
         set {
-            guard let appearanceMode = appearanceMode,
-                  let indicatorBackground = indicatorBackground
-            else { return }
+            guard let appearanceMode = appearanceMode else { return }
+
+            let currentBackground = indicatorBackground ?? IndicatorColor.background
+            let hex = newValue.hexWithAlpha
 
             switch appearanceMode {
             case .dark:
                 self.indicatorBackground = IndicatorColor(
-                    light: indicatorBackground.light,
-                    dark: newValue
+                    lightHex: currentBackground.lightHex,
+                    darkHex: hex
                 )
             case .light:
                 self.indicatorBackground = IndicatorColor(
-                    light: newValue,
-                    dark: indicatorBackground.dark
+                    lightHex: hex,
+                    darkHex: currentBackground.darkHex
+                )
+            }
+        }
+    }
+
+    var indicatorBackgroundColor: Color {
+        get {
+            Color(indicatorBackgroundNSColor)
+        }
+
+        set {
+            indicatorBackgroundNSColor = NSColor(hex: newValue.hexWithAlpha)
+        }
+    }
+
+    var indicatorForgegroundNSColor: NSColor {
+        get {
+            switch appearanceMode {
+            case .dark?:
+                return NSColor(hex: indicatorForgeground?.darkHex ?? IndicatorColor.forgeground.darkHex)
+            default:
+                return NSColor(hex: indicatorForgeground?.lightHex ?? IndicatorColor.forgeground.lightHex)
+            }
+        }
+
+        set {
+            guard let appearanceMode = appearanceMode else { return }
+
+            let currentForgeground = indicatorForgeground ?? IndicatorColor.forgeground
+            let hex = newValue.hexWithAlpha
+
+            switch appearanceMode {
+            case .dark:
+                self.indicatorForgeground = IndicatorColor(
+                    lightHex: currentForgeground.lightHex,
+                    darkHex: hex
+                )
+            case .light:
+                self.indicatorForgeground = IndicatorColor(
+                    lightHex: hex,
+                    darkHex: currentForgeground.darkHex
                 )
             }
         }
@@ -557,31 +601,11 @@ extension Preferences {
 
     var indicatorForgegroundColor: Color {
         get {
-            switch appearanceMode {
-            case .dark?:
-                return indicatorForgeground?.dark ?? IndicatorColor.forgeground.dark
-            default:
-                return indicatorForgeground?.light ?? IndicatorColor.forgeground.light
-            }
+            Color(indicatorForgegroundNSColor)
         }
 
         set {
-            guard let appearanceMode = appearanceMode,
-                  let indicatorForgeground = indicatorForgeground
-            else { return }
-
-            switch appearanceMode {
-            case .dark:
-                self.indicatorForgeground = IndicatorColor(
-                    light: indicatorForgeground.light,
-                    dark: newValue
-                )
-            case .light:
-                self.indicatorForgeground = IndicatorColor(
-                    light: newValue,
-                    dark: indicatorForgeground.dark
-                )
-            }
+            indicatorForgegroundNSColor = NSColor(hex: newValue.hexWithAlpha)
         }
     }
 }

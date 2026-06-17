@@ -10,11 +10,7 @@ struct KeyboardsSettingsView: View {
     @EnvironmentObject var permissionsVM: PermissionsVM
 
     let imgSize: CGFloat = 16
-    let shortcutControlColumns: [GridItem] = [
-        GridItem(.fixed(120), spacing: 8, alignment: .trailing),
-        GridItem(.fixed(160), spacing: 8, alignment: .leading)
-    ]
-    
+
     /// Check if any single modifier shortcuts are configured
     private var hasSingleModifierShortcuts: Bool {
         // Check input sources
@@ -65,7 +61,7 @@ struct KeyboardsSettingsView: View {
     var permissionWarningSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 8) {
-                Image(systemName: "exclamationmark.triangle.fill")
+                Image.compatSystemName("exclamationmark.triangle.fill")
                     .foregroundColor(.orange)
                     Text("Modifier shortcuts require additional permissions to work reliably.".i18n())
             }
@@ -118,7 +114,6 @@ struct KeyboardsSettingsView: View {
             SettingsSection(title: "") {
                 HStack(alignment: .top) {
                     CustomizedIndicatorView(inputSource: inputSource)
-                        .help(inputSource.persistentIdentifier)
 
                     Spacer()
 
@@ -129,7 +124,7 @@ struct KeyboardsSettingsView: View {
                         modifierSelection: preferencesVM.modifierCombo(for: inputSource),
                         onModifierSelect: { selection in
                             preferencesVM.updateModifierCombo(selection, for: inputSource)
-                            if let selection, selection.keys.count > 1 {
+                            if let selection = selection, selection.keys.count > 1 {
                                 preferencesVM.updateSingleModifierTrigger(.singlePress, for: inputSource)
                             }
                             indicatorVM.refreshShortcut()
@@ -150,7 +145,6 @@ struct KeyboardsSettingsView: View {
                     VStack(alignment: .leading) {
                         ForEach(group.inputSources, id: \.persistentIdentifier) { inputSource in
                             CustomizedIndicatorView(inputSource: inputSource)
-                                .help(inputSource.persistentIdentifier)
                         }
                     }
 
@@ -165,7 +159,7 @@ struct KeyboardsSettingsView: View {
                                 modifierSelection: preferencesVM.modifierCombo(for: group),
                                 onModifierSelect: { selection in
                                     preferencesVM.updateModifierCombo(selection, for: group)
-                                    if let selection, selection.keys.count > 1 {
+                                    if let selection = selection, selection.keys.count > 1 {
                                         preferencesVM.updateSingleModifierTrigger(.singlePress, for: group)
                                     }
                                     indicatorVM.refreshShortcut()
@@ -260,38 +254,42 @@ struct KeyboardsSettingsView: View {
             : SingleModifierTrigger.allCases
 
         VStack(alignment: .trailing, spacing: 8) {
-            LazyVGrid(columns: shortcutControlColumns, alignment: .leading, spacing: 6) {
-                Text("Shortcut Type".i18n())
-                Picker("Shortcut Type".i18n(), selection: modeBinding) {
-                    ForEach(ShortcutTriggerMode.allCases) { option in
-                        Text(option.name).tag(option)
-                    }
-                }
-                .labelsHidden()
-                .flexibleButtonSizing()
-
-                if mode == .keyboardShortcut {
-                    Text("Shortcut".i18n())
-                    KeyboardShortcuts.Recorder(for: .init(recorderId), onChange: { _ in
-                        indicatorVM.refreshShortcut()
-                    })
-                } else {
-                    Text("Shortcut".i18n())
-                    modifierComboPicker(
-                        selection: modifierSelection,
-                        onSelect: onModifierSelect
-                    )
-                    .flexibleButtonSizing()
-
-                    Text("Trigger".i18n())
-                    Picker("Trigger".i18n(), selection: triggerBinding) {
-                        ForEach(triggerOptions) { option in
+            VStack(alignment: .leading, spacing: 6) {
+                shortcutControlRow(label: "Shortcut Type") {
+                    Picker("Shortcut Type".i18n(), selection: modeBinding) {
+                        ForEach(ShortcutTriggerMode.allCases) { option in
                             Text(option.name).tag(option)
-                        }
+                    }
                     }
                     .labelsHidden()
                     .flexibleButtonSizing()
-                    .disabled(isComboSelection)
+                }
+
+                if mode == .keyboardShortcut {
+                    shortcutControlRow(label: "Shortcut") {
+                        KeyboardShortcuts.Recorder(for: .init(recorderId), onChange: { _ in
+                            indicatorVM.refreshShortcut()
+                        })
+                    }
+                } else {
+                    shortcutControlRow(label: "Shortcut") {
+                        modifierComboPicker(
+                            selection: modifierSelection,
+                            onSelect: onModifierSelect
+                        )
+                        .flexibleButtonSizing()
+                    }
+
+                    shortcutControlRow(label: "Trigger") {
+                        Picker("Trigger".i18n(), selection: triggerBinding) {
+                            ForEach(triggerOptions) { option in
+                                Text(option.name).tag(option)
+                            }
+                        }
+                        .labelsHidden()
+                        .flexibleButtonSizing()
+                        .disabled(isComboSelection)
+                    }
                 }
             }
             
@@ -301,10 +299,23 @@ struct KeyboardsSettingsView: View {
                                         .foregroundColor(.orange)
             }
         }
-        .onChange(of: modifierSelection?.keys.count ?? 0) { newCount in
+        .onChangeCompat(of: modifierSelection?.keys.count ?? 0) { newCount in
             if newCount > 1 && triggerBinding.wrappedValue != .singlePress {
                 triggerBinding.wrappedValue = .singlePress
             }
+        }
+    }
+
+    func shortcutControlRow<Content: View>(
+        label: String,
+        @ViewBuilder content: () -> Content
+    ) -> some View {
+        HStack(alignment: .center, spacing: 8) {
+            Text(label.i18n())
+                .frame(width: 120, alignment: .trailing)
+
+            content()
+                .frame(width: 160, alignment: .leading)
         }
     }
 

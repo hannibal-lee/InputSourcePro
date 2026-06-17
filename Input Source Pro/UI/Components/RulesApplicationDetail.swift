@@ -60,94 +60,98 @@ struct ApplicationDetail: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(String(format: "%@ App(s) Selected".i18n(), "\(selectedApp.count)"))
-                .font(.subheadline.monospacedDigit())
+                .font(Font.subheadline.monospacedDigit())
                 .opacity(0.5)
                 .padding(.bottom, 5)
 
-            VStack(alignment: .leading) {
-                Text("Default Keyboard".i18n())
-                    .fontWeight(.medium)
+            Group {
+                VStack(alignment: .leading) {
+                    Text("Default Keyboard".i18n())
+                        .fontWeight(.medium)
 
-                PopUpButtonPicker<PickerItem?>(
-                    items: items,
-                    isItemEnabled: { $0?.id != "mixed" },
-                    isItemSelected: { $0 == forceKeyboard },
-                    getTitle: { $0?.title ?? "" },
-                    getToolTip: { $0?.toolTip },
-                    onSelect: handleSelect
-                )
-            }
-
-            Divider()
-                .padding(.vertical, 4)
-
-            VStack(alignment: .leading) {
-                Text("Function Keys".i18n())
-                    .fontWeight(.medium)
-
-                PopUpButtonPicker<PickerItem?>(
-                    items: functionKeyItems,
-                    isItemEnabled: { $0?.id != "mixed" },
-                    isItemSelected: { $0 == functionKeyModeItem },
-                    getTitle: { $0?.title ?? "" },
-                    getToolTip: { $0?.toolTip },
-                    onSelect: handleSelectFunctionKeyMode
-                )
-            }
-
-            Divider()
-                .padding(.vertical, 4)
-
-            VStack(alignment: .leading) {
-                Text("Keyboard Restore Strategy".i18n())
-                    .fontWeight(.medium)
-
-                HStack {
-                    RuleSettingIcon(systemName: "d.circle.fill", color: .green)
-                    NSToggleView(
-                        label: restoreStrategyName(strategy: .UseDefaultKeyboardInstead),
-                        state: preferencesVM.preferences.isRestorePreviouslyUsedInputSource
-                            ? doNotRestoreKeyboardState
-                            : .on,
-                        onStateUpdate: handleToggleDoNotRestoreKeyboard
+                    PopUpButtonPicker<PickerItem?>(
+                        items: items,
+                        isItemEnabled: { $0?.id != "mixed" },
+                        isItemSelected: { $0 == forceKeyboard },
+                        getTitle: { $0?.title ?? "" },
+                        getToolTip: { $0?.toolTip },
+                        onSelect: handleSelect
                     )
-                    .fixedSize()
-                    .disabled(!preferencesVM.preferences.isRestorePreviouslyUsedInputSource)
                 }
 
-                HStack {
-                    RuleSettingIcon(systemName: "arrow.uturn.left.circle.fill", color: .blue)
-                    NSToggleView(
-                        label: restoreStrategyName(strategy: .RestorePreviouslyUsedOne),
-                        state: preferencesVM.preferences.isRestorePreviouslyUsedInputSource
-                            ? .on
-                            : doRestoreKeyboardState,
-                        onStateUpdate: handleToggleDoRestoreKeyboard
+                Divider()
+                    .padding(.vertical, 4)
+
+                VStack(alignment: .leading) {
+                    Text("Function Keys".i18n())
+                        .fontWeight(.medium)
+
+                    PopUpButtonPicker<PickerItem?>(
+                        items: functionKeyItems,
+                        isItemEnabled: { $0?.id != "mixed" },
+                        isItemSelected: { $0 == functionKeyModeItem },
+                        getTitle: { $0?.title ?? "" },
+                        getToolTip: { $0?.toolTip },
+                        onSelect: handleSelectFunctionKeyMode
                     )
-                    .fixedSize()
-                    .disabled(preferencesVM.preferences.isRestorePreviouslyUsedInputSource)
                 }
-            }
 
-            Divider()
-                .padding(.vertical, 4)
+                Divider()
+                    .padding(.vertical, 4)
 
-            VStack(alignment: .leading) {
-                Text("Indicator".i18n())
-                    .fontWeight(.medium)
-                HStack {
-                    RuleSettingIcon(systemName: "eye.slash.circle.fill", color: .gray)
-                    NSToggleView(
-                        label: "Hide Indicator".i18n(),
-                        state: hideIndicator,
-                        onStateUpdate: handleToggleHideIndicator
-                    )
-                    .fixedSize()
+                VStack(alignment: .leading) {
+                    Text("Keyboard Restore Strategy".i18n())
+                        .fontWeight(.medium)
+
+                    HStack {
+                        RuleSettingIcon(systemName: "d.circle.fill", color: Color.green)
+                        NSToggleView(
+                            label: restoreStrategyName(strategy: .UseDefaultKeyboardInstead),
+                            state: preferencesVM.preferences.isRestorePreviouslyUsedInputSource
+                                ? doNotRestoreKeyboardState
+                                : .on,
+                            onStateUpdate: handleToggleDoNotRestoreKeyboard
+                        )
+                        .fixedSize()
+                        .disabled(!preferencesVM.preferences.isRestorePreviouslyUsedInputSource)
+                    }
+
+                    HStack {
+                        RuleSettingIcon(systemName: "arrow.uturn.left.circle.fill", color: Color.blue)
+                        NSToggleView(
+                            label: restoreStrategyName(strategy: .RestorePreviouslyUsedOne),
+                            state: preferencesVM.preferences.isRestorePreviouslyUsedInputSource
+                                ? .on
+                                : doRestoreKeyboardState,
+                            onStateUpdate: handleToggleDoRestoreKeyboard
+                        )
+                        .fixedSize()
+                        .disabled(preferencesVM.preferences.isRestorePreviouslyUsedInputSource)
+                    }
                 }
             }
 
-            Divider()
-                .padding(.vertical, 4)
+            Group {
+                Divider()
+                    .padding(.vertical, 4)
+
+                VStack(alignment: .leading) {
+                    Text("Indicator".i18n())
+                        .fontWeight(.medium)
+                    HStack {
+                        RuleSettingIcon(systemName: "eye.slash.circle.fill", color: Color.gray)
+                        NSToggleView(
+                            label: "Hide Indicator".i18n(),
+                            state: hideIndicator,
+                            onStateUpdate: handleToggleHideIndicator
+                        )
+                        .fixedSize()
+                    }
+                }
+
+                Divider()
+                    .padding(.vertical, 4)
+            }
 
             VStack(alignment: .leading) {
                 HStack {
@@ -158,7 +162,7 @@ struct ApplicationDetail: View {
                 }
                 
                 HStack {
-                    RuleSettingIcon(text: "Aa", color: .orange)
+                    RuleSettingIcon(text: "Aa", color: Color.orange)
                     NSToggleView(
                         label: "Force English Punctuation".i18n(),
                         state: forceEnglishPunctuation,
@@ -196,7 +200,7 @@ struct ApplicationDetail: View {
             Spacer()
         }
         .disabled(selectedApp.isEmpty)
-        .onChange(of: selectedApp) { _ in
+        .onChangeCompat(of: selectedApp) { _ in
             updateForceKeyboardId()
             updateDoRestoreKeyboardState()
             updateDoNotRestoreKeyboardState()

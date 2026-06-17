@@ -19,11 +19,11 @@ struct RulesSettingsView: View {
 
                     HStack(spacing: 5) {
                         Button(action: selectApp) {
-                            SwiftUI.Image(systemName: "plus")
+                            SwiftUI.Image.compatSystemName("plus")
                         }
 
                         Button(action: removeApp) {
-                            SwiftUI.Image(systemName: "minus")
+                            SwiftUI.Image.compatSystemName("minus")
                         }
                         .disabled(selectedApp.isEmpty)
 
@@ -47,7 +47,7 @@ struct RulesSettingsView: View {
 
         panel.allowsMultipleSelection = true
         panel.canChooseDirectories = false
-        panel.allowedContentTypes = [.application]
+        panel.setCompatAllowedFileTypes(["app"])
 
         if let applicationPath = NSSearchPathForDirectoriesInDomains(
             .applicationDirectory,

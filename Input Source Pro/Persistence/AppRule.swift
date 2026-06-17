@@ -9,8 +9,7 @@ extension AppRule {
 }
 
 extension AppRule {
-    @MainActor
-    var forcedKeyboard: InputSource? {
+        var forcedKeyboard: InputSource? {
         return InputSource.resolvePersistedIdentifier(inputSourceId)
     }
 

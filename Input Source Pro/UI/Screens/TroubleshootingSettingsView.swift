@@ -22,7 +22,7 @@ struct TroubleshootingSettingsView: View {
                         HStack {
                             Toggle("", isOn: isCJKVFixEnabledBinding)
                                 .disabled(!preferencesVM.preferences.isEnhancedModeEnabled)
-                                .toggleStyle(.switch)
+                                .toggleStyle(SwitchToggleStyle())
                                 .labelsHidden()
 
                             Text("Enabled CJKV Fix".i18n())
@@ -52,8 +52,7 @@ struct TroubleshootingSettingsView: View {
                                 }
                             }
                             .labelsHidden()
-                            .pickerStyle(.radioGroup)
-                            .accessibilityLabel("CJKV Fix Method".i18n())
+                            .pickerStyle(RadioGroupPickerStyle())
                             .disabled(
                                 !preferencesVM.preferences.isEnhancedModeEnabled ||
                                     !preferencesVM.preferences.isCJKVFixEnabled

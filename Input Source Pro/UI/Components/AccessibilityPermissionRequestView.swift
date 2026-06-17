@@ -15,9 +15,9 @@ struct AccessibilityPermissionRequestView: View {
 
             HStack {
                 Button(action: URL.howToEnableAccessbility.open) {
-                    SwiftUI.Image(systemName: "questionmark")
+                    SwiftUI.Image.compatSystemName("questionmark")
                 }
-                .font(.system(size: 10).weight(.bold))
+                .font(Font.system(size: 10).weight(Font.Weight.bold))
                 .frame(width: 18, height: 18)
                 .clipShape(RoundedRectangle(cornerRadius: 99))
                 .disabled(isDisableTips)
@@ -27,17 +27,15 @@ struct AccessibilityPermissionRequestView: View {
                 Button("Open Accessibility Preferences") {
                     NSWorkspace.shared.openAccessibilityPreferences()
                 }
-                .keyboardShortcut(.defaultAction)
 
                 Button("Cancel", action: cancel)
-                    .keyboardShortcut(.cancelAction)
             }
             .padding(.top)
         }
         .padding()
         .lineLimit(nil)
         .frame(width: 400)
-        .onChange(of: permissionsVM.isAccessibilityEnabled, perform: whenAccessibilityEnabled)
+        .onChangeCompat(of: permissionsVM.isAccessibilityEnabled, perform: whenAccessibilityEnabled)
         .onAppear {
             DispatchQueue.main.async {
                 isDisableTips = false

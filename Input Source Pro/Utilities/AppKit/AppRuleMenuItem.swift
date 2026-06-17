@@ -1,6 +1,5 @@
 import AppKit
 
-@MainActor
 class AppRuleMenuItem: NSMenuItem {
     let app: NSRunningApplication
     let preferencesVM: PreferencesVM
@@ -49,7 +48,7 @@ class AppRuleMenuItem: NSMenuItem {
             )
         }
 
-        if let inputSource {
+        if let inputSource = inputSource {
             inputSourceVM.select(inputSource: inputSource, app: app)
         }
 

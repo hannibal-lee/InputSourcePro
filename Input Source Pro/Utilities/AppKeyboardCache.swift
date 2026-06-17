@@ -2,7 +2,6 @@ import AppKit
 import Foundation
 import os
 
-@MainActor
 class AppKeyboardCache {
     private var cache = [String: String]()
 

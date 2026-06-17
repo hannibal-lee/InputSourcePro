@@ -7,8 +7,13 @@ struct AddSwitchingGroupButton: View {
     let onSelect: ([InputSource]) -> Void
 
     var body: some View {
-        Button("Add Switch Group".i18n(), systemImage: "plus.circle") {
+        Button(action: {
             isActive = true
+        }) {
+            HStack {
+                Image.compatSystemName("plus.circle")
+                Text("Add Switch Group".i18n())
+            }
         }
         .sheet(isPresented: $isActive, content: {
             VStack(alignment: .leading) {
@@ -26,11 +31,11 @@ struct AddSwitchingGroupButton: View {
                         VStack(alignment: .leading) {
                             HStack(spacing: 6) {
                                 if selections.contains(inputSource.persistentIdentifier) {
-                                    Image(systemName: "checkmark.circle.fill")
+                                    Image.compatSystemName("checkmark.circle.fill")
                                         .foregroundColor(Color.accentColor)
                                         .font(.system(size: 16))
                                 } else {
-                                    Image(systemName: "circle")
+                                    Image.compatSystemName("circle")
                                         .foregroundColor(.gray)
                                         .font(.system(size: 16))
                                 }
@@ -57,9 +62,7 @@ struct AddSwitchingGroupButton: View {
                     Spacer()
 
                     Button("Cancel".i18n()) { hide() }
-                        .keyboardShortcut(.cancelAction)
                     Button("Add".i18n()) { add() }
-                        .keyboardShortcut(.defaultAction)
                         .disabled(selections.count < 2)
                 }
             }
@@ -89,7 +92,7 @@ struct MultipleSelectionRow: View {
                 Text(self.title)
                 if self.isSelected {
                     Spacer()
-                    Image(systemName: "checkmark")
+                    Image.compatSystemName("checkmark")
                 }
             }
         }

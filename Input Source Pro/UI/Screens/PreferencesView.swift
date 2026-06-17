@@ -6,8 +6,6 @@ struct PreferencesView: View {
     @EnvironmentObject var preferencesVM: PreferencesVM
     @EnvironmentObject var indicatorVM: IndicatorVM
 
-    @State private var asyncSelection: NavigationVM.Nav = .general
-
     var body: some View {
         return HStack(spacing: 0) {
             ZStack {
@@ -70,7 +68,7 @@ struct PreferencesView: View {
             HStack {
                 VStack(spacing: 0) {
                     HStack {
-                        SwiftUI.Image(systemName: asyncSelection.icon)
+                        SwiftUI.Image.compatSystemName(navigationVM.selection.icon)
                             .font(.system(size: 18, weight: .medium))
                             .opacity(0.8)
                             .frame(width: 20)
@@ -80,7 +78,7 @@ struct PreferencesView: View {
                                 .font(.system(size: 12, weight: .semibold))
                                 .opacity(0.8)
 
-                            Text(asyncSelection.displayName)
+                            Text(navigationVM.selection.displayName)
                                 .font(.system(size: 11))
                                 .opacity(0.6)
                         }
@@ -91,7 +89,7 @@ struct PreferencesView: View {
                     .padding(.horizontal)
                     .border(width: 1, edges: [.bottom], color: NSColor.border.color)
 
-                    asyncSelection.getView()
+                    navigationVM.selection.getView()
                     Spacer(minLength: 0)
                 }
 
@@ -102,12 +100,6 @@ struct PreferencesView: View {
         .frame(minWidth: 780, minHeight: 620)
         .background(NSColor.background.color)
         .environment(\.managedObjectContext, preferencesVM.container.viewContext)
-        .onChange(of: navigationVM.selection) { _ in
-            asyncSelection = navigationVM.selection
-        }
-        .onAppear {
-            asyncSelection = navigationVM.selection
-        }
         .edgesIgnoringSafeArea(.top)
         .modifier(FeedbackModal())
     }
@@ -189,7 +181,7 @@ struct NavButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         HStack {
             VStack {
-                SwiftUI.Image(systemName: icon)
+                SwiftUI.Image.compatSystemName(icon)
                     .font(.system(size: 15, weight: .medium))
                     .frame(width: 15, height: 15)
                     .opacity(0.9)

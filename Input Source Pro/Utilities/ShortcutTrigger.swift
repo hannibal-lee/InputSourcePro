@@ -216,7 +216,6 @@ struct ShortcutBinding {
     let onTrigger: () -> Void
 }
 
-@MainActor
 final class ShortcutTriggerManager {
     private var cancelBag = CancelBag()
     private var modifierTapTimestamps: [SingleModifierKey: TimeInterval] = [:]
@@ -271,9 +270,8 @@ final class ShortcutTriggerManager {
     }
 
     deinit {
-        // deinit is nonisolated; schedule main-actor cleanup asynchronously
-        Task { @MainActor in
-            removeAllMonitors()
+        DispatchQueue.main.async { [weak self] in
+            self?.removeAllMonitors()
         }
     }
 
@@ -391,17 +389,20 @@ final class ShortcutTriggerManager {
         // Create event tap for keyDown, keyUp, mouse button, and scroll events
         // Mouse events: handle Shift+click for text selection
         // Scroll events: handle Shift+scroll for horizontal scrolling
-        let eventMask =
-            (1 << CGEventType.keyDown.rawValue) | (1 << CGEventType.keyUp.rawValue)
-            | (1 << CGEventType.leftMouseDown.rawValue) | (1 << CGEventType.rightMouseDown.rawValue)
-            | (1 << CGEventType.otherMouseDown.rawValue) | (1 << CGEventType.scrollWheel.rawValue)
+        let keyDownMask = CGEventMask(1 << CGEventType.keyDown.rawValue)
+        let keyUpMask = CGEventMask(1 << CGEventType.keyUp.rawValue)
+        let leftMouseMask = CGEventMask(1 << CGEventType.leftMouseDown.rawValue)
+        let rightMouseMask = CGEventMask(1 << CGEventType.rightMouseDown.rawValue)
+        let otherMouseMask = CGEventMask(1 << CGEventType.otherMouseDown.rawValue)
+        let scrollMask = CGEventMask(1 << CGEventType.scrollWheel.rawValue)
+        let eventMask = keyDownMask | keyUpMask | leftMouseMask | rightMouseMask | otherMouseMask | scrollMask
 
         guard
             let eventTap = CGEvent.tapCreate(
                 tap: .cgSessionEventTap,
                 place: .headInsertEventTap,
                 options: .listenOnly,  // Only listen, don't modify events
-                eventsOfInterest: CGEventMask(eventMask),
+                eventsOfInterest: eventMask,
                 callback: { proxy, type, event, refcon -> Unmanaged<CGEvent>? in
                     guard let refcon = refcon else {
                         return Unmanaged.passUnretained(event)
@@ -604,12 +605,12 @@ final class ShortcutTriggerManager {
         let cutoff = timestamp - otherKeyPressSuppressInterval
         lastKeyDownTimestamps = lastKeyDownTimestamps.filter { $0.value >= cutoff }
 
-        let lastOtherKeyTimestamp = lastKeyDownTimestamps
+        let lastOtherKeyTimestampValue = lastKeyDownTimestamps
             .filter { !excludedKeyCodes.contains($0.key) }
             .map(\.value)
             .max()
 
-        guard let lastOtherKeyTimestamp else { return false }
+        guard let lastOtherKeyTimestamp = lastOtherKeyTimestampValue else { return false }
         return timestamp - lastOtherKeyTimestamp <= otherKeyPressSuppressInterval
     }
 

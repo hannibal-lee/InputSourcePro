@@ -4,7 +4,6 @@ import Combine
 import IOKit
 import os
 
-@MainActor
 class PunctuationService: ObservableObject {
     private let logger = ISPLogger(category: String(describing: PunctuationService.self))
     

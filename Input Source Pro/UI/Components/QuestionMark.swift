@@ -11,9 +11,9 @@ struct QuestionMark<Content: View>: View {
 
     var body: some View {
         Button(action: { isPresented.toggle() }) {
-            SwiftUI.Image(systemName: "questionmark")
+            SwiftUI.Image.compatSystemName("questionmark")
         }
-        .font(.system(size: 10).weight(.bold))
+        .font(Font.system(size: 10).weight(Font.Weight.bold))
         .frame(width: 18, height: 18)
         .clipShape(RoundedRectangle(cornerRadius: 99))
         .popover(isPresented: $isPresented, arrowEdge: .top) {

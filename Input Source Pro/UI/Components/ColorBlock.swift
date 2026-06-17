@@ -1,26 +1,32 @@
 import SwiftUI
 
 struct ColorBlocks: View {
-    typealias Scheme = (a: Color, b: Color)
+    struct Scheme {
+        let textHex: String
+        let backgroundHex: String
+
+        var textColor: Color { Color(hex: textHex) }
+        var backgroundColor: Color { Color(hex: backgroundHex) }
+    }
 
     let onSelectColor: (Scheme) -> Void
 
     let colors: [Scheme] = [
-        (.init(hex: "#FFF"), .init(hex: "#000")),
-        (.init(hex: "#FFF"), .init(hex: "#ef233c")),
-        (.init(hex: "#FFF"), .init(hex: "#f77f00")),
-        (.init(hex: "#000"), .init(hex: "#F6CB56")),
-        (.init(hex: "#FFF"), .init(hex: "#2c6e49")),
-        (.init(hex: "#FFF"), .init(hex: "#0c7489")),
-        (.init(hex: "#FFF"), .init(hex: "#023e8a")),
-        (.init(hex: "#FFF"), .init(hex: "#7209b7")),
+        Scheme(textHex: "ffffffff", backgroundHex: "000000ff"),
+        Scheme(textHex: "ffffffff", backgroundHex: "ef233cff"),
+        Scheme(textHex: "ffffffff", backgroundHex: "f77f00ff"),
+        Scheme(textHex: "000000ff", backgroundHex: "f6cb56ff"),
+        Scheme(textHex: "ffffffff", backgroundHex: "2c6e49ff"),
+        Scheme(textHex: "ffffffff", backgroundHex: "0c7489ff"),
+        Scheme(textHex: "ffffffff", backgroundHex: "023e8aff"),
+        Scheme(textHex: "ffffffff", backgroundHex: "7209b7ff"),
     ]
 
     var body: some View {
         HStack {
             ForEach(Array(zip(colors.indices, colors)), id: \.0) { _, scheme in
                 Spacer()
-                ColorBlock(colorA: scheme.a, colorB: scheme.b)
+                ColorBlock(colorA: scheme.textColor, colorB: scheme.backgroundColor)
                     .onTapGesture {
                         onSelectColor(scheme)
                     }
@@ -39,7 +45,7 @@ struct ColorBlock: View {
         RoundedRectangle(cornerRadius: 4)
             .fill(colorB)
             .overlay(
-                SwiftUI.Image(systemName: "textformat")
+                SwiftUI.Image.compatSystemName("textformat")
                     .foregroundColor(colorA)
                     .font(.system(size: 12, weight: .semibold))
             )

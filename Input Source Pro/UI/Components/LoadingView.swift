@@ -12,7 +12,8 @@ struct LoadingView<Content>: View where Content: View {
                 .opacity(isShowing ? 0.5 : 1)
 
             VStack {
-                ProgressView()
+                Text("Loading...".i18n())
+                    .font(.caption)
                     .frame(width: 30, height: 30)
             }
             .opacity(isShowing ? 1 : 0)

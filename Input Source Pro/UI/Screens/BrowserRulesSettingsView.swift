@@ -65,11 +65,11 @@ struct BrowserRulesSettingsView: View {
             HStack(spacing: 0) {
                 HStack(spacing: 5) {
                     Button(action: addRule) {
-                        SwiftUI.Image(systemName: "plus")
+                        SwiftUI.Image.compatSystemName("plus")
                     }
 
                     Button(action: removeRules) {
-                        SwiftUI.Image(systemName: "minus")
+                        SwiftUI.Image.compatSystemName("minus")
                     }
                     .disabled(selectedRules.isEmpty)
                 }
@@ -94,12 +94,15 @@ struct BrowserRulesSettingsView: View {
             .border(width: 1, edges: [.top], color: NSColor.gridColor.color)
             .sheet(isPresented: $isPresented, content: {
                 BrowserRuleEditView(isPresented: $isPresented, rule: nil)
+                    .environmentObject(preferencesVM)
             })
             .sheet(isPresented: isShowPermissionRequest) {
                 BrowserPermissionRequestView(
                     isPresented: isShowPermissionRequest,
                     onSuccess: permissionRequestSuccess
                 )
+                .environmentObject(permissionsVM)
+                .environmentObject(preferencesVM)
             }
         }
     }

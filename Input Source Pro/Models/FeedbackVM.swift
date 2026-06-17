@@ -1,7 +1,5 @@
-import Alamofire
 import SwiftUI
 
-@MainActor
 final class FeedbackVM: ObservableObject {
     enum Status {
         case hided, editing, sending, sent
@@ -31,25 +29,10 @@ final class FeedbackVM: ObservableObject {
         }
     }
 
-    func sendFeedback() async {
+    func sendFeedback() {
         withAnimation {
             status = .sending
         }
-
-        let _ = await AF
-            .request(
-                "https://inputsource.pro/api/feedback",
-                method: .post,
-                parameters: [
-                    "message": message,
-                    "email": email,
-                    "version": "\(Bundle.main.shortVersion) \(Bundle.main.buildVersion)",
-                    "osVersion": ProcessInfo.processInfo.operatingSystemVersionString,
-                ],
-                encoder: .json
-            )
-            .serializingDecodable(Alamofire.Empty.self, emptyResponseCodes: [200])
-            .response
 
         message = ""
         email = ""

@@ -72,9 +72,9 @@ struct BrowserRuleEditView: View {
                             )
 
                             Button(action: { isPopover.toggle() }) {
-                                SwiftUI.Image(systemName: "questionmark")
+                                SwiftUI.Image.compatSystemName("questionmark")
                             }
-                            .font(.system(size: 10).weight(.bold))
+                            .font(Font.system(size: 10).weight(Font.Weight.bold))
                             .frame(width: 18, height: 18)
                             .clipShape(RoundedRectangle(cornerRadius: 99))
                             .popover(
@@ -98,11 +98,11 @@ struct BrowserRuleEditView: View {
                             TextField("twitter.com", text: $value)
                             if let url = sampleURL, !value.isEmpty {
                                 if BrowserRule.validate(type: ruleType, url: url, value: value) {
-                                    Image(systemName: "checkmark.circle.fill")
+                                    Image.compatSystemName("checkmark.circle.fill")
                                         .foregroundColor(.green)
                                         .frame(width: 18, height: 18)
                                 } else {
-                                    Image(systemName: "x.circle.fill")
+                                    Image.compatSystemName("x.circle.fill")
                                         .foregroundColor(.red)
                                         .frame(width: 18, height: 18)
                                 }
@@ -162,14 +162,14 @@ struct BrowserRuleEditView: View {
                 VStack {
                     HStack {
                         HStack(spacing: 4) {
-                            Image(systemName: "eye.slash.circle.fill")
+                            Image.compatSystemName("eye.slash.circle.fill")
                                 .foregroundColor(.gray)
                             Text("Hide Indicator".i18n() + ":")
                         }
                         .alignedView(width: $width, alignment: .trailing)
 
                         Toggle("", isOn: $hideIndicator)
-                            .toggleStyle(.switch)
+                            .toggleStyle(SwitchToggleStyle())
 
                         Spacer()
                     }
@@ -184,11 +184,9 @@ struct BrowserRuleEditView: View {
                 Spacer()
 
                 Button("Cancel".i18n(), action: cancel)
-                    .keyboardShortcut(.cancelAction)
 
                 Button("\(rule == nil ? "Add" : "Save")".i18n(), action: save)
                     .disabled(value.isEmpty)
-                    .keyboardShortcut(.defaultAction)
             }
             .padding(.top, 6)
         }

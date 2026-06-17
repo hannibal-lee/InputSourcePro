@@ -1,7 +1,6 @@
 import AppKit
 import SnapKit
 
-@MainActor
 class IndicatorViewController: NSViewController {
     let hoverableView = NSViewHoverable(frame: .zero)
 

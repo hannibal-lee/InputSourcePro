@@ -4,50 +4,25 @@ import VisualEffects
 struct KeyboardCustomization: View {
     @EnvironmentObject var preferencesVM: PreferencesVM
 
-    @State var textColor: Color = .clear
-    @State var bgColor: Color = .clear
+    @State var textColor: NSColor = .clear
+    @State var bgColor: NSColor = .clear
+    @State private var keyboardConfig: KeyboardConfig?
 
     let inputSource: InputSource
 
-    let columns = [
-        GridItem(.fixed(100), alignment: .trailing),
-        GridItem(.flexible(minimum: 50, maximum: .infinity), alignment: .leading),
-    ]
-
-    let indicatorColumns = [
-        GridItem(.flexible(minimum: 50, maximum: .infinity), alignment: .center),
-        GridItem(.flexible(minimum: 50, maximum: .infinity), alignment: .center),
-    ]
-
     var body: some View {
-        let keyboardConfig = preferencesVM.getOrCreateKeyboardConfig(inputSource)
-
         VStack(alignment: .leading) {
             ZStack {
-                LazyVGrid(columns: indicatorColumns) {
-                    DumpIndicatorView(config: IndicatorViewConfig(
-                        inputSource: inputSource,
+                HStack(spacing: 16) {
+                    indicatorPreview(
                         kind: .alwaysOn,
-                        size: preferencesVM.preferences.indicatorSize ?? .medium,
-                        bgColor: NSColor(bgColor),
-                        textColor: NSColor(textColor)
-                    ))
+                        title: "Always-On Indicator Style"
+                    )
 
-                    DumpIndicatorView(config: IndicatorViewConfig(
-                        inputSource: inputSource,
+                    indicatorPreview(
                         kind: preferencesVM.preferences.indicatorKind,
-                        size: preferencesVM.preferences.indicatorSize ?? .medium,
-                        bgColor: NSColor(bgColor),
-                        textColor: NSColor(textColor)
-                    ))
-
-                    Text("Always-On Indicator Style")
-                        .font(.caption)
-                        .opacity(0.5)
-
-                    Text("Keyboard Indicator Style")
-                        .font(.caption)
-                        .opacity(0.5)
+                        title: "Keyboard Indicator Style"
+                    )
                 }
                 .padding()
                 .itemSectionStyle()
@@ -60,7 +35,7 @@ struct KeyboardCustomization: View {
                         Button(action: { reset(keyboardConfig) }) {
                             Text("Reset")
                         }
-                        .buttonStyle(GhostButton(icon: Image(systemName: "arrow.clockwise")))
+                        .buttonStyle(GhostButton(icon: Image.compatSystemName("arrow.clockwise")))
                     }
                 }
                 .padding(.trailing, 4)
@@ -69,13 +44,13 @@ struct KeyboardCustomization: View {
 
             VStack(alignment: .center) {
                 ColorBlocks(onSelectColor: {
-                    textColor = $0.a
-                    bgColor = $0.b
+                    textColor = NSColor(hex: $0.textHex)
+                    bgColor = NSColor(hex: $0.backgroundHex)
                 })
                 .padding(.vertical, 8)
 
                 HStack {
-                    ColorPicker("Color", selection: $textColor)
+                    CompatColorPicker("Color", selection: $textColor)
 
                     Button(
                         action: {
@@ -86,11 +61,11 @@ struct KeyboardCustomization: View {
                             bgColor = a
                         },
                         label: {
-                            Image(systemName: "repeat")
+                            Image.compatSystemName("repeat")
                         }
                     )
 
-                    ColorPicker("Background", selection: $bgColor)
+                    CompatColorPicker("Background", selection: $bgColor)
                 }
                 .labelsHidden()
             }
@@ -98,22 +73,42 @@ struct KeyboardCustomization: View {
         }
         .padding()
         .onAppear {
-            textColor = preferencesVM.getTextColor(inputSource)
-            bgColor = preferencesVM.getBgColor(inputSource)
+            keyboardConfig = preferencesVM.getKeyboardConfig(inputSource)
+            textColor = preferencesVM.getTextNSColor(inputSource) ?? preferencesVM.preferences.indicatorForgegroundNSColor
+            bgColor = preferencesVM.getBgNSColor(inputSource) ?? preferencesVM.preferences.indicatorBackgroundNSColor
         }
-        .onChange(of: bgColor, perform: { _ in save(keyboardConfig) })
-        .onChange(of: textColor, perform: { _ in save(keyboardConfig) })
+        .onChangeCompat(of: bgColor.hexWithAlpha, perform: { _ in save() })
+        .onChangeCompat(of: textColor.hexWithAlpha, perform: { _ in save() })
         .onDisappear {
             NSColorPanel.shared.close()
         }
     }
 
-    func save(_ keyboardConfig: KeyboardConfig) {
-        preferencesVM.update(keyboardConfig, textColor: textColor, bgColor: bgColor)
+    func indicatorPreview(kind: IndicatorKind, title: String) -> some View {
+        VStack(spacing: 8) {
+            DumpIndicatorView(config: IndicatorViewConfig(
+                inputSource: inputSource,
+                kind: kind,
+                size: preferencesVM.preferences.indicatorSize ?? .medium,
+                bgColor: bgColor,
+                textColor: textColor
+            ))
+
+            Text(title)
+                .font(.caption)
+                .opacity(0.5)
+        }
+        .frame(maxWidth: .infinity)
     }
 
-    func reset(_: KeyboardConfig) {
-        bgColor = preferencesVM.preferences.indicatorBackgroundColor
-        textColor = preferencesVM.preferences.indicatorForgegroundColor
+    func save() {
+        let config = keyboardConfig ?? preferencesVM.getOrCreateKeyboardConfig(inputSource)
+        keyboardConfig = config
+        preferencesVM.update(config, textColor: textColor, bgColor: bgColor)
+    }
+
+    func reset(_: KeyboardConfig?) {
+        bgColor = preferencesVM.preferences.indicatorBackgroundNSColor
+        textColor = preferencesVM.preferences.indicatorForgegroundNSColor
     }
 }

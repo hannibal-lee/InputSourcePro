@@ -14,8 +14,8 @@ struct IndicatorView: NSViewControllerRepresentable {
             inputSource: indicatorVM.state.inputSource,
             kind: preferencesVM.preferences.indicatorKind,
             size: preferencesVM.preferences.indicatorSize ?? .medium,
-            bgColor: NSColor(preferencesVM.preferences.indicatorBackgroundColor),
-            textColor: NSColor(preferencesVM.preferences.indicatorForgegroundColor)
+            bgColor: preferencesVM.preferences.indicatorBackgroundNSColor,
+            textColor: preferencesVM.preferences.indicatorForgegroundNSColor
         ))
 
         indicatorViewController.refresh()

@@ -39,7 +39,6 @@ struct FeedbackModal: ViewModifier {
                                     Button("Close".i18n()) {
                                         feedbackVM.hide()
                                     }
-                                    .keyboardShortcut(.defaultAction)
                                     .padding(.bottom)
                                 }
 
@@ -47,7 +46,7 @@ struct FeedbackModal: ViewModifier {
                             }
                         } else {
                             Text("FeedbackTips".i18n())
-                                .foregroundColor(.primary.opacity(0.8))
+                                .foregroundColor(Color.primary.opacity(0.8))
                                 .padding(.vertical, 8)
 
                             Text("FeedbackMessageTitle".i18n() + ":")
@@ -65,14 +64,10 @@ struct FeedbackModal: ViewModifier {
                                 Button("Cancel".i18n()) {
                                     feedbackVM.hide()
                                 }
-                                .keyboardShortcut(.cancelAction)
 
                                 Button("Send Feedback".i18n()) {
-                                    Task {
-                                        await feedbackVM.sendFeedback()
-                                    }
+                                    feedbackVM.sendFeedback()
                                 }
-                                .keyboardShortcut(.defaultAction)
                                 .disabled(feedbackVM.message.isEmpty)
                             }
                             .padding(.top)

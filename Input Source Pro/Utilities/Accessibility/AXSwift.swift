@@ -1,6 +1,8 @@
 import AXSwift
 import Cocoa
 
+typealias AXTextMarkerRange = CFTypeRef
+
 extension UIElement {
     func getCursorRectInfo() -> (rect: CGRect, isContainer: Bool)? {
         guard let focusedElement: UIElement = try? attribute(.focusedUIElement),

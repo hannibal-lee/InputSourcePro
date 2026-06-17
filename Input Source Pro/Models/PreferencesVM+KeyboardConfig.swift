@@ -1,5 +1,4 @@
 import AppKit
-import Bodega
 import Boutique
 import Foundation
 import SwiftUI
@@ -23,10 +22,20 @@ extension PreferencesVM {
         }
     }
 
-    func update(_ config: KeyboardConfig, textColor: Color, bgColor: Color) {
+    func update(_ config: KeyboardConfig, textColor: NSColor, bgColor: NSColor) {
+        let defaultTextHex = preferences.indicatorForgegroundNSColor.normalizedRGBColor.hexWithAlpha
+        let defaultBgHex = preferences.indicatorBackgroundNSColor.normalizedRGBColor.hexWithAlpha
+        let textHex = textColor.normalizedRGBColor.hexWithAlpha
+        let bgHex = bgColor.normalizedRGBColor.hexWithAlpha
+
+        let nextTextHex = textHex == defaultTextHex ? nil : textHex
+        let nextBgHex = bgHex == defaultBgHex ? nil : bgHex
+
+        guard config.textColorHex != nextTextHex || config.bgColorHex != nextBgHex else { return }
+
         saveContext {
-            config.textColor = textColor == self.preferences.indicatorForgegroundColor ? nil : textColor
-            config.bgColor = bgColor == self.preferences.indicatorBackgroundColor ? nil : bgColor
+            config.textColorHex = nextTextHex
+            config.bgColorHex = nextBgHex
         }
     }
 
@@ -42,7 +51,7 @@ extension PreferencesVM {
     func migrateKeyboardConfigIdentifiersIfNeed() {
         guard !UserDefaults.standard.bool(forKey: didMigrateModeAwareKeyboardConfigsKey) else { return }
 
-        let request = KeyboardConfig.fetchRequest()
+        let request: NSFetchRequest<KeyboardConfig> = KeyboardConfig.fetchRequest()
 
         do {
             let configs = try container.viewContext.fetch(request)
@@ -84,12 +93,12 @@ extension PreferencesVM {
     func getTextNSColor(_ inputSource: InputSource) -> NSColor? {
         let isAutoAppearanceMode = preferences.isAutoAppearanceMode
 
-        if let keyboardColor = getKeyboardConfig(inputSource)?.textColor {
-            return NSColor(keyboardColor)
+        if let keyboardColor = getKeyboardConfig(inputSource)?.textNSColor {
+            return keyboardColor
         } else {
             return isAutoAppearanceMode
                 ? preferences.indicatorForgeground?.dynamicColor
-                : NSColor(preferences.indicatorForgegroundColor)
+                : preferences.indicatorForgegroundNSColor
         }
     }
 
@@ -104,12 +113,12 @@ extension PreferencesVM {
     func getBgNSColor(_ inputSource: InputSource) -> NSColor? {
         let isAutoAppearanceMode = preferences.isAutoAppearanceMode
 
-        if let bgColor = getKeyboardConfig(inputSource)?.bgColor {
-            return NSColor(bgColor)
+        if let bgColor = getKeyboardConfig(inputSource)?.bgNSColor {
+            return bgColor
         } else {
             return isAutoAppearanceMode
                 ? preferences.indicatorBackground?.dynamicColor
-                : NSColor(preferences.indicatorBackgroundColor)
+                : preferences.indicatorBackgroundNSColor
         }
     }
 

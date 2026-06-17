@@ -2,7 +2,6 @@ import AppKit
 import Combine
 import IOKit
 
-@MainActor
 final class PermissionsVM: ObservableObject {
     @discardableResult
     static func checkAccessibility(prompt: Bool) -> Bool {
@@ -23,6 +22,8 @@ final class PermissionsVM: ObservableObject {
     @Published var isAccessibilityEnabled = PermissionsVM.checkAccessibility(prompt: false)
     @Published var isInputMonitoringEnabled = PermissionsVM.checkInputMonitoring(prompt: false)
 
+    private var cancelBag = CancelBag()
+
     init() {
         watchAccessibilityChange()
         watchInputMonitoringChange()
@@ -36,7 +37,8 @@ final class PermissionsVM: ObservableObject {
             .map { _ in Self.checkAccessibility(prompt: false) }
             .filter { $0 }
             .first()
-            .assign(to: &$isAccessibilityEnabled)
+            .sink { [weak self] in self?.isAccessibilityEnabled = $0 }
+            .store(in: cancelBag)
     }
 
     private func watchInputMonitoringChange() {
@@ -47,6 +49,7 @@ final class PermissionsVM: ObservableObject {
             .map { _ in Self.checkInputMonitoring(prompt: false) }
             .filter { $0 }
             .first()
-            .assign(to: &$isInputMonitoringEnabled)
+            .sink { [weak self] in self?.isInputMonitoringEnabled = $0 }
+            .store(in: cancelBag)
     }
 }

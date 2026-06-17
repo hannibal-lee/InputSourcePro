@@ -1,7 +1,6 @@
 import AppKit
 import SwiftUI
 
-@MainActor
 class PreferencesWindowController: NSWindowController {
     let navigationVM: NavigationVM
     let permissionsVM: PermissionsVM
@@ -50,6 +49,7 @@ class PreferencesWindowController: NSWindowController {
     }
 
     private func configureWindow() {
+        window?.isReleasedWhenClosed = false
         window?.standardWindowButton(NSWindow.ButtonType.zoomButton)?.isEnabled = false
         window?.standardWindowButton(NSWindow.ButtonType.miniaturizeButton)?.isEnabled = false
 

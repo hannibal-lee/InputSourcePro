@@ -7,20 +7,20 @@ class MainStorage: NSObject {
     let container: NSPersistentContainer
 
     private lazy var keyboardConfigsFRC: NSFetchedResultsController<KeyboardConfig> = {
-        let fetchRequest = KeyboardConfig.fetchRequest()
+        let fetchRequest: NSFetchRequest<KeyboardConfig> = KeyboardConfig.fetchRequest()
 
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
 
-        keyboardConfigsFRC = NSFetchedResultsController(
+        let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: container.viewContext,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
 
-        keyboardConfigsFRC.delegate = self
+        frc.delegate = self
 
-        return keyboardConfigsFRC
+        return frc
     }()
 
     init(container: NSPersistentContainer) {

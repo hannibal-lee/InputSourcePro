@@ -22,8 +22,7 @@ enum BrowserRuleType: Int32, CaseIterable {
 }
 
 extension BrowserRule {
-    @MainActor
-    var forcedKeyboard: InputSource? {
+        var forcedKeyboard: InputSource? {
         return InputSource.resolvePersistedIdentifier(inputSourceId)
     }
 

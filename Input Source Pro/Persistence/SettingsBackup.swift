@@ -201,82 +201,82 @@ struct SettingsBackupPreferences: Codable {
     }
 
     func apply(to preferences: inout Preferences) {
-        if let isLaunchAtLogin { preferences.isLaunchAtLogin = isLaunchAtLogin }
-        if let isShowIconInMenuBar { preferences.isShowIconInMenuBar = isShowIconInMenuBar }
-        if let isEnhancedModeEnabled { preferences.isEnhancedModeEnabled = isEnhancedModeEnabled }
-        if let isCJKVFixEnabled { preferences.isCJKVFixEnabled = isCJKVFixEnabled }
-        if let cJKVFixStrategy { preferences.cJKVFixStrategy = cJKVFixStrategy }
-        if let isActiveWhenLongpressLeftMouse { preferences.isActiveWhenLongpressLeftMouse = isActiveWhenLongpressLeftMouse }
-        if let isActiveWhenSwitchApp { preferences.isActiveWhenSwitchApp = isActiveWhenSwitchApp }
-        if let isHideWhenSwitchAppWithForceKeyboard {
+        if let isLaunchAtLogin = isLaunchAtLogin { preferences.isLaunchAtLogin = isLaunchAtLogin }
+        if let isShowIconInMenuBar = isShowIconInMenuBar { preferences.isShowIconInMenuBar = isShowIconInMenuBar }
+        if let isEnhancedModeEnabled = isEnhancedModeEnabled { preferences.isEnhancedModeEnabled = isEnhancedModeEnabled }
+        if let isCJKVFixEnabled = isCJKVFixEnabled { preferences.isCJKVFixEnabled = isCJKVFixEnabled }
+        if let cJKVFixStrategy = cJKVFixStrategy { preferences.cJKVFixStrategy = cJKVFixStrategy }
+        if let isActiveWhenLongpressLeftMouse = isActiveWhenLongpressLeftMouse { preferences.isActiveWhenLongpressLeftMouse = isActiveWhenLongpressLeftMouse }
+        if let isActiveWhenSwitchApp = isActiveWhenSwitchApp { preferences.isActiveWhenSwitchApp = isActiveWhenSwitchApp }
+        if let isHideWhenSwitchAppWithForceKeyboard = isHideWhenSwitchAppWithForceKeyboard {
             preferences.isHideWhenSwitchAppWithForceKeyboard = isHideWhenSwitchAppWithForceKeyboard
         }
-        if let isActiveWhenSwitchInputSource { preferences.isActiveWhenSwitchInputSource = isActiveWhenSwitchInputSource }
-        if let isActiveWhenFocusedElementChanges {
+        if let isActiveWhenSwitchInputSource = isActiveWhenSwitchInputSource { preferences.isActiveWhenSwitchInputSource = isActiveWhenSwitchInputSource }
+        if let isActiveWhenFocusedElementChanges = isActiveWhenFocusedElementChanges {
             preferences.isActiveWhenFocusedElementChanges = isActiveWhenFocusedElementChanges
         }
-        if let isRestorePreviouslyUsedInputSource {
+        if let isRestorePreviouslyUsedInputSource = isRestorePreviouslyUsedInputSource {
             preferences.isRestorePreviouslyUsedInputSource = isRestorePreviouslyUsedInputSource
         }
-        if let isFunctionKeysEnabled { preferences.isFunctionKeysEnabled = isFunctionKeysEnabled }
-        if let shortcutTriggerMode { preferences.shortcutTriggerMode = shortcutTriggerMode }
-        if let singleModifierTrigger { preferences.singleModifierTrigger = singleModifierTrigger }
-        if let shortcutModeInputSourceMapping {
+        if let isFunctionKeysEnabled = isFunctionKeysEnabled { preferences.isFunctionKeysEnabled = isFunctionKeysEnabled }
+        if let shortcutTriggerMode = shortcutTriggerMode { preferences.shortcutTriggerMode = shortcutTriggerMode }
+        if let singleModifierTrigger = singleModifierTrigger { preferences.singleModifierTrigger = singleModifierTrigger }
+        if let shortcutModeInputSourceMapping = shortcutModeInputSourceMapping {
             preferences.shortcutModeInputSourceMapping = shortcutModeInputSourceMapping
         }
-        if let shortcutModeGroupMapping { preferences.shortcutModeGroupMapping = shortcutModeGroupMapping }
-        if let singleModifierTriggerInputSourceMapping {
+        if let shortcutModeGroupMapping = shortcutModeGroupMapping { preferences.shortcutModeGroupMapping = shortcutModeGroupMapping }
+        if let singleModifierTriggerInputSourceMapping = singleModifierTriggerInputSourceMapping {
             preferences.singleModifierTriggerInputSourceMapping = singleModifierTriggerInputSourceMapping
         }
-        if let singleModifierTriggerGroupMapping {
+        if let singleModifierTriggerGroupMapping = singleModifierTriggerGroupMapping {
             preferences.singleModifierTriggerGroupMapping = singleModifierTriggerGroupMapping
         }
-        if let singleModifierInputSourceMapping {
+        if let singleModifierInputSourceMapping = singleModifierInputSourceMapping {
             preferences.singleModifierInputSourceMapping = singleModifierInputSourceMapping
         }
-        if let singleModifierGroupMapping { preferences.singleModifierGroupMapping = singleModifierGroupMapping }
-        if let systemWideDefaultKeyboardId { preferences.systemWideDefaultKeyboardId = systemWideDefaultKeyboardId }
-        if let browserAddressDefaultKeyboardId {
+        if let singleModifierGroupMapping = singleModifierGroupMapping { preferences.singleModifierGroupMapping = singleModifierGroupMapping }
+        if let systemWideDefaultKeyboardId = systemWideDefaultKeyboardId { preferences.systemWideDefaultKeyboardId = systemWideDefaultKeyboardId }
+        if let browserAddressDefaultKeyboardId = browserAddressDefaultKeyboardId {
             preferences.browserAddressDefaultKeyboardId = browserAddressDefaultKeyboardId
         }
-        if let isEnableURLSwitchForSafari { preferences.isEnableURLSwitchForSafari = isEnableURLSwitchForSafari }
-        if let isEnableURLSwitchForSafariTechnologyPreview {
+        if let isEnableURLSwitchForSafari = isEnableURLSwitchForSafari { preferences.isEnableURLSwitchForSafari = isEnableURLSwitchForSafari }
+        if let isEnableURLSwitchForSafariTechnologyPreview = isEnableURLSwitchForSafariTechnologyPreview {
             preferences.isEnableURLSwitchForSafariTechnologyPreview = isEnableURLSwitchForSafariTechnologyPreview
         }
-        if let isEnableURLSwitchForChrome { preferences.isEnableURLSwitchForChrome = isEnableURLSwitchForChrome }
-        if let isEnableURLSwitchForChromium { preferences.isEnableURLSwitchForChromium = isEnableURLSwitchForChromium }
-        if let isEnableURLSwitchForArc { preferences.isEnableURLSwitchForArc = isEnableURLSwitchForArc }
-        if let isEnableURLSwitchForEdge { preferences.isEnableURLSwitchForEdge = isEnableURLSwitchForEdge }
-        if let isEnableURLSwitchForBrave { preferences.isEnableURLSwitchForBrave = isEnableURLSwitchForBrave }
-        if let isEnableURLSwitchForBraveBeta { preferences.isEnableURLSwitchForBraveBeta = isEnableURLSwitchForBraveBeta }
-        if let isEnableURLSwitchForBraveNightly {
+        if let isEnableURLSwitchForChrome = isEnableURLSwitchForChrome { preferences.isEnableURLSwitchForChrome = isEnableURLSwitchForChrome }
+        if let isEnableURLSwitchForChromium = isEnableURLSwitchForChromium { preferences.isEnableURLSwitchForChromium = isEnableURLSwitchForChromium }
+        if let isEnableURLSwitchForArc = isEnableURLSwitchForArc { preferences.isEnableURLSwitchForArc = isEnableURLSwitchForArc }
+        if let isEnableURLSwitchForEdge = isEnableURLSwitchForEdge { preferences.isEnableURLSwitchForEdge = isEnableURLSwitchForEdge }
+        if let isEnableURLSwitchForBrave = isEnableURLSwitchForBrave { preferences.isEnableURLSwitchForBrave = isEnableURLSwitchForBrave }
+        if let isEnableURLSwitchForBraveBeta = isEnableURLSwitchForBraveBeta { preferences.isEnableURLSwitchForBraveBeta = isEnableURLSwitchForBraveBeta }
+        if let isEnableURLSwitchForBraveNightly = isEnableURLSwitchForBraveNightly {
             preferences.isEnableURLSwitchForBraveNightly = isEnableURLSwitchForBraveNightly
         }
-        if let isEnableURLSwitchForVivaldi { preferences.isEnableURLSwitchForVivaldi = isEnableURLSwitchForVivaldi }
-        if let isEnableURLSwitchForOpera { preferences.isEnableURLSwitchForOpera = isEnableURLSwitchForOpera }
-        if let isEnableURLSwitchForThorium { preferences.isEnableURLSwitchForThorium = isEnableURLSwitchForThorium }
-        if let isEnableURLSwitchForFirefox { preferences.isEnableURLSwitchForFirefox = isEnableURLSwitchForFirefox }
-        if let isEnableURLSwitchForFirefoxDeveloperEdition {
+        if let isEnableURLSwitchForVivaldi = isEnableURLSwitchForVivaldi { preferences.isEnableURLSwitchForVivaldi = isEnableURLSwitchForVivaldi }
+        if let isEnableURLSwitchForOpera = isEnableURLSwitchForOpera { preferences.isEnableURLSwitchForOpera = isEnableURLSwitchForOpera }
+        if let isEnableURLSwitchForThorium = isEnableURLSwitchForThorium { preferences.isEnableURLSwitchForThorium = isEnableURLSwitchForThorium }
+        if let isEnableURLSwitchForFirefox = isEnableURLSwitchForFirefox { preferences.isEnableURLSwitchForFirefox = isEnableURLSwitchForFirefox }
+        if let isEnableURLSwitchForFirefoxDeveloperEdition = isEnableURLSwitchForFirefoxDeveloperEdition {
             preferences.isEnableURLSwitchForFirefoxDeveloperEdition = isEnableURLSwitchForFirefoxDeveloperEdition
         }
-        if let isEnableURLSwitchForFirefoxNightly {
+        if let isEnableURLSwitchForFirefoxNightly = isEnableURLSwitchForFirefoxNightly {
             preferences.isEnableURLSwitchForFirefoxNightly = isEnableURLSwitchForFirefoxNightly
         }
-        if let isEnableURLSwitchForZen { preferences.isEnableURLSwitchForZen = isEnableURLSwitchForZen }
-        if let isEnableURLSwitchForDia { preferences.isEnableURLSwitchForDia = isEnableURLSwitchForDia }
-        if let indicatorInfo { preferences.indicatorInfo = indicatorInfo }
-        if let indicatorSize { preferences.indicatorSize = indicatorSize }
-        if let isAutoAppearanceMode { preferences.isAutoAppearanceMode = isAutoAppearanceMode }
-        if let appearanceMode { preferences.appearanceMode = appearanceMode }
-        if let indicatorBackground { preferences.indicatorBackground = indicatorBackground }
-        if let indicatorForgeground { preferences.indicatorForgeground = indicatorForgeground }
-        if let tryToDisplayIndicatorNearCursor {
+        if let isEnableURLSwitchForZen = isEnableURLSwitchForZen { preferences.isEnableURLSwitchForZen = isEnableURLSwitchForZen }
+        if let isEnableURLSwitchForDia = isEnableURLSwitchForDia { preferences.isEnableURLSwitchForDia = isEnableURLSwitchForDia }
+        if let indicatorInfo = indicatorInfo { preferences.indicatorInfo = indicatorInfo }
+        if let indicatorSize = indicatorSize { preferences.indicatorSize = indicatorSize }
+        if let isAutoAppearanceMode = isAutoAppearanceMode { preferences.isAutoAppearanceMode = isAutoAppearanceMode }
+        if let appearanceMode = appearanceMode { preferences.appearanceMode = appearanceMode }
+        if let indicatorBackground = indicatorBackground { preferences.indicatorBackground = indicatorBackground }
+        if let indicatorForgeground = indicatorForgeground { preferences.indicatorForgeground = indicatorForgeground }
+        if let tryToDisplayIndicatorNearCursor = tryToDisplayIndicatorNearCursor {
             preferences.tryToDisplayIndicatorNearCursor = tryToDisplayIndicatorNearCursor
         }
-        if let isEnableAlwaysOnIndicator { preferences.isEnableAlwaysOnIndicator = isEnableAlwaysOnIndicator }
-        if let indicatorPosition { preferences.indicatorPosition = indicatorPosition }
-        if let indicatorPositionAlignment { preferences.indicatorPositionAlignment = indicatorPositionAlignment }
-        if let indicatorPositionSpacing { preferences.indicatorPositionSpacing = indicatorPositionSpacing }
+        if let isEnableAlwaysOnIndicator = isEnableAlwaysOnIndicator { preferences.isEnableAlwaysOnIndicator = isEnableAlwaysOnIndicator }
+        if let indicatorPosition = indicatorPosition { preferences.indicatorPosition = indicatorPosition }
+        if let indicatorPositionAlignment = indicatorPositionAlignment { preferences.indicatorPositionAlignment = indicatorPositionAlignment }
+        if let indicatorPositionSpacing = indicatorPositionSpacing { preferences.indicatorPositionSpacing = indicatorPositionSpacing }
     }
 }
 
@@ -428,7 +428,7 @@ struct SettingsBackupKeyboardConfig: Codable {
     }
 
     func insert(in context: NSManagedObjectContext) {
-        guard let id else { return }
+        guard let id = id else { return }
 
         let config = KeyboardConfig(context: context)
         config.id = id
@@ -458,7 +458,7 @@ struct SettingsBackupHotKeyGroup: Codable {
     }
 
     private var normalizedID: String? {
-        guard let id, !id.isEmpty else { return nil }
+        guard let id = id, !id.isEmpty else { return nil }
         return id
     }
 
@@ -561,7 +561,7 @@ private extension PreferencesVM {
     }
 
     func fetchAppRules() throws -> [AppRule] {
-        let request = AppRule.fetchRequest()
+        let request: NSFetchRequest<AppRule> = AppRule.fetchRequest()
         request.sortDescriptors = [
             NSSortDescriptor(key: "createdAt", ascending: true),
             NSSortDescriptor(key: "bundleId", ascending: true),
@@ -570,7 +570,7 @@ private extension PreferencesVM {
     }
 
     func fetchBrowserRules() throws -> [BrowserRule] {
-        let request = BrowserRule.fetchRequest()
+        let request: NSFetchRequest<BrowserRule> = BrowserRule.fetchRequest()
         request.sortDescriptors = [
             NSSortDescriptor(key: "createdAt", ascending: true),
             NSSortDescriptor(key: "value", ascending: true),
@@ -579,13 +579,13 @@ private extension PreferencesVM {
     }
 
     func fetchKeyboardConfigs() throws -> [KeyboardConfig] {
-        let request = KeyboardConfig.fetchRequest()
+        let request: NSFetchRequest<KeyboardConfig> = KeyboardConfig.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         return try container.viewContext.fetch(request)
     }
 
     func fetchHotKeyGroups() throws -> [HotKeyGroup] {
-        let request = HotKeyGroup.fetchRequest()
+        let request: NSFetchRequest<HotKeyGroup> = HotKeyGroup.fetchRequest()
         request.sortDescriptors = [
             NSSortDescriptor(key: "createdAt", ascending: true),
             NSSortDescriptor(key: "id", ascending: true),

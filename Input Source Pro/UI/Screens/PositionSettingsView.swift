@@ -53,7 +53,7 @@ struct PositionSettingsView: View {
                             }
                         }
                         .labelsHidden()
-                        .pickerStyle(.segmented)
+                        .pickerStyle(SegmentedPickerStyle())
                         .padding()
 
                         if preferencesVM.preferences.indicatorPosition != .nearMouse {
@@ -107,7 +107,7 @@ struct PositionSettingsView: View {
                     VStack(spacing: 0) {
                         HStack {
                             Toggle(isOn: $preferencesVM.preferences.tryToDisplayIndicatorNearCursor) {}
-                                .toggleStyle(.switch)
+                                .toggleStyle(SwitchToggleStyle())
                                 .disabled(!preferencesVM.preferences.isEnhancedModeEnabled)
 
                             Text("tryToDisplayIndicatorNearCursor".i18n())
@@ -116,7 +116,7 @@ struct PositionSettingsView: View {
 
                             QuestionButton(
                                 content: {
-                                    SwiftUI.Image(systemName: "video")
+                                    SwiftUI.Image.compatSystemName("video")
                                         .font(.system(size: 11, weight: .bold))
                                         .padding(6)
                                 },
@@ -144,7 +144,7 @@ struct PositionSettingsView: View {
                             HStack {
                                 Toggle("", isOn: $preferencesVM.preferences.isEnableAlwaysOnIndicator)
                                     .disabled(needDisableAlwaysOnIndicator)
-                                    .toggleStyle(.switch)
+                                    .toggleStyle(SwitchToggleStyle())
                                     .labelsHidden()
 
                                 Text("isEnableAlwaysOnIndicator".i18n())
@@ -153,7 +153,7 @@ struct PositionSettingsView: View {
 
                                 QuestionButton(
                                     content: {
-                                        SwiftUI.Image(systemName: "video")
+                                        SwiftUI.Image.compatSystemName("video")
                                             .font(.system(size: 11, weight: .bold))
                                             .padding(6)
                                     },
@@ -192,13 +192,13 @@ struct PositionSettingsView: View {
 
     func resetColors() {
         if preferencesVM.preferences.appearanceMode == .light {
-            preferencesVM.preferences.indicatorForgegroundColor = IndicatorColor.forgeground.light
-            preferencesVM.preferences.indicatorBackgroundColor = IndicatorColor.background.light
+            preferencesVM.preferences.indicatorForgegroundNSColor = NSColor(hex: IndicatorColor.forgeground.lightHex)
+            preferencesVM.preferences.indicatorBackgroundNSColor = NSColor(hex: IndicatorColor.background.lightHex)
         }
 
         if preferencesVM.preferences.appearanceMode == .dark {
-            preferencesVM.preferences.indicatorForgegroundColor = IndicatorColor.forgeground.dark
-            preferencesVM.preferences.indicatorBackgroundColor = IndicatorColor.background.dark
+            preferencesVM.preferences.indicatorForgegroundNSColor = NSColor(hex: IndicatorColor.forgeground.darkHex)
+            preferencesVM.preferences.indicatorBackgroundNSColor = NSColor(hex: IndicatorColor.background.darkHex)
         }
     }
 }

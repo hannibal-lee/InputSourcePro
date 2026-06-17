@@ -29,7 +29,7 @@ struct RuleSettingIcon: View {
         Group {
             switch content {
             case .system(let name):
-                Image(systemName: name)
+                Image.compatSystemName(name)
                     .font(RuleSettingIconStyle.imageFont)
             case .text(let value):
                 Text(value)

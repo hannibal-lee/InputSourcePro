@@ -62,7 +62,7 @@ extension IndicatorWindowController {
         let app = appKind.getApp()
         let application = app.getApplication(preferencesVM: preferencesVM)
 
-        let needActivateAtFirstTime = {
+        let needActivateAtFirstTime = { () -> Bool in
             if preferencesVM.preferences.isActiveWhenSwitchApp {
                 return true
             }
@@ -109,8 +109,7 @@ extension IndicatorWindowController {
 // MARK: - AlwaysOn
 
 extension IndicatorWindowController {
-    @MainActor
-    enum AlwaysOn {
+        enum AlwaysOn {
         enum Event {
             case cursorMoved, showAlwaysOnIndicator, scrollStart, scrollEnd
         }

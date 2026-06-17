@@ -16,10 +16,38 @@ extension KeyboardConfig {
         }
     }
 
+    var textNSColor: NSColor? {
+        get {
+            if let hex = textColorHex {
+                return NSColor(hex: hex)
+            } else {
+                return nil
+            }
+        }
+
+        set {
+            textColorHex = newValue?.hexWithAlpha
+        }
+    }
+
     var bgColor: Color? {
         get {
             if let hex = bgColorHex {
                 return Color(hex: hex)
+            } else {
+                return nil
+            }
+        }
+
+        set {
+            bgColorHex = newValue?.hexWithAlpha
+        }
+    }
+
+    var bgNSColor: NSColor? {
+        get {
+            if let hex = bgColorHex {
+                return NSColor(hex: hex)
             } else {
                 return nil
             }

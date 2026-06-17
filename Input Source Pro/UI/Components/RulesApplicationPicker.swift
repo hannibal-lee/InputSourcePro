@@ -40,6 +40,26 @@ private struct ApplicationPickerRow: View {
     let appIconSize: CGFloat
     let keyboardIconSize: CGFloat
 
+    private var bundleTitle: String {
+        app.bundleName ?? "(unknown)"
+    }
+
+    private var helpText: String {
+        app.bundleName ?? app.url?.path ?? "(unknown)"
+    }
+
+    private var shouldShowEnhancedModePrompt: Bool {
+        preferencesVM.needDisplayEnhancedModePrompt(bundleIdentifier: app.bundleId)
+    }
+
+    private var doNotRestoreColor: Color {
+        isSelected ? Color.primary : Color.green
+    }
+
+    private var doRestoreColor: Color {
+        isSelected ? Color.primary : Color.blue
+    }
+
     var body: some View {
         HStack {
             if let image = app.image {
@@ -47,27 +67,27 @@ private struct ApplicationPickerRow: View {
                     .resizable()
                     .frame(width: appIconSize, height: appIconSize)
             } else {
-                SwiftUI.Image(systemName: "app.dashed")
+                SwiftUI.Image.compatSystemName("app.dashed")
                     .resizable()
                     .frame(width: appIconSize, height: appIconSize)
             }
 
-            Text(app.bundleName ?? "(unknown)")
+            Text(bundleTitle)
                 .lineLimit(1)
 
             Spacer()
 
             if app.hideIndicator {
-                RuleSettingIcon(systemName: "eye.slash.circle.fill", color: .gray)
+                RuleSettingIcon(systemName: "eye.slash.circle.fill", color: Color.gray)
                     .opacity(0.7)
             }
 
             if app.forceEnglishPunctuation {
-                RuleSettingIcon(text: "Aa", color: .orange)
+                RuleSettingIcon(text: "Aa", color: Color.orange)
                     .opacity(0.7)
             }
 
-            if preferencesVM.needDisplayEnhancedModePrompt(bundleIdentifier: app.bundleId) {
+            if shouldShowEnhancedModePrompt {
                 RuleSettingIcon(
                     systemName: "exclamationmark.triangle.fill",
                     color: Color(red: 1.0, green: 0.84, blue: 0.0)
@@ -76,12 +96,12 @@ private struct ApplicationPickerRow: View {
 
             if preferencesVM.preferences.isRestorePreviouslyUsedInputSource {
                 if app.doNotRestoreKeyboard {
-                    RuleSettingIcon(systemName: "d.circle.fill", color: isSelected ? .primary : .green)
+                    RuleSettingIcon(systemName: "d.circle.fill", color: doNotRestoreColor)
                         .opacity(isSelected ? 0.7 : 1.0)
                 }
             } else {
                 if app.doRestoreKeyboard {
-                    RuleSettingIcon(systemName: "arrow.uturn.left.circle.fill", color: isSelected ? .primary : .blue)
+                    RuleSettingIcon(systemName: "arrow.uturn.left.circle.fill", color: doRestoreColor)
                         .opacity(isSelected ? 0.7 : 1.0)
                 }
             }
@@ -100,6 +120,5 @@ private struct ApplicationPickerRow: View {
                     .opacity(0.7)
             }
         }
-        .help(app.bundleName ?? app.url?.path ?? "(unknown)")
     }
 }

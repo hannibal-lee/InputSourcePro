@@ -66,7 +66,7 @@ struct GeneralSettingsView: View {
                                 Text(item.name).tag(item)
                             }
                         }
-                        .pickerStyle(.segmented)
+                        .pickerStyle(SegmentedPickerStyle())
                         .flexibleButtonSizing()
                     }
                     .padding()
@@ -297,7 +297,7 @@ struct GeneralSettingsView: View {
             .padding()
         }
         .labelsHidden()
-        .toggleStyle(.switch)
+        .toggleStyle(SwitchToggleStyle())
         .background(NSColor.background1.color)
         .onAppear(perform: disableIsDetectSpotlightLikeAppIfNeed)
     }
@@ -324,7 +324,7 @@ struct GeneralSettingsView: View {
         panel.canCreateDirectories = true
         panel.isExtensionHidden = false
         panel.nameFieldStringValue = "Input Source Pro Settings"
-        panel.allowedContentTypes = [.json]
+        panel.setCompatAllowedFileTypes(["json"])
 
         guard panel.runModal() == .OK,
               var url = panel.url
@@ -356,7 +356,7 @@ struct GeneralSettingsView: View {
         panel.title = "Import Settings".i18n()
         panel.canChooseDirectories = false
         panel.allowsMultipleSelection = false
-        panel.allowedContentTypes = [.json]
+        panel.setCompatAllowedFileTypes(["json"])
 
         guard panel.runModal() == .OK,
               let url = panel.url
@@ -414,7 +414,7 @@ private struct RefinePromotionCard: View {
             NSWorkspace.shared.open(websiteURL)
         }) {
             HStack(alignment: .center, spacing: 6) {
-                if let iconImage {
+                if let iconImage = iconImage {
                     Image(nsImage: iconImage)
                         .resizable()
                         .interpolation(.high)
@@ -428,31 +428,31 @@ private struct RefinePromotionCard: View {
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Refine")
-                        .font(.system(size: 13, weight: .medium))
-                        .foregroundColor(.primary)
+                        .font(Font.system(size: 13, weight: Font.Weight.medium))
+                        .foregroundColor(Color.primary)
 
                     Text("An AI-powered grammar checker that runs 100% locally".i18n())
-                        .font(.system(size: 13))
-                        .foregroundColor(.secondary)
+                        .font(Font.system(size: 13))
+                        .foregroundColor(Color.secondary)
                         .lineLimit(2)
 
                     Text("refine.sh")
-                        .font(.system(size: 11))
-                        .foregroundColor(.secondary.opacity(0.8))
+                        .font(Font.system(size: 11))
+                        .foregroundColor(Color.secondary.opacity(0.8))
                 }
 
                 Spacer()
 
-                Image(systemName: "arrow.up.forward.square")
-                    .font(.system(size: 12))
-                    .foregroundColor(.secondary.opacity(0.6))
+                Image.compatSystemName("arrow.up.forward.square")
+                    .font(Font.system(size: 12))
+                    .foregroundColor(Color.secondary.opacity(0.6))
             }
             .padding(.vertical, 8)
             .padding(.leading, 8)
             .padding(.trailing)
             .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PlainButtonStyle())
         .onAppear(perform: loadIconIfNeeded)
     }
 
@@ -466,7 +466,7 @@ private struct RefinePromotionCard: View {
         )
 
         URLSession.shared.dataTask(with: request) { data, _, _ in
-            guard let data, let image = NSImage(data: data) else { return }
+            guard let data = data, let image = NSImage(data: data) else { return }
 
             DispatchQueue.main.async {
                 iconImage = image

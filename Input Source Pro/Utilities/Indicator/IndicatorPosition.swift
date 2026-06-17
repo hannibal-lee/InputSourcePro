@@ -82,7 +82,7 @@ extension IndicatorPosition.Alignment {
 
 extension IndicatorPosition.Spacing {
     static func fromSlide(value: Double) -> Self {
-        return .init(rawValue: Int32(value)) ?? .m
+        return Self(rawValue: Int32(value)) ?? .m
     }
 
     var name: String {

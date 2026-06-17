@@ -1,7 +1,6 @@
 import Cocoa
 import Combine
 
-@MainActor
 class StatusItemController {
     let navigationVM: NavigationVM
     let permissionsVM: PermissionsVM
@@ -211,17 +210,21 @@ class StatusItemController {
     }
 
     @objc func openPreferences() {
-        NSApp.setActivationPolicy(.regular)
-        NSApplication.shared.activate(ignoringOtherApps: true)
-        if let window = preferencesWindowController.window {
-            DispatchQueue.main.async {
-                if !self.hasPreferencesShown {
-                    self.hasPreferencesShown = true
-                    window.center()
-                }
-                
-                window.makeKeyAndOrderFront(nil)
+        DispatchQueue.main.async {
+            NSApp.setActivationPolicy(.regular)
+            self.preferencesWindowController.showWindow(nil)
+
+            guard let window = self.preferencesWindowController.window else { return }
+
+            if !self.hasPreferencesShown {
+                self.hasPreferencesShown = true
+                window.center()
             }
+
+            window.makeKeyAndOrderFront(nil)
+            window.orderFrontRegardless()
+            NSApplication.shared.activate(ignoringOtherApps: true)
+            NSRunningApplication.current.activate(options: [.activateAllWindows, .activateIgnoringOtherApps])
         }
     }
 

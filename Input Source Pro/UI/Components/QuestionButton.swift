@@ -19,7 +19,7 @@ struct QuestionButton<Content: View, Popover: View>: View {
     var body: some View {
         Button(action: { displayTips.toggle() }) {
             content()
-                .font(.body.bold())
+                .font(Font.body.bold())
         }
         .buttonStyle(QuestionButtonStyle())
         .popover(isPresented: $displayTips, arrowEdge: .top) {

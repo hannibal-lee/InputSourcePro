@@ -34,7 +34,7 @@ struct BrowserPermissionRequestView: View {
                     Spacer()
 
                     if permissionsVM.isAccessibilityEnabled {
-                        SwiftUI.Image(systemName: "checkmark.circle.fill")
+                        SwiftUI.Image.compatSystemName("checkmark.circle.fill")
                             .resizable()
                             .frame(width: 16, height: 16)
                             .foregroundColor(.green)
@@ -43,7 +43,6 @@ struct BrowserPermissionRequestView: View {
                             .disabled(true)
                     } else {
                         Button("Open Accessibility Preferences", action: openAccessibilityPreferences)
-                            .keyboardShortcut(.defaultAction)
                     }
                 }
                 .padding(.top, 5)
@@ -54,9 +53,9 @@ struct BrowserPermissionRequestView: View {
 
             HStack {
                 Button(action: URL.howToEnableBrowserRule.open) {
-                    SwiftUI.Image(systemName: "questionmark")
+                    SwiftUI.Image.compatSystemName("questionmark")
                 }
-                .font(.system(size: 10).weight(.bold))
+                .font(Font.system(size: 10).weight(Font.Weight.bold))
                 .frame(width: 18, height: 18)
                 .clipShape(RoundedRectangle(cornerRadius: 99))
                 .disabled(isDisableTips)
@@ -64,7 +63,6 @@ struct BrowserPermissionRequestView: View {
                 Spacer()
 
                 Button("Close", action: close)
-                    .keyboardShortcut(.cancelAction)
             }
         }
         .lineLimit(nil)
@@ -76,7 +74,7 @@ struct BrowserPermissionRequestView: View {
                 isDisableTips = false
             }
         }
-        .onChange(of: permissionsVM.isAccessibilityEnabled) { _ in
+        .onChangeCompat(of: permissionsVM.isAccessibilityEnabled) { _ in
             onAuthorizeSuccess()
         }
     }

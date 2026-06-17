@@ -3,11 +3,16 @@
 import SwiftUI
 
 public extension Color {
-    var hex: String { NSColor(self).hex }
-    var hexWithAlpha: String { NSColor(self).hexWithAlpha }
+    var hex: String { hexDescription(false) }
+    var hexWithAlpha: String { hexDescription(true) }
 
     func hexDescription(_ includeAlpha: Bool = false) -> String {
-        NSColor(self).hexDescription(includeAlpha)
+        if #available(macOS 11.0, *) {
+            return NSColor(self).hexDescription(includeAlpha)
+        }
+
+        let value = "000000ff"
+        return includeAlpha ? value : String(value.prefix(6))
     }
 }
 
@@ -82,15 +87,20 @@ extension NSColor {
      - Returns: A new string with `String` with the color's hexidecimal value.
      */
     func hexDescription(_ includeAlpha: Bool = false) -> String {
-        guard cgColor.numberOfComponents == 4,
-              let a = cgColor.components?.map({ Int($0 * CGFloat(255)) })
+        guard let rgbColor = usingColorSpace(.sRGB) ?? usingColorSpace(.deviceRGB),
+              let components = rgbColor.cgColor.components
         else { return "Color not RGB." }
 
-        let color = String(format: "%02x%02x%02x", a[0], a[1], a[2])
+        let red = Int((components[0] * 255).rounded())
+        let green = Int((components[1] * 255).rounded())
+        let blue = Int((components[2] * 255).rounded())
+        let alpha = Int((rgbColor.alphaComponent * 255).rounded())
+
+        let color = String(format: "%02x%02x%02x", red, green, blue)
 
         if includeAlpha {
-            let alpha = String(format: "%02x", a[3])
-            return "\(color)\(alpha)"
+            let alphaValue = String(format: "%02x", alpha)
+            return "\(color)\(alphaValue)"
         }
 
         return color

@@ -4,7 +4,6 @@ import Combine
 import CombineExt
 import os
 
-@MainActor
 final class ApplicationVM: ObservableObject {
     @Published private(set) var appKind: AppKind? = nil
     @Published private(set) var appsDiff: AppsDiff = .empty
@@ -92,7 +91,8 @@ extension ApplicationVM {
     private func watchAppsDiffChange() {
         AppsDiff
             .publisher(preferencesVM: preferencesVM)
-            .assign(to: &$appsDiff)
+            .sink(receiveValue: { [weak self] in self?.appsDiff = $0 })
+            .store(in: cancelBag)
     }
 
     private func activateAccessibilitiesForCurrentApp() {

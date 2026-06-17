@@ -13,8 +13,7 @@ extension HotKeyGroup {
         inputSourceIds = identifiers.joined(separator: Self.persistedIdentifierSeparator)
     }
 
-    @MainActor
-    var inputSources: [InputSource] {
+        var inputSources: [InputSource] {
         get {
             return InputSource.resolvePersistedIdentifiers(persistedInputSourceIdentifiers)
         }

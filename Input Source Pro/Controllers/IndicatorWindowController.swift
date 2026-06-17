@@ -5,7 +5,6 @@ import Combine
 import CombineExt
 import SnapKit
 
-@MainActor
 class IndicatorWindowController: FloatWindowController {
     let permissionsVM: PermissionsVM
     let preferencesVM: PreferencesVM

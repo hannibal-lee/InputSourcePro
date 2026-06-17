@@ -1,6 +1,5 @@
 import AppKit
 
-@MainActor
 class BrowserRuleMenuItem: NSMenuItem {
     let app: NSRunningApplication
     let url: URL
@@ -65,7 +64,7 @@ class BrowserRuleMenuItem: NSMenuItem {
             )
         }
 
-        if let inputSource {
+        if let inputSource = inputSource {
             inputSourceVM.select(inputSource: inputSource, app: app)
         }
 

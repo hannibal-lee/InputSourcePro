@@ -2,7 +2,6 @@ import AppKit
 import Carbon
 import CoreGraphics
 
-@MainActor
 enum InputSourceSwitcher {
     struct Descriptor: CustomStringConvertible {
         let localizedName: String
@@ -23,9 +22,8 @@ enum InputSourceSwitcher {
         let inputModeID: String?
         let isCJKV: Bool
 
-        @MainActor
-        func matches(_ inputSource: InputSource) -> Bool {
-            if let inputModeID {
+                func matches(_ inputSource: InputSource) -> Bool {
+            if let inputModeID = inputModeID {
                 return inputSource.inputModeID == inputModeID
             }
 
@@ -65,7 +63,7 @@ enum InputSourceSwitcher {
     }
 
     static func isSyntheticEvent(_ event: CGEvent?) -> Bool {
-        guard let event else { return false }
+        guard let event = event else { return false }
 
         if event.getIntegerValueField(.eventSourceUserData) == syntheticEventUserData {
             return true
@@ -166,7 +164,7 @@ enum InputSourceSwitcher {
         cJKVFixStrategy: CJKVFixStrategy?
     ) {
         guard target.isCJKV,
-              let cJKVFixStrategy
+              let cJKVFixStrategy = cJKVFixStrategy
         else {
             selectInputSource(tisTarget, reason: "target")
             return

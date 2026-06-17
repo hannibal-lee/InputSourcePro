@@ -3,7 +3,6 @@ import AXSwift
 import Combine
 import Foundation
 
-@MainActor
 enum AppKind {
     typealias BrowserInfo = (
         focusedElement: UIElement?,

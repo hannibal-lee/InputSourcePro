@@ -2,7 +2,6 @@ import Carbon
 import Cocoa
 import CryptoKit
 
-@MainActor
 class InputSource {
     private static let persistentIdentifierSeparator = "::"
 
@@ -75,12 +74,12 @@ class InputSource {
     }
 
     private var normalizedInputModeID: String? {
-        guard let inputModeID, !inputModeID.isEmpty else { return nil }
+        guard let inputModeID = inputModeID, !inputModeID.isEmpty else { return nil }
         return inputModeID
     }
 }
 
-extension InputSource: @preconcurrency Equatable {
+extension InputSource: Equatable {
     static func == (lhs: InputSource, rhs: InputSource) -> Bool {
         return lhs.persistentIdentifier == rhs.persistentIdentifier
     }
@@ -89,13 +88,12 @@ extension InputSource: @preconcurrency Equatable {
 extension InputSource {
     private static var cancelBag = CancelBag()
 
-    @MainActor
-    static func getCurrentInputSource() -> InputSource {
+        static func getCurrentInputSource() -> InputSource {
         return InputSource(tisInputSource: TISCopyCurrentKeyboardInputSource().takeRetainedValue())
     }
 
     static func resolvePersistedIdentifier(_ persistedIdentifier: String?) -> InputSource? {
-        guard let persistedIdentifier, !persistedIdentifier.isEmpty else { return nil }
+        guard let persistedIdentifier = persistedIdentifier, !persistedIdentifier.isEmpty else { return nil }
 
         let sources = Self.sources
         return resolvePersistedIdentifier(persistedIdentifier, in: sources)
@@ -140,7 +138,7 @@ extension InputSource {
     ) -> InputSource? {
         let (sourceID, inputModeID) = splitPersistedIdentifier(persistedIdentifier)
 
-        if let inputModeID {
+        if let inputModeID = inputModeID {
             if let exactMatch = sources.first(where: { $0.persistentIdentifier == persistedIdentifier }) {
                 return exactMatch
             }
@@ -209,7 +207,7 @@ private extension URL {
     }
 }
 
-extension InputSource: @preconcurrency CustomStringConvertible {
+extension InputSource: CustomStringConvertible {
     var description: String {
         persistentIdentifier
     }

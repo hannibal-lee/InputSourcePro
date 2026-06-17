@@ -5,7 +5,6 @@ import Combine
 import Foundation
 import CombineExt
 
-@MainActor
 class InputSourceVM: ObservableObject {
     private struct SelectionRequest {
         let inputSource: InputSource
@@ -34,7 +33,7 @@ class InputSourceVM: ObservableObject {
 
         selectInputSourceSubject
             .tap { [weak self] in
-                if let self {
+                if let self = self {
                     $0.inputSource.select(cJKVFixStrategy: self.preferencesVM.activeCJKVFixStrategy(for: $0.app))
                 }
             }

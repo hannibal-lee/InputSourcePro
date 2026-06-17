@@ -88,7 +88,7 @@ extension PreferencesVM {
     func getAppCustomization(bundleId: String?) -> AppRule? {
         guard let bundleId = bundleId else { return nil }
 
-        let request = AppRule.fetchRequest()
+        let request: NSFetchRequest<AppRule> = AppRule.fetchRequest()
 
         request.predicate = NSPredicate(format: "bundleId == %@", bundleId)
 
@@ -103,7 +103,7 @@ extension PreferencesVM {
     func cleanRemovedAppCustomizationIfNeed() {
         guard preferences.prevInstalledBuildVersion < 308 else { return }
 
-        let request = AppRule.fetchRequest()
+        let request: NSFetchRequest<AppRule> = AppRule.fetchRequest()
 
         request.predicate = NSPredicate(format: "removed == %@", "1")
 

@@ -18,7 +18,7 @@ struct CursorLagFixView: View {
             HStack {
                 Toggle("", isOn: toggleBinding)
                     .disabled(isRunningCommand)
-                    .toggleStyle(.switch)
+                    .toggleStyle(SwitchToggleStyle())
                     .labelsHidden()
                 
                 Text("Cursor Lag Fix".i18n())

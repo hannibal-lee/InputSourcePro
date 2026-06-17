@@ -4,8 +4,7 @@ import Combine
 import CombineExt
 
 extension IndicatorVM {
-    @MainActor
-    enum ActivateEvent {
+        enum ActivateEvent {
         case justHide
         case longMouseDown
         case appChanges(current: AppKind?, prev: AppKind?)
@@ -104,7 +103,7 @@ extension IndicatorVM {
     }
 }
 
-extension IndicatorVM.ActivateEvent: @preconcurrency CustomStringConvertible {
+extension IndicatorVM.ActivateEvent: CustomStringConvertible {
     var description: String {
         switch self {
         case let .appChanges(current, prev):

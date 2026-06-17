@@ -36,6 +36,28 @@ struct AppearanceSettingsView: View {
             }
         )
 
+        let forgegroundColorBinding = Binding(
+            get: {
+                preferencesVM.preferences.indicatorForgegroundNSColor
+            },
+            set: { newValue in
+                preferencesVM.update {
+                    $0.indicatorForgegroundNSColor = newValue
+                }
+            }
+        )
+
+        let backgroundColorBinding = Binding(
+            get: {
+                preferencesVM.preferences.indicatorBackgroundNSColor
+            },
+            set: { newValue in
+                preferencesVM.update {
+                    $0.indicatorBackgroundNSColor = newValue
+                }
+            }
+        )
+
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 SettingsSection(title: "Indicator Info") {
@@ -53,7 +75,7 @@ struct AppearanceSettingsView: View {
                             }
                         }
                         .labelsHidden()
-                        .pickerStyle(.segmented)
+                        .pickerStyle(SegmentedPickerStyle())
                         .padding()
                     }
                 }
@@ -65,7 +87,7 @@ struct AppearanceSettingsView: View {
                         }
                     }
                     .labelsHidden()
-                    .pickerStyle(.segmented)
+                    .pickerStyle(SegmentedPickerStyle())
                     .padding()
                 }
 
@@ -73,7 +95,7 @@ struct AppearanceSettingsView: View {
                     VStack(spacing: 0) {
                         HStack {
                             Toggle("", isOn: $preferencesVM.preferences.isAutoAppearanceMode)
-                                .toggleStyle(.switch)
+                                .toggleStyle(SwitchToggleStyle())
                                 .labelsHidden()
 
                             Text("Sync with OS".i18n())
@@ -89,13 +111,13 @@ struct AppearanceSettingsView: View {
                                 Text("In Dark Mode".i18n()).tag(Optional(Preferences.AppearanceMode.dark))
                             }
                             .labelsHidden()
-                            .pickerStyle(.segmented)
+                            .pickerStyle(SegmentedPickerStyle())
 
                             ColorBlocks(
                                 onSelectColor: { scheme in
                                     preferencesVM.update {
-                                        $0.indicatorForgegroundColor = scheme.a
-                                        $0.indicatorBackgroundColor = scheme.b
+                                        $0.indicatorForgegroundNSColor = NSColor(hex: scheme.textHex)
+                                        $0.indicatorBackgroundNSColor = NSColor(hex: scheme.backgroundHex)
                                     }
                                 }
                             )
@@ -104,30 +126,30 @@ struct AppearanceSettingsView: View {
                                 IndicatorView()
 
                                 HStack {
-                                    ColorPicker(
+                                    CompatColorPicker(
                                         "Color",
-                                        selection: $preferencesVM.preferences.indicatorForgegroundColor
+                                        selection: forgegroundColorBinding
                                     )
                                     .labelsHidden()
 
                                     Button(
                                         action: {
                                             preferencesVM.update {
-                                                let a = $0.indicatorForgegroundColor
-                                                let b = $0.indicatorBackgroundColor
+                                                let a = $0.indicatorForgegroundNSColor
+                                                let b = $0.indicatorBackgroundNSColor
 
-                                                $0.indicatorForgegroundColor = b
-                                                $0.indicatorBackgroundColor = a
+                                                $0.indicatorForgegroundNSColor = b
+                                                $0.indicatorBackgroundNSColor = a
                                             }
                                         },
                                         label: {
-                                            Image(systemName: "repeat")
+                                            Image.compatSystemName("repeat")
                                         }
                                     )
 
-                                    ColorPicker(
+                                    CompatColorPicker(
                                         "Background",
-                                        selection: $preferencesVM.preferences.indicatorBackgroundColor
+                                        selection: backgroundColorBinding
                                     )
                                     .labelsHidden()
                                 }
@@ -156,13 +178,13 @@ struct AppearanceSettingsView: View {
 
     func resetColors() {
         if preferencesVM.preferences.appearanceMode == .light {
-            preferencesVM.preferences.indicatorForgegroundColor = IndicatorColor.forgeground.light
-            preferencesVM.preferences.indicatorBackgroundColor = IndicatorColor.background.light
+            preferencesVM.preferences.indicatorForgegroundNSColor = NSColor(hex: IndicatorColor.forgeground.lightHex)
+            preferencesVM.preferences.indicatorBackgroundNSColor = NSColor(hex: IndicatorColor.background.lightHex)
         }
 
         if preferencesVM.preferences.appearanceMode == .dark {
-            preferencesVM.preferences.indicatorForgegroundColor = IndicatorColor.forgeground.dark
-            preferencesVM.preferences.indicatorBackgroundColor = IndicatorColor.background.dark
+            preferencesVM.preferences.indicatorForgegroundNSColor = NSColor(hex: IndicatorColor.forgeground.darkHex)
+            preferencesVM.preferences.indicatorBackgroundNSColor = NSColor(hex: IndicatorColor.background.darkHex)
         }
     }
 }

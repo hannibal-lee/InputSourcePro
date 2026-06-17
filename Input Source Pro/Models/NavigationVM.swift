@@ -1,6 +1,5 @@
 import SwiftUI
 
-@MainActor
 class NavigationVM: ObservableObject {
     enum Nav: String, CaseIterable, Identifiable {
         var id: String { rawValue }

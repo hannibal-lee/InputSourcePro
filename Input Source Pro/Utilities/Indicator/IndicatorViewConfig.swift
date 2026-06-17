@@ -7,7 +7,6 @@ enum IndicatorKind {
     case alwaysOn
 }
 
-@MainActor
 struct IndicatorViewConfig {
     let inputSource: InputSource
     let kind: IndicatorKind

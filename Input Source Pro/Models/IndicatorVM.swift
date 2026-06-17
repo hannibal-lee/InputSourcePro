@@ -4,7 +4,6 @@ import Combine
 import CombineExt
 import os
 
-@MainActor
 final class IndicatorVM: ObservableObject {
     private var cancelBag = CancelBag()
     private lazy var shortcutTriggerManager = ShortcutTriggerManager(preferencesVM: preferencesVM)
@@ -155,8 +154,7 @@ extension IndicatorVM {
         case noChanges, system, shortcut, appSpecified(PreferencesVM.AppAutoSwitchKeyboardStatus)
     }
 
-    @MainActor
-    struct State {
+        struct State {
         let appKind: AppKind?
         let inputSource: InputSource
         let inputSourceChangeReason: InputSourceChangeReason
@@ -214,8 +212,7 @@ extension IndicatorVM {
                       let inputSourceVM = self?.inputSourceVM
                 else { return state }
 
-                @MainActor
-                func updateState(appKind: AppKind?, inputSource: InputSource, inputSourceChangeReason: InputSourceChangeReason) -> State {
+                                func updateState(appKind: AppKind?, inputSource: InputSource, inputSourceChangeReason: InputSourceChangeReason) -> State {
                     // TODO: Move to outside
                     if let appKind = appKind {
                         preferencesVM.cacheKeyboardFor(appKind, keyboard: inputSource)
@@ -259,7 +256,8 @@ extension IndicatorVM {
                 }
             }
             .removeDuplicates(by: { $0.isSame(with: $1) })
-            .assign(to: &$state)
+            .sink(receiveValue: { [weak self] in self?.state = $0 })
+            .store(in: cancelBag)
 
         applicationVM.$appKind
             .compactMap { $0 }

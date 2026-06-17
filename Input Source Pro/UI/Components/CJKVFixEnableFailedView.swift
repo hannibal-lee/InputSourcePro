@@ -12,7 +12,7 @@ struct CJKVFixEnableFailedView: View {
             Image("Enabled CJKV Fix Shortcut Img".i18n())
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .shadow(color: .black.opacity(0.26), radius: 8)
+                .shadow(color: Color.black.opacity(0.26), radius: 8)
                 .padding(20)
 
             HStack {
@@ -20,16 +20,13 @@ struct CJKVFixEnableFailedView: View {
 
                 if isOpened {
                     Button("Close", action: { isPresented = false })
-                        .keyboardShortcut(.defaultAction)
                 } else {
                     Button("Cancel", action: { isPresented = false })
-                        .keyboardShortcut(.cancelAction)
 
                     Button("Open Keyboard Settings", action: {
                         NSWorkspace.shared.openKeyboardPreferences()
                         isOpened = true
                     })
-                    .keyboardShortcut(.defaultAction)
                 }
             }
         }

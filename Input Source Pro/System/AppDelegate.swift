@@ -1,7 +1,6 @@
 import Cocoa
 import Combine
 import SwiftUI
-import Alamofire
 import LaunchAtLogin
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -14,8 +13,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var feedbackVM: FeedbackVM!
     var indicatorWindowController: IndicatorWindowController!
     var statusItemController: StatusItemController!
+    var previousInstalledBuildVersionAtLaunch = 0
 
     func applicationDidFinishLaunching(_: Notification) {
+        previousInstalledBuildVersionAtLaunch = UserDefaults.standard.integer(forKey: "prevInstalledBuildVersion")
+
         feedbackVM = FeedbackVM()
         navigationVM = NavigationVM()
         permissionsVM = PermissionsVM()
@@ -51,44 +53,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidBecomeActive(_: Notification) {
         guard !InputSourceSwitcher.isHandlingTemporaryInputWindowActivation else { return }
 
-        statusItemController.openPreferences()
-    }
-
-    @MainActor
-    func openPreferencesAtFirstLaunch() {
-        if preferencesVM.preferences.prevInstalledBuildVersion != preferencesVM.preferences.buildVersion {
-            statusItemController.openPreferences()
+        DispatchQueue.main.async {
+            self.statusItemController.openPreferences()
         }
     }
 
-    @MainActor
+    func openPreferencesAtFirstLaunch() {
+        if previousInstalledBuildVersionAtLaunch != preferencesVM.preferences.buildVersion {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.statusItemController.openPreferences()
+            }
+        }
+    }
+
     func updateInstallVersionInfo() {
         preferencesVM.preferences.prevInstalledBuildVersion = preferencesVM.preferences.buildVersion
     }
     
-    @MainActor
     func sendLaunchPing() {
-        let url = "https://inputsource.pro/api/launch"
-        let launchData: [String: String] = [
-            "prevInstalledBuildVersion": "\(preferencesVM.preferences.prevInstalledBuildVersion)",
-            "shortVersion": Bundle.main.shortVersion,
-            "buildVersion": "\(Bundle.main.buildVersion)",
-            "osVersion": ProcessInfo.processInfo.operatingSystemVersionString
-        ]
-        
-        AF.request(
-            url,
-            method: .post,
-            parameters: launchData,
-            encoding: JSONEncoding.default
-        )
-        .response { response in
-            switch response.result {
-            case .success:
-                print("Launch ping sent successfully.")
-            case let .failure(error):
-                print("Failed to send launch ping:", error)
-            }
-        }
     }
 }

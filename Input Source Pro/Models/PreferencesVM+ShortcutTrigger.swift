@@ -175,7 +175,7 @@ extension PreferencesVM {
         update { preferences in
             var inputSourceModes = preferences.shortcutModeInputSourceMapping ?? [:]
             inputSourceModes[key] = mode
-            if let legacyKey {
+            if let legacyKey = legacyKey {
                 inputSourceModes.removeValue(forKey: legacyKey)
             }
             preferences.shortcutModeInputSourceMapping = inputSourceModes
@@ -183,7 +183,7 @@ extension PreferencesVM {
             if mode != .singleModifier {
                 var inputSourceMapping = preferences.singleModifierInputSourceMapping ?? [:]
                 inputSourceMapping.removeValue(forKey: key)
-                if let legacyKey {
+                if let legacyKey = legacyKey {
                     inputSourceMapping.removeValue(forKey: legacyKey)
                 }
                 preferences.singleModifierInputSourceMapping = inputSourceMapping
@@ -214,7 +214,7 @@ extension PreferencesVM {
         update { preferences in
             var triggerMapping = preferences.singleModifierTriggerInputSourceMapping ?? [:]
             triggerMapping[key] = trigger
-            if let legacyKey {
+            if let legacyKey = legacyKey {
                 triggerMapping.removeValue(forKey: legacyKey)
             }
             preferences.singleModifierTriggerInputSourceMapping = triggerMapping
@@ -276,12 +276,12 @@ extension PreferencesVM {
                 duplicateGroupKeys.forEach { groupMapping.removeValue(forKey: $0) }
 
                 inputSourceMapping[key] = combo
-                if let legacyKey {
+                if let legacyKey = legacyKey {
                     inputSourceMapping.removeValue(forKey: legacyKey)
                 }
             } else {
                 inputSourceMapping.removeValue(forKey: key)
-                if let legacyKey {
+                if let legacyKey = legacyKey {
                     inputSourceMapping.removeValue(forKey: legacyKey)
                 }
             }

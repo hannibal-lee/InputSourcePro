@@ -4,8 +4,6 @@ import VisualEffects
 struct IndicatorPositionEditor: View {
     @EnvironmentObject var preferencesVM: PreferencesVM
 
-    let columns = Array(repeating: GridItem(.flexible(), spacing: 0), count: 3)
-
     @State var hoveredAlignment: IndicatorPosition.Alignment? = nil
 
     let height: CGFloat = 230
@@ -43,31 +41,14 @@ struct IndicatorPositionEditor: View {
     ]
 
     var body: some View {
-        LazyVGrid(columns: columns, spacing: 0) {
-            ForEach(items, id: \.self) { (alignment: IndicatorPosition.Alignment) in
-                IndicatorAlignmentItem(
-                    alignment: alignment,
-                    position: position,
-                    isSelected: selectedAlignment == alignment,
-                    content: {
-                        let offset = offset(alignment: alignment)
-
-                        alignment.indicator()
-                            .rotationEffect(alignment.rotate)
-                            .offset(x: offset.x, y: offset.y)
-                            .foregroundColor(Color.primary)
-                    }
-                )
-                .frame(height: height / 3)
-                .onTapGesture {
-                    withAnimation {
-                        preferencesVM.update {
-                            $0.indicatorPositionAlignment = alignment
-                        }
+        VStack(spacing: 0) {
+            ForEach(0 ..< 3, id: \.self) { row in
+                HStack(spacing: 0) {
+                    ForEach(0 ..< 3, id: \.self) { column in
+                        alignmentItem(items[row * 3 + column])
                     }
                 }
             }
-            .opacity(position == .nearMouse ? 0 : 1)
         }
         .background(
             IndicatorAlignmentView(
@@ -100,7 +81,33 @@ struct IndicatorPositionEditor: View {
             .offset(x: 0, y: position == .windowCorner ? 0 : height)
     }
 
-    func offset(alignment: IndicatorPosition.Alignment) -> (x: Double, y: Double) {
+    func alignmentItem(_ alignment: IndicatorPosition.Alignment) -> some View {
+        IndicatorAlignmentItem(
+            alignment: alignment,
+            position: position,
+            isSelected: selectedAlignment == alignment,
+            content: {
+                let itemOffset = self.offset(alignment: alignment)
+
+                alignment.indicator()
+                    .rotationEffect(alignment.rotate)
+                    .offset(x: itemOffset.x, y: itemOffset.y)
+                    .foregroundColor(Color.primary)
+            }
+        )
+        .frame(maxWidth: .infinity)
+        .frame(height: height / 3)
+        .onTapGesture {
+            withAnimation {
+                preferencesVM.update {
+                    $0.indicatorPositionAlignment = alignment
+                }
+            }
+        }
+        .opacity(position == .nearMouse ? 0 : 1)
+    }
+
+    func offset(alignment: IndicatorPosition.Alignment) -> (x: CGFloat, y: CGFloat) {
         switch alignment {
         case .center:
             return (0, 0)

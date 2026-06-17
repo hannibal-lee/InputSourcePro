@@ -15,8 +15,8 @@ struct CustomizedIndicatorView: View {
                 inputSource: inputSource,
                 kind: preferencesVM.preferences.indicatorKind,
                 size: preferencesVM.preferences.indicatorSize ?? .medium,
-                bgColor: NSColor(preferencesVM.getBgColor(inputSource)),
-                textColor: NSColor(preferencesVM.getTextColor(inputSource))
+                bgColor: preferencesVM.getBgNSColor(inputSource),
+                textColor: preferencesVM.getTextNSColor(inputSource)
             ))
         }
     }

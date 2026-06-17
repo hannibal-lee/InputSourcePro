@@ -66,12 +66,12 @@ struct ModifierComboPicker: View {
             HStack(spacing: 6) {
                 Text(selectionLabel)
                 Spacer()
-                Image(systemName: "chevron.down")
+                Image.compatSystemName("chevron.down")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
         }
-        .buttonStyle(.bordered)
+        .buttonStyle(DefaultButtonStyle())
         .flexibleButtonSizing()
         .popover(isPresented: $isPresented, arrowEdge: .bottom) {
             VStack(alignment: .leading, spacing: 12) {
@@ -120,7 +120,7 @@ struct ModifierComboPicker: View {
                 draftKeys = normalizedKeys(selection?.keys ?? [])
             }
         }
-        .onChange(of: isPresented) { newValue in
+        .onChangeCompat(of: isPresented) { newValue in
             if newValue {
                 draftKeys = normalizedKeys(selection?.keys ?? [])
             }

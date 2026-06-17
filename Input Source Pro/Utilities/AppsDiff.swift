@@ -1,7 +1,6 @@
 import AppKit
 import Combine
 
-@MainActor
 struct AppsDiff {
     let removed: Set<NSRunningApplication>
     let added: Set<NSRunningApplication>

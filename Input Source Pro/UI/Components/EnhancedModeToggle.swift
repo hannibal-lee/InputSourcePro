@@ -16,6 +16,8 @@ struct EnhancedModeToggle: View {
             Toggle("", isOn: isDetectSpotlightLikeAppBinding)
                 .sheet(isPresented: $isShowAccessibilityRequest) {
                     AccessibilityPermissionRequestView(isPresented: $isShowAccessibilityRequest)
+                        .environmentObject(permissionsVM)
+                        .environmentObject(preferencesVM)
                 }
 
             VStack(alignment: .leading, spacing: 6) {

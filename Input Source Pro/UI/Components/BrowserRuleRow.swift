@@ -7,6 +7,8 @@ struct BrowserRuleRow: View {
     
     @ObservedObject var rule: BrowserRule
 
+    @EnvironmentObject var preferencesVM: PreferencesVM
+
     let imgSize: CGFloat = 16
 
     var body: some View {
@@ -16,7 +18,7 @@ struct BrowserRuleRow: View {
             Spacer()
 
             if rule.hideIndicator == true {
-                Image(systemName: "eye.slash.circle.fill")
+                Image.compatSystemName("eye.slash.circle.fill")
                     .opacity(0.7)
                     .frame(width: imgSize, height: imgSize)
             }
@@ -26,14 +28,14 @@ struct BrowserRuleRow: View {
                 let color: Color = {
                     switch symbolName {
                     case "d.circle.fill", "d.square.fill":
-                        return isSelected ? .primary.opacity(0.7) : .green
+                        return isSelected ? Color.primary.opacity(0.7) : Color.green
                     case "arrow.uturn.left.circle.fill":
-                        return isSelected ? .primary.opacity(0.7) : .blue
+                        return isSelected ? Color.primary.opacity(0.7) : Color.blue
                     default:
-                        return .primary
+                        return Color.primary
                     }
                 }()
-                Image(systemName: symbolName)
+                Image.compatSystemName(symbolName)
                     .foregroundColor(color)
                     .frame(width: imgSize, height: imgSize)
             }
@@ -60,6 +62,7 @@ struct BrowserRuleRow: View {
         }
         .sheet(isPresented: $showModal, content: {
             BrowserRuleEditView(isPresented: $showModal, rule: rule)
+                .environmentObject(preferencesVM)
         })
     }
 }
