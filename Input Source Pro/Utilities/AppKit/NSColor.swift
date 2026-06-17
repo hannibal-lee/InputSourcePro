@@ -115,6 +115,22 @@ extension Image {
 
         let fallbackName: String
         switch systemName {
+        case "slider.horizontal.3":
+            fallbackName = "≡"
+        case "square.grid.2x2":
+            fallbackName = "▦"
+        case "safari":
+            fallbackName = "◎"
+        case "arrow.up.and.down.and.arrow.left.and.right":
+            fallbackName = "↕"
+        case "paintbrush", "paintpalette":
+            fallbackName = "■"
+        case "command":
+            fallbackName = "⌘"
+        case "keyboard":
+            fallbackName = "⌨"
+        case "ladybug":
+            fallbackName = "!"
         case "plus":
             fallbackName = "+"
         case "minus":
@@ -147,8 +163,14 @@ extension Image {
             fallbackName = "□"
         case "textformat":
             fallbackName = "T"
+        case "d.circle.fill", "d.square.fill":
+            fallbackName = "D"
+        case "arrow.uturn.left.circle.fill":
+            fallbackName = "↶"
+        case "sun.max":
+            fallbackName = "☀"
         default:
-            fallbackName = "•"
+            fallbackName = ""
         }
 
         return Image(nsImage: textImage(fallbackName))

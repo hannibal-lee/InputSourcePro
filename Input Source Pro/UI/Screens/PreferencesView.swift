@@ -65,8 +65,8 @@ struct PreferencesView: View {
             }
             .frame(width: 200)
 
-            HStack {
-                VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         SwiftUI.Image.compatSystemName(navigationVM.selection.icon)
                             .font(.system(size: 18, weight: .medium))
@@ -90,6 +90,7 @@ struct PreferencesView: View {
                     .border(width: 1, edges: [.bottom], color: NSColor.border.color)
 
                     navigationVM.selection.getView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     Spacer(minLength: 0)
                 }
 

@@ -5,6 +5,15 @@ struct RulesSettingsView: View {
 
     @EnvironmentObject var preferencesVM: PreferencesVM
 
+    private let applicationListWidth: CGFloat = 245
+    private let toolbarButtonWidth: CGFloat = 38
+    private let toolbarSpacing: CGFloat = 5
+    private let toolbarPadding: CGFloat = 10
+
+    private var runningAppsButtonWidth: CGFloat {
+        applicationListWidth - (toolbarPadding * 2) - (toolbarButtonWidth * 2) - (toolbarSpacing * 2)
+    }
+
     var items: [PickerItem] {
         [PickerItem.empty]
             + InputSource.sources.map { PickerItem(id: $0.id, title: $0.name, toolTip: $0.id) }
@@ -15,31 +24,40 @@ struct RulesSettingsView: View {
             HStack(spacing: 0) {
                 VStack(alignment: .leading, spacing: 0) {
                     ApplicationPicker(selectedApp: $selectedApp)
+                        .frame(width: applicationListWidth, alignment: .topLeading)
+                        .clipped()
                         .border(width: 1, edges: [.bottom], color: Color(NSColor.gridColor))
 
-                    HStack(spacing: 5) {
+                    HStack(spacing: toolbarSpacing) {
                         Button(action: selectApp) {
                             SwiftUI.Image.compatSystemName("plus")
                         }
+                        .frame(width: toolbarButtonWidth)
 
                         Button(action: removeApp) {
                             SwiftUI.Image.compatSystemName("minus")
                         }
                         .disabled(selectedApp.isEmpty)
+                        .frame(width: toolbarButtonWidth)
 
                         RunningApplicationsPicker(onSelect: selectRunningApp)
+                            .frame(width: runningAppsButtonWidth)
                     }
-                    .padding(10)
+                    .padding(toolbarPadding)
+                    .frame(width: applicationListWidth, alignment: .leading)
+                    .clipped()
                 }
-                .frame(width: 245)
+                .frame(width: applicationListWidth, alignment: .topLeading)
+                .clipped()
                 .border(width: 1, edges: [.trailing], color: Color(NSColor.gridColor))
 
                 ApplicationDetail(selectedApp: $selectedApp)
                     .padding()
-
-                Spacer(minLength: 0)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 
     func selectApp() {

@@ -24,8 +24,31 @@ struct RunningApplicationsPicker: View {
             HStack(spacing: 6) {
                 Image.compatSystemName("plus")
                 Text("Add Running Apps".i18n())
+                    .lineLimit(1)
+                    .truncationMode(.tail)
             }
+            .padding(.horizontal, 8)
+            .frame(maxWidth: .infinity, minHeight: 20)
+            .contentShape(Rectangle())
         }
+        .buttonStyle(RunningApplicationsPickerButtonStyle())
         .disabled(apps.isEmpty)
+    }
+}
+
+private struct RunningApplicationsPickerButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(Color.primary)
+            .opacity(configuration.isPressed ? 0.75 : 1.0)
+            .background(
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color(NSColor.controlColor))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(Color(NSColor.separatorColor).opacity(0.5), lineWidth: 1)
+            )
+            .clipped()
     }
 }

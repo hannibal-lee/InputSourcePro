@@ -10,21 +10,35 @@ struct ApplicationPicker: View {
 
     let appIconSize: CGFloat = 18
     let keyboardIconSize: CGFloat = 16
+    private let rowHeight: CGFloat = 32
 
     var body: some View {
-        VStack(spacing: 0) {
-            List(appCustomizations, id: \.self, selection: $selectedApp) { app in
-                ApplicationPickerRow(
-                    app: app,
-                    isSelected: selectedApp.contains(app),
-                    appIconSize: appIconSize,
-                    keyboardIconSize: keyboardIconSize
-                )
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(appCustomizations, id: \.self) { app in
+                        ApplicationPickerRow(
+                            app: app,
+                            isSelected: selectedApp.contains(app),
+                            appIconSize: appIconSize,
+                            keyboardIconSize: keyboardIconSize
+                        )
+                        .frame(width: geometry.size.width, height: rowHeight, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .background(selectedApp.contains(app) ? Color.accentColor.opacity(0.28) : Color.clear)
+                        .onTapGesture {
+                            selectedApp = [app]
+                        }
+                    }
+                }
+                .frame(width: geometry.size.width, alignment: .leading)
             }
-            .listRowInsets(EdgeInsets())
+            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .clipped()
         .onAppear {
-            if let app = appCustomizations.first {
+            if selectedApp.isEmpty, let app = appCustomizations.first {
                 selectedApp.update(with: app)
             }
         }
@@ -61,7 +75,7 @@ private struct ApplicationPickerRow: View {
     }
 
     var body: some View {
-        HStack {
+        HStack(spacing: 8) {
             if let image = app.image {
                 SwiftUI.Image(nsImage: image)
                     .resizable()
@@ -120,5 +134,7 @@ private struct ApplicationPickerRow: View {
                     .opacity(0.7)
             }
         }
+        .padding(.horizontal, 10)
+        .clipped()
     }
 }
