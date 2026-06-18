@@ -16,6 +16,12 @@
 
 > **Input Source Pro** is a free and open-source macOS utility designed for multilingual users who frequently switch input sources. It automates input source switching based on the active application — or even the specific website you're browsing — significantly boosting your productivity and typing experience.
 
+## Compatibility Note
+
+This fork/build is maintained for **macOS 10.15 Catalina** compatibility.
+
+Newer macOS versions have not been tested with this version. If you are using a newer macOS release, prefer the upstream project or test this build carefully before relying on it.
+
 <table>
     <tr>
         <td>
