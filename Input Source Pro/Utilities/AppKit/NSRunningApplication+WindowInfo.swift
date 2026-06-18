@@ -86,7 +86,8 @@ private func getWindowInfo(processIdentifier: pid_t) -> WindowInfo? {
             let windowOwnerPID = window["kCGWindowOwnerPID"] as? pid_t,
             let windowLayer = window["kCGWindowLayer"] as? Int,
             let windowAlpha = window["kCGWindowAlpha"] as? CGFloat,
-            let windowBounds = CGRect(dictionaryRepresentation: window["kCGWindowBounds"] as! CFDictionary),
+            let windowBoundsDictionary = window["kCGWindowBounds"] as? NSDictionary,
+            let windowBounds = CGRect(dictionaryRepresentation: windowBoundsDictionary),
             let cocoaBounds = NSScreen.convertFromQuartz(windowBounds)
         else { continue }
 

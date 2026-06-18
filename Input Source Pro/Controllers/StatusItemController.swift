@@ -114,15 +114,6 @@ class StatusItemController {
         )
     }
 
-    var checkUpdatesMenu: NSMenuItem? {
-        NSMenuItem(
-            title: "Check for Updates".i18n() + "...",
-            target: self,
-            action: #selector(checkForUpdates),
-            keyEquivalent: ""
-        )
-    }
-
     var menu: NSMenu {
         let menu = NSMenu()
 
@@ -131,7 +122,6 @@ class StatusItemController {
             addBrowserRuleMenu ?? addRuleMenu,
             NSMenuItem.separator(),
             changelogMenu,
-            checkUpdatesMenu,
             settingsMenu,
             NSMenuItem.separator(),
             NSMenuItem(
@@ -232,10 +222,6 @@ class StatusItemController {
         if let url = URL(string: "https://inputsource.pro/changelog") {
             NSWorkspace.shared.open(url)
         }
-    }
-
-    @objc func checkForUpdates() {
-        preferencesVM.checkUpdates()
     }
 
     @objc func openFeedback() {

@@ -44,7 +44,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             inputSourceVM: inputSourceVM
         )
         
-        LaunchAtLogin.migrateIfNeeded()
         openPreferencesAtFirstLaunch()
         sendLaunchPing()
         updateInstallVersionInfo()

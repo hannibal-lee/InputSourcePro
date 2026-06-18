@@ -131,7 +131,7 @@ extension Image {
             fallbackName = "⌨"
         case "ladybug":
             fallbackName = "!"
-        case "plus":
+        case "plus", "plus.circle":
             fallbackName = "+"
         case "minus":
             fallbackName = "-"

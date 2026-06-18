@@ -3,16 +3,15 @@
 import SwiftUI
 
 public extension Color {
+    @available(macOS 11.0, *)
     var hex: String { hexDescription(false) }
+
+    @available(macOS 11.0, *)
     var hexWithAlpha: String { hexDescription(true) }
 
+    @available(macOS 11.0, *)
     func hexDescription(_ includeAlpha: Bool = false) -> String {
-        if #available(macOS 11.0, *) {
-            return NSColor(self).hexDescription(includeAlpha)
-        }
-
-        let value = "000000ff"
-        return includeAlpha ? value : String(value.prefix(6))
+        return NSColor(self).hexDescription(includeAlpha)
     }
 }
 

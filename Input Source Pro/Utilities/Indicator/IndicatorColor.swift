@@ -12,6 +12,7 @@ struct IndicatorColor {
         Color(hex: darkHex)
     }
 
+    @available(macOS 11.0, *)
     init(light: Color, dark: Color) {
         self.init(lightHex: light.hexWithAlpha, darkHex: dark.hexWithAlpha)
     }

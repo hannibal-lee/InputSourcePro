@@ -1,23 +1,23 @@
-# Contributing to Input Source Pro
+# Contributing to the Catalina Compatible Fork
 
-First off, thank you for considering contributing to Input Source Pro! We welcome any help, whether it's reporting a bug, proposing a feature, improving documentation, adding translations, or writing code.
+First off, thank you for considering contributing. This repository is a macOS 10.15 Catalina compatible fork of Input Source Pro, so contributions should stay focused on older macOS compatibility and bug fixes for this fork.
 
 This document provides guidelines to help you contribute effectively.
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [support@inputsource.pro](mailto:support@inputsource.pro).
+This project and everyone participating in it is governed by our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
 
 ## How Can I Contribute?
 
-* **Reporting Bugs:** If you find a bug, please report it!
-* **Suggesting Enhancements:** Have an idea for a new feature or an improvement? Let us know.
-* **Pull Requests:** Contribute code, documentation updates, or translations.
-* **Answering Questions:** Help others in the [GitHub Discussions](https://github.com/runjuu/InputSourcePro/discussions) section.
+* **Reporting Bugs:** Report issues that affect this Catalina-compatible fork.
+* **Compatibility Fixes:** Improvements that keep the app usable on macOS 10.15 are welcome.
+* **Documentation Updates:** Clarify fork behavior, build steps, or compatibility limits.
+* **Upstream Features:** For latest macOS support or new product features, prefer the upstream project.
 
 ## Reporting Bugs
 
-Before submitting a bug report, please check the existing [GitHub Issues](https://github.com/runjuu/InputSourcePro/issues) to see if someone else has already reported it.
+Before submitting a bug report, check this fork's existing GitHub issues to see if someone else has already reported it. If the issue only affects the upstream/latest macOS version, report it to the [upstream project](https://github.com/runjuu/InputSourcePro).
 
 If not, create a new issue and provide the following information:
 
@@ -27,13 +27,13 @@ If not, create a new issue and provide the following information:
 4.  **Actual Behavior:** What actually happened. Include error messages or screenshots if applicable.
 5.  **Environment:**
     * Input Source Pro Version (e.g., 1.2.3 Build 456 - found in left bottom corner of the app)
-    * macOS Version (e.g., macOS 15.4.1 - found in "About This Mac")
+    * macOS Version (this fork targets macOS 10.15.x Catalina)
     * Affected Application(s) (if applicable)
     * Relevant Input Sources used
 
 ## Suggesting Enhancements
 
-We track feature requests using [GitHub Discussions](https://github.com/runjuu/InputSourcePro/discussions). Before creating a new one, check if a similar suggestion already exists.
+This fork does not aim to track every upstream feature. Enhancement suggestions should explain why they are needed for macOS 10.15 compatibility. General product feature requests should go to the [upstream project](https://github.com/runjuu/InputSourcePro).
 
 When submitting an enhancement suggestion, please include:
 
@@ -45,14 +45,14 @@ When submitting an enhancement suggestion, please include:
 
 ## Your First Code Contribution / Pull Requests
 
-Ready to contribute code? Here's how to set up and submit a pull request:
+Ready to contribute code? Here's how to set up and submit a pull request for this fork:
 
 ### Setting Up Your Development Environment
 
 1.  **Fork** the repository on GitHub.
-2.  **Clone** your fork locally: `git clone git@github.com:runjuu/InputSourcePro.git`
-3.  **Open** the project (`Input Source Pro.xcodeproj`) in the latest stable version of Xcode.
-4.  Dependencies are managed via Swift Package Manager (SPM) and should resolve automatically when you open the project.
+2.  **Clone** your fork locally: `git clone git@github.com:hannibal-lee/InputSourcePro.git`
+3.  **Open** the project (`Input Source Pro.xcodeproj`) with a Catalina-compatible toolchain, such as Xcode 12.x.
+4.  Dependencies are managed via Swift Package Manager (SPM). Keep `Package.resolved` in the Xcode 12-compatible v1 format and avoid broad package upgrades unless they are tested on macOS 10.15.
 5.  **Build and Run** the project (Cmd+R) to ensure everything is set up correctly.
 
 ### Making Changes
@@ -77,7 +77,7 @@ Ready to contribute code? Here's how to set up and submit a pull request:
 
 ### Submitting a Pull Request
 
-1.  Go to the original `InputSourcePro` repository on [GitHub](https://github.com/runjuu/InputSourcePro).
+1.  Go to this Catalina-compatible fork on GitHub.
 2.  Click on "Pull Requests" and then "New pull request".
 3.  Choose your fork and the branch containing your changes.
 4.  **Write a clear description** for your Pull Request:
@@ -85,7 +85,7 @@ Ready to contribute code? Here's how to set up and submit a pull request:
     * Link to any relevant **issues** (e.g., "Closes #123").
     * Summarize the **changes** made.
     * Describe any **testing** you performed.
-5.  Submit the Pull Request. A maintainer will review it as soon as possible. Be prepared to discuss your changes and make adjustments based on feedback.
+5.  Submit the Pull Request. Changes intended for newer macOS releases or general product direction should be proposed to the upstream project instead.
 
 ## Style Guides
 

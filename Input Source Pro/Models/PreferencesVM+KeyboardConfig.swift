@@ -1,5 +1,4 @@
 import AppKit
-import Boutique
 import Foundation
 import SwiftUI
 
@@ -145,47 +144,50 @@ extension PreferencesVM {
         }
 
         if preferences.prevInstalledBuildVersion <= 462 {
+            let shouldShowInputSourcesLabel = UserDefaults.standard.object(
+                forKey: "isShowInputSourcesLabel"
+            ) as? Bool ?? true
+
             update {
-                $0.indicatorInfo = $0.isShowInputSourcesLabel ? .iconAndTitle : .iconOnly
+                $0.indicatorInfo = shouldShowInputSourcesLabel ? .iconAndTitle : .iconOnly
             }
         }
     }
 
-    func migrateBoutiqueIfNeed() {
-        let storagePath = Store<DeprecatedKeyboardSettings>.documentsDirectory(appendingPath: "KeyboardSettings")
+    func migrateLegacyKeyboardSettingsIfNeed() {
+        let keyboardSettingsURL = FileManager.default
+            .urls(for: .documentDirectory, in: .userDomainMask)
+            .first?
+            .appendingPathComponent("KeyboardSettings")
 
         guard preferences.prevInstalledBuildVersion == 316,
+              let storagePath = keyboardSettingsURL,
               FileManager.default.fileExists(atPath: storagePath.path) else { return }
 
-        let store = Store<DeprecatedKeyboardSettings>(storagePath: storagePath)
+        do {
+            let data = try Data(contentsOf: storagePath)
+            let items = try JSONDecoder().decode([DeprecatedKeyboardSettings].self, from: data)
 
-        store.$items
-            .filter { $0.count > 0 }
-            .first()
-            .sink { [weak self] items in
-                self?.saveContext {
-                    for item in items {
-                        let matchedInputSources = InputSource.resolvePersistedIdentifiers(
-                            [item.id],
-                            expandingLegacySourceIDs: true
-                        )
+            guard !items.isEmpty else { return }
 
-                        for inputSource in matchedInputSources {
-                            guard let config = self?.getOrCreateKeyboardConfig(inputSource)
-                            else { continue }
+            saveContext {
+                for item in items {
+                    let matchedInputSources = InputSource.resolvePersistedIdentifiers(
+                        [item.id],
+                        expandingLegacySourceIDs: true
+                    )
 
-                            config.textColorHex = item.textColorHex
-                            config.bgColorHex = item.bgColorHex
-                        }
+                    for inputSource in matchedInputSources {
+                        let config = self.getOrCreateKeyboardConfig(inputSource)
+                        config.textColorHex = item.textColorHex
+                        config.bgColorHex = item.bgColorHex
                     }
                 }
-
-                do {
-                    try FileManager.default.removeItem(at: storagePath)
-                } catch {
-                    print("Boutique migration error: \(error.localizedDescription)")
-                }
             }
-            .store(in: cancelBag)
+
+            try FileManager.default.removeItem(at: storagePath)
+        } catch {
+            print("Legacy keyboard settings migration error: \(error.localizedDescription)")
+        }
     }
 }

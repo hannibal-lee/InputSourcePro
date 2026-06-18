@@ -9,6 +9,8 @@
 - `imgs/` is used for README media.
 
 ## Build, Test, and Development Commands
+- This fork targets macOS 10.15 Catalina. Prefer Xcode 12.x and avoid adopting APIs that require newer SDKs unless every use is runtime-gated and has a Catalina fallback.
+- Keep Swift Package Manager dependencies pinned for Catalina builds. `Package.resolved` must remain in Xcode 12-compatible v1 format.
 - Open `Input Source Pro.xcodeproj` in Xcode and use:
   - `Cmd+B` to build, `Cmd+R` to run, `Cmd+U` to run tests.
 - CLI builds use the shared scheme name:

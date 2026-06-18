@@ -62,12 +62,13 @@ private var browserAppIdentifier: Set<String> = {
     let array1 = LSCopyAllRoleHandlersForContentType(
         "public.html" as CFString, .viewer
     )?.takeRetainedValue() as? [String] ?? []
-    let array2 = LSCopyAllHandlersForURLScheme(
-        "https" as CFString
-    )?.takeRetainedValue() as? [String] ?? []
+    let httpsURL = URL(string: "https://example.com")! as CFURL
+    let array2 = LSCopyApplicationURLsForURL(httpsURL, .viewer)?
+        .takeRetainedValue() as? [URL] ?? []
+    let httpsAppIdentifiers = array2.compactMap { Bundle(url: $0)?.bundleIdentifier }
 
     let set1 = Set(array1)
-    let set2 = Set(array2)
+    let set2 = Set(httpsAppIdentifiers)
 
     return set1.intersection(set2)
 }()

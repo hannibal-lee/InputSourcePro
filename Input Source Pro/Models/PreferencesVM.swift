@@ -3,7 +3,6 @@ import AXSwift
 import Combine
 import CombineExt
 import LaunchAtLogin
-import Sparkle
 import SwiftUI
 
 final class PreferencesVM: ObservableObject {
@@ -14,8 +13,6 @@ final class PreferencesVM: ObservableObject {
     var keyboardConfigs: [KeyboardConfig] = []
 
     var permissionsVM: PermissionsVM
-
-    var updaterController: SPUStandardUpdaterController?
 
     var cancelBag = CancelBag()
 
@@ -28,18 +25,10 @@ final class PreferencesVM: ObservableObject {
 
     let buildStr = "\(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "unknown")"
 
-    @Published
-    var automaticallyChecksForUpdates = false
-
-    @Published
-    var canChecksForUpdates = false
-
     init(permissionsVM: PermissionsVM) {
         self.permissionsVM = permissionsVM
         container = NSPersistentContainer(name: "Main")
         mainStorage = MainStorage(container: container)
-
-        setupAutoUpdate()
 
         // TODO: - Move to MainStorage
         container.loadPersistentStores { _, error in
@@ -67,7 +56,7 @@ final class PreferencesVM: ObservableObject {
         cleanRemovedAppCustomizationIfNeed()
         migratePreferncesIfNeed()
         migrateShortcutPreferencesIfNeed()
-        migrateBoutiqueIfNeed()
+        migrateLegacyKeyboardSettingsIfNeed()
         watchKeyboardConfigsChange()
     }
 
@@ -138,37 +127,6 @@ extension PreferencesVM {
         mainStorage.keyboardConfigs
             .sink(receiveValue: { [weak self] in self?.keyboardConfigs = $0 })
             .store(in: cancelBag)
-    }
-}
-
-extension PreferencesVM {
-    private func setupAutoUpdate() {
-        updaterController = SPUStandardUpdaterController(
-            startingUpdater: true,
-            updaterDelegate: nil,
-            userDriverDelegate: nil
-        )
-
-        updaterController?.updater
-            .publisher(for: \.automaticallyChecksForUpdates)
-            .removeDuplicates()
-            .sink(receiveValue: { [weak self] in self?.automaticallyChecksForUpdates = $0 })
-            .store(in: cancelBag)
-
-        $automaticallyChecksForUpdates
-            .dropFirst()
-            .sink { [weak self] in self?.updaterController?.updater.automaticallyChecksForUpdates = $0 }
-            .store(in: cancelBag)
-
-        updaterController?.updater
-            .publisher(for: \.canCheckForUpdates)
-            .debounce(for: 0.5, scheduler: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] in self?.canChecksForUpdates = $0 })
-            .store(in: cancelBag)
-    }
-
-    func checkUpdates() {
-        updaterController?.updater.checkForUpdates()
     }
 }
 
@@ -564,7 +522,9 @@ extension Preferences {
         }
 
         set {
-            indicatorBackgroundNSColor = NSColor(hex: newValue.hexWithAlpha)
+            if #available(macOS 11.0, *) {
+                indicatorBackgroundNSColor = NSColor(newValue)
+            }
         }
     }
 
@@ -605,7 +565,9 @@ extension Preferences {
         }
 
         set {
-            indicatorForgegroundNSColor = NSColor(hex: newValue.hexWithAlpha)
+            if #available(macOS 11.0, *) {
+                indicatorForgegroundNSColor = NSColor(newValue)
+            }
         }
     }
 }

@@ -5,6 +5,10 @@ struct TroubleshootingSettingsView: View {
 
     @State var isShowCJKVFixEnableFailedView = false
 
+    private var shouldShowCursorLagFix: Bool {
+        ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 14
+    }
+
     var body: some View {
         let isCJKVFixEnabledBinding = Binding(
             get: { preferencesVM.preferences.isCJKVFixEnabled },
@@ -62,8 +66,10 @@ struct TroubleshootingSettingsView: View {
                     .padding()
                 }
                 
-                SettingsSection(title: "") {
-                    CursorLagFixView()
+                if shouldShowCursorLagFix {
+                    SettingsSection(title: "") {
+                        CursorLagFixView()
+                    }
                 }
 
                 SettingsSection(title: "") {

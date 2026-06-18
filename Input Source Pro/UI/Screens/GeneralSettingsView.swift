@@ -172,17 +172,15 @@ struct GeneralSettingsView: View {
                     }
 
                     SettingsSection(title: "") {
-                        Button(action: { preferencesVM.checkUpdates() }, label: {
-                            HStack {
-                                Text("Check for Updates".i18n() + "...")
+                        HStack {
+                            Text("Version".i18n())
 
-                                Spacer()
+                            Spacer()
 
-                                Text(" \(preferencesVM.versionStr) (\(preferencesVM.buildStr))")
-                                    .foregroundColor(Color.primary.opacity(0.5))
-                            }
-                        })
-                        .buttonStyle(SectionButtonStyle())
+                            Text(" \(preferencesVM.versionStr) (\(preferencesVM.buildStr))")
+                                .foregroundColor(Color.primary.opacity(0.5))
+                        }
+                        .padding()
                     }
                 }
 

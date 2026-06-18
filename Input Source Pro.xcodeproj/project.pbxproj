@@ -29,7 +29,6 @@
 		4A15EE412E0E123B007B76C3 /* CursorLagFixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A15EE402E0E123B007B76C3 /* CursorLagFixView.swift */; };
 		4A15EE432E0E1309007B76C3 /* RebootRequiredBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A15EE422E0E1309007B76C3 /* RebootRequiredBadge.swift */; };
 		4A1BD908287AD20200E4D8C2 /* KeyboardCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1BD907287AD20200E4D8C2 /* KeyboardCustomization.swift */; };
-		4A1BD90B287AD33C00E4D8C2 /* Boutique in Frameworks */ = {isa = PBXBuildFile; productRef = 4A1BD90A287AD33C00E4D8C2 /* Boutique */; };
 		4A1BD90F287BD14000E4D8C2 /* CustomizedIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1BD90E287BD14000E4D8C2 /* CustomizedIndicatorView.swift */; };
 		4A1F25222830C3E400001BAB /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1F25212830C3E400001BAB /* Bundle+Version.swift */; };
 		4A20AD6128904B3A00620D14 /* NoAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A20AD6028904B3A00620D14 /* NoAnimation.swift */; };
@@ -82,7 +81,6 @@
 		4A5EAA6C280BF6F700A9E332 /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EAA6B280BF6F700A9E332 /* AppearanceSettingsView.swift */; };
 		4A5EAA6E280C0DE800A9E332 /* PopUpButtonPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EAA6D280C0DE800A9E332 /* PopUpButtonPicker.swift */; };
 		4A5EAA70280C238600A9E332 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EAA6F280C238600A9E332 /* URL.swift */; };
-		4A742D0828213E7700DCB392 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 4A742D0728213E7700DCB392 /* Sparkle */; };
 		4A742D0A28229A5400DCB392 /* NSWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A742D0928229A5400DCB392 /* NSWorkspace.swift */; };
 		4A7C9AFA283399E700BD245E /* Data+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7C9AF9283399E700BD245E /* Data+MD5.swift */; };
 		4A843BDB280E570700549B6C /* AppRuleMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A843BDA280E570600549B6C /* AppRuleMenuItem.swift */; };
@@ -350,12 +348,10 @@
 				4A2ACC1C2D23C24100F39923 /* LaunchAtLogin in Frameworks */,
 				4AC573832840E940000BF10B /* KeyboardShortcuts in Frameworks */,
 				D52E2C51293D2BAD0017CB7E /* RxCocoa in Frameworks */,
-				4A742D0828213E7700DCB392 /* Sparkle in Frameworks */,
 				D52E2C55293D2BAD0017CB7E /* RxSwift in Frameworks */,
 				D5E8C9332A29BC38008BDABE /* AXSwift in Frameworks */,
 				4A2A17A9280BA8BD00E13249 /* VisualEffects in Frameworks */,
 				4A2A17A4280BA86500E13249 /* SnapKit in Frameworks */,
-				4A1BD90B287AD33C00E4D8C2 /* Boutique in Frameworks */,
 				D52E2C53293D2BAD0017CB7E /* RxRelay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -718,9 +714,7 @@
 				4A2A17A3280BA86500E13249 /* SnapKit */,
 				4A2A17A8280BA8BD00E13249 /* VisualEffects */,
 				4AD6BF9D280E739F0001E3C7 /* CombineExt */,
-				4A742D0728213E7700DCB392 /* Sparkle */,
 				4AC573822840E940000BF10B /* KeyboardShortcuts */,
-				4A1BD90A287AD33C00E4D8C2 /* Boutique */,
 				D52E2C50293D2BAD0017CB7E /* RxCocoa */,
 				D52E2C52293D2BAD0017CB7E /* RxRelay */,
 				D52E2C54293D2BAD0017CB7E /* RxSwift */,
@@ -764,9 +758,7 @@
 				4A2A17A2280BA86500E13249 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				4A2A17A7280BA8BD00E13249 /* XCRemoteSwiftPackageReference "VisualEffects" */,
 				4AD6BF9C280E739F0001E3C7 /* XCRemoteSwiftPackageReference "CombineExt" */,
-				4A742D0628213E7700DCB392 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				4AC573812840E940000BF10B /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
-				4A1BD909287AD33C00E4D8C2 /* XCRemoteSwiftPackageReference "Boutique" */,
 				D52E2C4F293D2BAD0017CB7E /* XCRemoteSwiftPackageReference "RxSwift" */,
 				D525609A29B571D2009EB7BA /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D5E8C9312A29BC38008BDABE /* XCRemoteSwiftPackageReference "AXSwift" */,
@@ -816,7 +808,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\nHELPER_SCRIPT=\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\nif [ -x \"$HELPER_SCRIPT\" ]; then\n  \"$HELPER_SCRIPT\"\nelse\n  echo \"LaunchAtLogin helper bundle not built; skipping helper copy for Catalina downgrade build.\"\nfi\n";
+			shellScript = "set -e\nexport LC_ALL=C\nexport LANG=C\nHELPER_SCRIPT=\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\nif [ -x \"$HELPER_SCRIPT\" ]; then\n  \"$HELPER_SCRIPT\"\nelse\n  echo \"LaunchAtLogin helper bundle not built; skipping helper copy for Catalina downgrade build.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1206,96 +1198,73 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4A1BD909287AD33C00E4D8C2 /* XCRemoteSwiftPackageReference "Boutique" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mergesort/Boutique";
-			requirement = {
-				kind = exactVersion;
-				version = 1.0.2;
-			};
-		};
 		4A2A17A2280BA86500E13249 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
-				kind = versionRange;
-				maximumVersion = 6.0.0;
-				minimumVersion = 5.0.0;
+				kind = exactVersion;
+				version = 5.6.0;
 			};
 		};
 		4A2A17A7280BA8BD00E13249 /* XCRemoteSwiftPackageReference "VisualEffects" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/VisualEffects.git";
 			requirement = {
-				kind = versionRange;
-				maximumVersion = 2.0.0;
-				minimumVersion = 1.0.0;
+				kind = exactVersion;
+				version = 1.0.3;
 			};
 		};
 		4A2ACC1A2D23C24100F39923 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Legacy" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Legacy";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		4A742D0628213E7700DCB392 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sparkle-project/Sparkle";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.1;
+				kind = exactVersion;
+				version = 4.2.0;
 			};
 		};
 		4AC573812840E940000BF10B /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.4;
+				kind = exactVersion;
+				version = 1.1.0;
 			};
 		};
 		4AD6BF9C280E739F0001E3C7 /* XCRemoteSwiftPackageReference "CombineExt" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineExt.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.0;
+				kind = exactVersion;
+				version = 1.8.1;
 			};
 		};
 		D525609A29B571D2009EB7BA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				kind = exactVersion;
+				version = 5.4.4;
 			};
 		};
 		D52E2C4F293D2BAD0017CB7E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
+				kind = exactVersion;
+				version = 6.7.1;
 			};
 		};
 		D5E8C9312A29BC38008BDABE /* XCRemoteSwiftPackageReference "AXSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/runjuu/AXSwift.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = revision;
+				revision = 7abf4298c95dc36e2c31b513115ba377e1f5d2f8;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4A1BD90A287AD33C00E4D8C2 /* Boutique */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4A1BD909287AD33C00E4D8C2 /* XCRemoteSwiftPackageReference "Boutique" */;
-			productName = Boutique;
-		};
 		4A2A17A3280BA86500E13249 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4A2A17A2280BA86500E13249 /* XCRemoteSwiftPackageReference "SnapKit" */;
@@ -1310,11 +1279,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4A2ACC1A2D23C24100F39923 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Legacy" */;
 			productName = LaunchAtLogin;
-		};
-		4A742D0728213E7700DCB392 /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4A742D0628213E7700DCB392 /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
 		};
 		4AC573822840E940000BF10B /* KeyboardShortcuts */ = {
 			isa = XCSwiftPackageProductDependency;

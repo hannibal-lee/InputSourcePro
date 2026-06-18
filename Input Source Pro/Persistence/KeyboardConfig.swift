@@ -12,7 +12,14 @@ extension KeyboardConfig {
         }
 
         set {
-            textColorHex = newValue?.hexWithAlpha
+            guard let newValue = newValue else {
+                textColorHex = nil
+                return
+            }
+
+            if #available(macOS 11.0, *) {
+                textColorHex = newValue.hexWithAlpha
+            }
         }
     }
 
@@ -40,7 +47,14 @@ extension KeyboardConfig {
         }
 
         set {
-            bgColorHex = newValue?.hexWithAlpha
+            guard let newValue = newValue else {
+                bgColorHex = nil
+                return
+            }
+
+            if #available(macOS 11.0, *) {
+                bgColorHex = newValue.hexWithAlpha
+            }
         }
     }
 
