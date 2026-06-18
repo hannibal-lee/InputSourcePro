@@ -58,6 +58,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    @objc func openPreferences() {
+        statusItemController?.openPreferences()
+    }
+
     func openPreferencesAtFirstLaunch() {
         if previousInstalledBuildVersionAtLaunch != preferencesVM.preferences.buildVersion {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {

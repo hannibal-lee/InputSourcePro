@@ -11,10 +11,10 @@ class AppMenu: NSMenu {
         mainMenu.submenu?.items = [
             NSMenuItem(title: "About \(applicationName)", action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)), keyEquivalent: ""),
             NSMenuItem.separator(),
-            NSMenuItem(title: "Preferences...", action: nil, keyEquivalent: ","),
+            NSMenuItem(title: "Preferences...", target: self, action: #selector(openPreferences), keyEquivalent: ","),
             NSMenuItem.separator(),
             NSMenuItem(title: "Hide \(applicationName)", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h"),
-            NSMenuItem(title: "Hide Others", target: self, action: #selector(NSApplication.hideOtherApplications(_:)), keyEquivalent: "h", modifier: .init(arrayLiteral: [.command, .option])),
+            NSMenuItem(title: "Hide Others", target: NSApplication.shared, action: #selector(NSApplication.hideOtherApplications(_:)), keyEquivalent: "h", modifier: .init(arrayLiteral: [.command, .option])),
             NSMenuItem(title: "Show All", action: #selector(NSApplication.unhideAllApplications(_:)), keyEquivalent: ""),
             NSMenuItem.separator(),
             NSMenuItem(title: "Quit \(applicationName)", action: #selector(NSApplication.shared.terminate(_:)), keyEquivalent: "q"),
@@ -78,5 +78,9 @@ class AppMenu: NSMenu {
     @available(*, unavailable)
     required init(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func openPreferences() {
+        (NSApplication.shared.delegate as? AppDelegate)?.openPreferences()
     }
 }

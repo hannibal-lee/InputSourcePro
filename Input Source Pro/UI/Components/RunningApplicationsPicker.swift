@@ -1,9 +1,33 @@
+import AppKit
 import SwiftUI
 
-struct RunningApplicationsPicker: View {
-    @EnvironmentObject var preferencesVM: PreferencesVM
+struct RunningApplicationsPicker: NSViewRepresentable {
+    final class Coordinator: NSObject {
+        private let parent: RunningApplicationsPicker
+        private var apps: [NSRunningApplication] = []
 
-    let appIconSize: CGFloat = 18
+        init(parent: RunningApplicationsPicker) {
+            self.parent = parent
+        }
+
+        func updateApps(_ apps: [NSRunningApplication]) {
+            self.apps = apps
+        }
+
+        @objc func selectApp(_ sender: NSPopUpButton) {
+            let index = sender.indexOfSelectedItem - 1
+
+            guard apps.indices.contains(index) else {
+                sender.selectItem(at: 0)
+                return
+            }
+
+            parent.onSelect(apps[index])
+            sender.selectItem(at: 0)
+        }
+    }
+
+    @EnvironmentObject var preferencesVM: PreferencesVM
 
     let onSelect: (NSRunningApplication) -> Void
 
@@ -13,42 +37,49 @@ struct RunningApplicationsPicker: View {
 
     private var apps: [NSRunningApplication] {
         preferencesVM.filterApps(NSWorkspace.shared.runningApplications)
+            .sorted {
+                ($0.localizedName ?? $0.bundleIdentifier ?? "") < ($1.localizedName ?? $1.bundleIdentifier ?? "")
+            }
     }
 
-    var body: some View {
-        Button(action: {
-            if let app = apps.first {
-                onSelect(app)
-            }
-        }) {
-            HStack(spacing: 6) {
-                Image.compatSystemName("plus")
-                Text("Add Running Apps".i18n())
-                    .lineLimit(1)
-                    .truncationMode(.tail)
-            }
-            .padding(.horizontal, 8)
-            .frame(maxWidth: .infinity, minHeight: 20)
-            .contentShape(Rectangle())
+    func makeCoordinator() -> Coordinator {
+        Coordinator(parent: self)
+    }
+
+    func makeNSView(context: Context) -> NSPopUpButton {
+        let button = NSPopUpButton(frame: .zero, pullsDown: true)
+
+        button.autoenablesItems = false
+        button.target = context.coordinator
+        button.action = #selector(Coordinator.selectApp(_:))
+        button.bezelStyle = .rounded
+
+        return button
+    }
+
+    func updateNSView(_ button: NSPopUpButton, context: Context) {
+        let apps = self.apps
+
+        context.coordinator.updateApps(apps)
+
+        button.removeAllItems()
+        button.addItem(withTitle: "Add Running Apps".i18n())
+
+        guard !apps.isEmpty else {
+            button.isEnabled = false
+            return
         }
-        .buttonStyle(RunningApplicationsPickerButtonStyle())
-        .disabled(apps.isEmpty)
-    }
-}
 
-private struct RunningApplicationsPickerButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundColor(Color.primary)
-            .opacity(configuration.isPressed ? 0.75 : 1.0)
-            .background(
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(Color(NSColor.controlColor))
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 4)
-                    .stroke(Color(NSColor.separatorColor).opacity(0.5), lineWidth: 1)
-            )
-            .clipped()
+        button.isEnabled = true
+
+        for app in apps {
+            let item = NSMenuItem(title: app.localizedName ?? app.bundleIdentifier ?? "(unknown)", action: nil, keyEquivalent: "")
+
+            item.image = app.icon
+            item.toolTip = app.bundleIdentifier
+            button.menu?.addItem(item)
+        }
+
+        button.selectItem(at: 0)
     }
 }
