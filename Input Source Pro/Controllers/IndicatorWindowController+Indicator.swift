@@ -1,4 +1,4 @@
-import Foundation
+import AppKit
 
 extension IndicatorWindowController {
     func getAppSize() -> CGSize? {
@@ -18,11 +18,24 @@ extension IndicatorWindowController {
 
         if isActive {
             indicatorVC.refresh()
+            resizeIndicatorWindow()
         }
     }
 
     func moveIndicator(position: PreferencesVM.IndicatorPositionInfo) {
         indicatorVC.refresh()
+        resizeIndicatorWindow()
         moveTo(point: position.point)
+    }
+
+    private func resizeIndicatorWindow() {
+        guard let size = getAppSize(),
+              size.width > 0,
+              size.height > 0
+        else { return }
+
+        window?.setContentSize(size)
+        indicatorVC.view.frame = CGRect(origin: .zero, size: size)
+        indicatorVC.view.layoutSubtreeIfNeeded()
     }
 }

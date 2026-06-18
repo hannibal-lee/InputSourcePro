@@ -23,7 +23,7 @@ class FloatWindowController: NSWindowController, NSWindowDelegate {
 
 extension FloatWindowController {
     func active() {
-        window?.orderFront(nil)
+        window?.orderFrontRegardless()
     }
 
     func deactive() {

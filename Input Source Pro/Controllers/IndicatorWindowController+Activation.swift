@@ -160,6 +160,10 @@ extension IndicatorWindowController {
             let checkIfUnfocusedTimer = Timer.interval(seconds: 1)
                 .mapTo(Event.cursorMoved)
 
+            let mouseMoved = NSEvent.watch(matching: [.mouseMoved])
+                .throttle(for: .milliseconds(80), scheduler: RunLoop.main, latest: true)
+                .mapTo(Event.cursorMoved)
+
             let showAlwaysOnIndicatorTimer = Timer.delay(seconds: 0.8)
                 .mapTo(Event.showAlwaysOnIndicator)
 
@@ -172,7 +176,7 @@ extension IndicatorWindowController {
                 .removeDuplicates()
                 .eraseToAnyPublisher()
 
-            return Publishers.MergeMany([show, hide, checkIfUnfocusedTimer, showAlwaysOnIndicatorTimer])
+            return Publishers.MergeMany([show, hide, checkIfUnfocusedTimer, showAlwaysOnIndicatorTimer, mouseMoved])
                 .prepend(.cursorMoved)
                 .scan((State.initial, State.initial)) { changes, event -> State.Changes in
                     (changes.current.reducer(event), changes.current)
@@ -225,12 +229,8 @@ extension IndicatorWindowController {
                                     self.moveIndicator(position: position)
                                     ACTION_SHOW()
                                 } else {
-                                    if state.current.isShowAlwaysOnIndicator {
-                                        ACTION_HIDE()
-                                    } else {
-                                        self.moveIndicator(position: position)
-                                        ACTION_SHOW()
-                                    }
+                                    self.moveIndicator(position: position)
+                                    ACTION_SHOW()
                                 }
                             }
                         }

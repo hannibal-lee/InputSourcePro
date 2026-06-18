@@ -11,6 +11,10 @@ struct PositionSettingsView: View {
     @State var displayAlwaysOnIndicatorTips = false
     @State private var width = CGFloat.zero
 
+    private var effectiveIndicatorPositionAlignment: IndicatorPosition.Alignment {
+        preferencesVM.preferences.indicatorPositionAlignment ?? .bottomRight
+    }
+
     var body: some View {
         let sliderBinding = Binding(
             get: {
@@ -84,7 +88,7 @@ struct PositionSettingsView: View {
                                 HStack {
                                     PopUpButtonPicker<IndicatorPosition.Alignment>(
                                         items: IndicatorPosition.Alignment.allCases,
-                                        isItemSelected: { $0 == preferencesVM.preferences.indicatorPositionAlignment },
+                                        isItemSelected: { $0 == effectiveIndicatorPositionAlignment },
                                         getTitle: { $0.name },
                                         getToolTip: { $0.name },
                                         onSelect: { index in

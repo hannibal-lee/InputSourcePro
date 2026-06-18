@@ -5,7 +5,7 @@ import CombineExt
 
 extension PreferencesVM {
     func calcSpacing(minLength: CGFloat) -> CGFloat {
-        guard let spacing = preferences.indicatorPositionSpacing else { return 0 }
+        let spacing = preferences.indicatorPositionSpacing ?? .m
 
         switch spacing {
         case .none:
@@ -29,8 +29,7 @@ extension PreferencesVM {
         appSize: CGSize,
         app: NSRunningApplication
     ) -> AnyPublisher<IndicatorPositionInfo?, Never> {
-        Just(preferences.indicatorPosition)
-            .compactMap { $0 }
+        Just(preferences.indicatorPosition ?? .nearMouse)
             .flatMapLatest { [weak self] position -> AnyPublisher<IndicatorPositionInfo?, Never> in
                 let DEFAULT = self?.getIndicatorBasePosition(
                     appSize: appSize,
@@ -47,7 +46,8 @@ extension PreferencesVM {
                             return Just((.floatingApp, positionForFloatingWindow)).eraseToAnyPublisher()
                         }
 
-                        if self.preferences.isEnhancedModeEnabled,
+                        if position != .nearMouse,
+                           self.preferences.isEnhancedModeEnabled,
                            self.preferences.tryToDisplayIndicatorNearCursor == true,
                            self.isAbleToQueryLocation(app)
                         {
