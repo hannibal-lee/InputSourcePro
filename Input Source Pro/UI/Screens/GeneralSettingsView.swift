@@ -35,10 +35,6 @@ struct GeneralSettingsView: View {
 
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
-                SettingsSection(title: "Also by Runju") {
-                    RefinePromotionCard()
-                }
-
                 SettingsSection(title: "Default Keyboard") {
                     HStack {
                         Text("For All Apps and Websites".i18n())
@@ -206,70 +202,62 @@ struct GeneralSettingsView: View {
                 }
 
                 Group {
-                    SettingsSection(title: "Find Us", tips: Text("Right click each section to copy link").font(.subheadline).opacity(0.5)) {
-                        Button(action: { URL.website.open() }, label: {
+                    SettingsSection(title: "Fork Project", tips: Text("Right click each section to copy link").font(.subheadline).opacity(0.5)) {
+                        Button(action: { URL.forkRepository.open() }, label: {
                             HStack {
-                                Text("Website".i18n())
+                                Text("Fork Repository".i18n())
                                     .foregroundColor(Color.primary)
 
                                 Spacer()
 
-                                Text(URL.website.absoluteString)
+                                Text(URL.forkRepository.absoluteString)
                             }
                         })
                         .buttonStyle(SectionButtonStyle())
                         .contextMenu {
-                            Button("Copy") {
+                            Button("Copy".i18n()) {
                                 NSPasteboard.general.clearContents()
-                                NSPasteboard.general.setString(URL.website.absoluteString, forType: .string)
+                                NSPasteboard.general.setString(URL.forkRepository.absoluteString, forType: .string)
                             }
                         }
                         .border(width: 1, edges: [.bottom], color: NSColor.border2.color)
 
-                        Button(action: { URL.twitter.open() }, label: {
+                        Button(action: { URL.forkReleases.open() }, label: {
                             HStack {
-                                Text("Twitter")
+                                Text("Fork Releases".i18n())
                                     .foregroundColor(Color.primary)
 
                                 Spacer()
 
-                                Text("@runjuuu")
+                                Text(URL.forkReleases.absoluteString)
                             }
                         })
                         .buttonStyle(SectionButtonStyle())
                         .contextMenu {
-                            Button("Copy") {
+                            Button("Copy".i18n()) {
                                 NSPasteboard.general.clearContents()
-                                NSPasteboard.general.setString(URL.twitter.absoluteString, forType: .string)
+                                NSPasteboard.general.setString(URL.forkReleases.absoluteString, forType: .string)
                             }
                         }
                         .border(width: 1, edges: [.bottom], color: NSColor.border2.color)
 
-                        Button(action: { URL.email.open() }, label: {
+                        Button(action: { URL.upstreamRepository.open() }, label: {
                             HStack {
-                                Text("Email")
+                                Text("Upstream Project".i18n())
                                     .foregroundColor(Color.primary)
 
                                 Spacer()
 
-                                Text(URL.emailString)
+                                Text(URL.upstreamRepository.absoluteString)
                             }
                         })
                         .buttonStyle(SectionButtonStyle())
                         .contextMenu {
-                            Button("Copy") {
+                            Button("Copy".i18n()) {
                                 NSPasteboard.general.clearContents()
-                                NSPasteboard.general.setString(URL.emailString, forType: .string)
+                                NSPasteboard.general.setString(URL.upstreamRepository.absoluteString, forType: .string)
                             }
                         }
-                    }
-                    
-                    SettingsSection(title: "") {
-                        PromotionBadge()
-                    }
-
-                    SettingsSection(title: "") {
-                        FeedbackButton()
                     }
                 }
                 
@@ -286,7 +274,7 @@ struct GeneralSettingsView: View {
 
                 HStack {
                     Spacer()
-                    Text("Created by Runju & Die2")
+                    Text("Catalina-compatible fork based on Input Source Pro")
                     Spacer()
                 }
                 .font(.footnote)
@@ -398,78 +386,5 @@ struct GeneralSettingsView: View {
         alert.informativeText = message
         alert.addButton(withTitle: "OK")
         alert.runModal()
-    }
-}
-
-private struct RefinePromotionCard: View {
-    @State private var iconImage: NSImage?
-
-    private let iconURL = URL(string: "https://refine.sh/icon.png")!
-    private let websiteURL = URL(string: "https://refine.sh?utm_source=inputsourcepro")!
-
-    var body: some View {
-        Button(action: {
-            NSWorkspace.shared.open(websiteURL)
-        }) {
-            HStack(alignment: .center, spacing: 6) {
-                if let iconImage = iconImage {
-                    Image(nsImage: iconImage)
-                        .resizable()
-                        .interpolation(.high)
-                        .antialiased(true)
-                        .frame(width: 64, height: 64)
-                } else {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.gray.opacity(0.2))
-                        .frame(width: 64, height: 64)
-                }
-
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Refine")
-                        .font(Font.system(size: 13, weight: Font.Weight.medium))
-                        .foregroundColor(Color.primary)
-
-                    Text("An AI-powered grammar checker that runs 100% locally".i18n())
-                        .font(Font.system(size: 13))
-                        .foregroundColor(Color.secondary)
-                        .lineLimit(2)
-
-                    Text("refine.sh")
-                        .font(Font.system(size: 11))
-                        .foregroundColor(Color.secondary.opacity(0.8))
-                }
-
-                Spacer()
-
-                Image.compatSystemName("arrow.up.forward.square")
-                    .font(Font.system(size: 12))
-                    .foregroundColor(Color.secondary.opacity(0.6))
-            }
-            .padding(.vertical, 8)
-            .padding(.leading, 8)
-            .padding(.trailing)
-            .contentShape(Rectangle())
-        }
-        .buttonStyle(PlainButtonStyle())
-        .onAppear(perform: loadIconIfNeeded)
-    }
-
-    private func loadIconIfNeeded() {
-        guard iconImage == nil else { return }
-
-        let request = URLRequest(
-            url: iconURL,
-            cachePolicy: .returnCacheDataElseLoad,
-            timeoutInterval: 30
-        )
-
-        URLSession.shared.dataTask(with: request) { data, _, _ in
-            guard let data = data, let image = NSImage(data: data) else { return }
-
-            DispatchQueue.main.async {
-                iconImage = image
-            }
-        }
-        .resume()
     }
 }

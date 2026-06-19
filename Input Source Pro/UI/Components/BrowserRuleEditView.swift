@@ -56,7 +56,7 @@ struct BrowserRuleEditView: View {
                     HStack {
                         Text("Sample URL".i18n() + ":")
                             .alignedView(width: $width, alignment: .trailing)
-                        TextField("https://www.twitter.com/runjuuu", text: $sampleValue)
+                        TextField("https://www.example.com/docs/input-source", text: $sampleValue)
                     }
 
                     HStack {
@@ -95,7 +95,7 @@ struct BrowserRuleEditView: View {
                         Text("Domain".i18n() + ":")
                             .alignedView(width: $width, alignment: .trailing)
                         HStack {
-                            TextField("twitter.com", text: $value)
+                            TextField("example.com", text: $value)
                             if let url = sampleURL, !value.isEmpty {
                                 if BrowserRule.validate(type: ruleType, url: url, value: value) {
                                     Image.compatSystemName("checkmark.circle.fill")

@@ -75,7 +75,6 @@
 		4A4167302813CAE600CCC28C /* PreferencesVM+BrowserRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41672F2813CAE600CCC28C /* PreferencesVM+BrowserRule.swift */; };
 		4A4167322813D9FA00CCC28C /* NSRegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4167312813D9FA00CCC28C /* NSRegularExpression.swift */; };
 		4A4167342814086E00CCC28C /* IndicatorPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4167332814086E00CCC28C /* IndicatorPosition.swift */; };
-		4A4E035C2DB97534008E5C2F /* PromotionBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4E035B2DB97534008E5C2F /* PromotionBadge.swift */; };
 		4A5BABE72830A720009F42D7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A5BABE92830A720009F42D7 /* Localizable.strings */; };
 		4A5EAA6A280BF68B00A9E332 /* KeyboardsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EAA69280BF68B00A9E332 /* KeyboardsSettingsView.swift */; };
 		4A5EAA6C280BF6F700A9E332 /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EAA6B280BF6F700A9E332 /* AppearanceSettingsView.swift */; };
@@ -159,7 +158,6 @@
 		D5D029082A3C129F005F2FB9 /* InputSource+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D029072A3C129F005F2FB9 /* InputSource+Name.swift */; };
 		D5D1FF462A84BF390087217B /* Data+SHA256.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D1FF452A84BF390087217B /* Data+SHA256.swift */; };
 		D5DEFF7028A3A47D005B2B15 /* PreferencesVM+BrowserAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DEFF6F28A3A47D005B2B15 /* PreferencesVM+BrowserAddress.swift */; };
-		D5E8C9302A29B268008BDABE /* FeedbackVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E8C92F2A29B268008BDABE /* FeedbackVM.swift */; };
 		D5E8C9332A29BC38008BDABE /* AXSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D5E8C9322A29BC38008BDABE /* AXSwift */; };
 		D5F1A1B33A4B5C6D7E8F9012 /* RuleSettingIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1A1B23A4B5C6D7E8F9012 /* RuleSettingIcon.swift */; };
 		D5F4A1CA2F0B1234001B2C3D /* InputSourceSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4A1C92F0B1234001B2C3D /* InputSourceSwitcher.swift */; };
@@ -249,7 +247,6 @@
 		4A41672F2813CAE600CCC28C /* PreferencesVM+BrowserRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreferencesVM+BrowserRule.swift"; sourceTree = "<group>"; };
 		4A4167312813D9FA00CCC28C /* NSRegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRegularExpression.swift; sourceTree = "<group>"; };
 		4A4167332814086E00CCC28C /* IndicatorPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorPosition.swift; sourceTree = "<group>"; };
-		4A4E035B2DB97534008E5C2F /* PromotionBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionBadge.swift; sourceTree = "<group>"; };
 		4A5BABE82830A720009F42D7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4A5BABEA2830A726009F42D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4A5EAA69280BF68B00A9E332 /* KeyboardsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardsSettingsView.swift; sourceTree = "<group>"; };
@@ -329,7 +326,6 @@
 		D5D029072A3C129F005F2FB9 /* InputSource+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputSource+Name.swift"; sourceTree = "<group>"; };
 		D5D1FF452A84BF390087217B /* Data+SHA256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+SHA256.swift"; sourceTree = "<group>"; };
 		D5DEFF6F28A3A47D005B2B15 /* PreferencesVM+BrowserAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreferencesVM+BrowserAddress.swift"; sourceTree = "<group>"; };
-		D5E8C92F2A29B268008BDABE /* FeedbackVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackVM.swift; sourceTree = "<group>"; };
 		D5EAAC512A47BF7E00A41BC1 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D5F1A1B23A4B5C6D7E8F9012 /* RuleSettingIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleSettingIcon.swift; sourceTree = "<group>"; };
 		D5F4A1C92F0B1234001B2C3D /* InputSourceSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSourceSwitcher.swift; sourceTree = "<group>"; };
@@ -501,7 +497,6 @@
 				4AC2614E28707CD30032AAFE /* ApplicationVM.swift */,
 				4A0930942868780600232089 /* ApplicationVM+AXNotification.swift */,
 				4A20AD6228926DFA00620D14 /* NavigationVM.swift */,
-				D5E8C92F2A29B268008BDABE /* FeedbackVM.swift */,
 				D5F73B012A2C1DCD00BBC10A /* InputSourceVM.swift */,
 			);
 			path = Models;
@@ -570,7 +565,6 @@
 				D5CC44952A33F485007FF839 /* EnhancedModeRequiredBadge.swift */,
 				4A15EE422E0E1309007B76C3 /* RebootRequiredBadge.swift */,
 				D5115A172A33A61500D94E51 /* QuestionButton.swift */,
-				4A4E035B2DB97534008E5C2F /* PromotionBadge.swift */,
 				4A15EE402E0E123B007B76C3 /* CursorLagFixView.swift */,
 			);
 			path = Components;
@@ -855,7 +849,6 @@
 				D58168D12894FD2F00E84058 /* ColorBlock.swift in Sources */,
 				4A39D1CB281F7E650050F115 /* PermissionsVM.swift in Sources */,
 				4A0C1CC5284A121B00833A16 /* IndicatorPositionEditor.swift in Sources */,
-				D5E8C9302A29B268008BDABE /* FeedbackVM.swift in Sources */,
 				4AD6B06B2D2653C000B829CC /* PreferencesVM+HotKeyGroup.swift in Sources */,
 				B7F201B136534D7A8A40F340 /* PreferencesVM+ShortcutTrigger.swift in Sources */,
 				4A41672E2813BBC000CCC28C /* BrowserRuleEditView.swift in Sources */,
@@ -928,7 +921,6 @@
 				4A881A98288CDDD500B76498 /* MainStorage.swift in Sources */,
 				4A09307D285F32B100232089 /* PreferencesWindowController+NSToolbar.swift in Sources */,
 				D57925922A1ACA0B003B83EA /* AppKind.swift in Sources */,
-				4A4E035C2DB97534008E5C2F /* PromotionBadge.swift in Sources */,
 				4A09307B285F31E800232089 /* NSToolbarItem+Identifier.swift in Sources */,
 				4A2A1788280BA7FA00E13249 /* NSImage+Extension.swift in Sources */,
 				4A20AD65289283C600620D14 /* LoopingPlayerNSView.swift in Sources */,

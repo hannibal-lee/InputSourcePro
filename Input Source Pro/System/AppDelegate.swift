@@ -10,7 +10,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var permissionsVM: PermissionsVM!
     var applicationVM: ApplicationVM!
     var inputSourceVM: InputSourceVM!
-    var feedbackVM: FeedbackVM!
     var indicatorWindowController: IndicatorWindowController!
     var statusItemController: StatusItemController!
     var previousInstalledBuildVersionAtLaunch = 0
@@ -18,7 +17,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_: Notification) {
         previousInstalledBuildVersionAtLaunch = UserDefaults.standard.integer(forKey: "prevInstalledBuildVersion")
 
-        feedbackVM = FeedbackVM()
         navigationVM = NavigationVM()
         permissionsVM = PermissionsVM()
         preferencesVM = PreferencesVM(permissionsVM: permissionsVM)
@@ -40,7 +38,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             preferencesVM: preferencesVM,
             applicationVM: applicationVM,
             indicatorVM: indicatorVM,
-            feedbackVM: feedbackVM,
             inputSourceVM: inputSourceVM
         )
         

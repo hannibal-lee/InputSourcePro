@@ -7,7 +7,6 @@ class StatusItemController {
     let preferencesVM: PreferencesVM
     let applicationVM: ApplicationVM
     let indicatorVM: IndicatorVM
-    let feedbackVM: FeedbackVM
     let inputSourceVM: InputSourceVM
 
     let cancelBag = CancelBag()
@@ -142,7 +141,6 @@ class StatusItemController {
         permissionsVM: self.permissionsVM,
         preferencesVM: self.preferencesVM,
         indicatorVM: self.indicatorVM,
-        feedbackVM: self.feedbackVM,
         inputSourceVM: self.inputSourceVM
     )
 
@@ -152,7 +150,6 @@ class StatusItemController {
         preferencesVM: PreferencesVM,
         applicationVM: ApplicationVM,
         indicatorVM: IndicatorVM,
-        feedbackVM: FeedbackVM,
         inputSourceVM: InputSourceVM
     ) {
         self.navigationVM = navigationVM
@@ -160,7 +157,6 @@ class StatusItemController {
         self.preferencesVM = preferencesVM
         self.applicationVM = applicationVM
         self.indicatorVM = indicatorVM
-        self.feedbackVM = feedbackVM
         self.inputSourceVM = inputSourceVM
 
         preferencesVM.$preferences
@@ -219,14 +215,7 @@ class StatusItemController {
     }
 
     @objc func openChangelog() {
-        if let url = URL(string: "https://inputsource.pro/changelog") {
-            NSWorkspace.shared.open(url)
-        }
+        URL.forkReleases.open()
     }
 
-    @objc func openFeedback() {
-        feedbackVM.show()
-        navigationVM.selection = .troubleshooting
-        openPreferences()
-    }
 }

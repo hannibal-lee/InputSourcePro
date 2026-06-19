@@ -12,10 +12,9 @@
 - This fork targets macOS 10.15 Catalina. Prefer Xcode 12.x and avoid adopting APIs outside the Catalina SDK baseline unless every use is runtime-gated and has a Catalina fallback.
 - Keep Swift Package Manager dependencies pinned for Catalina builds. `Package.resolved` must remain in Xcode 12-compatible v1 format.
 - Open `Input Source Pro.xcodeproj` in Xcode and use:
-  - `Cmd+B` to build, `Cmd+R` to run, `Cmd+U` to run tests.
+  - `Cmd+B` to build and `Cmd+R` to run.
 - CLI builds use the shared scheme name:
   - `xcodebuild -scheme "Input Source Pro" -configuration Debug build`
-  - `xcodebuild -scheme "Input Source Pro" -configuration Debug test`
 
 ## Coding Style & Naming Conventions
 - Swift-only codebase; follow Swift API Design Guidelines and existing conventions.
@@ -26,8 +25,8 @@
 - No repo-wide formatter or linter config is present; do not introduce reformatting-only diffs.
 
 ## Testing Guidelines
-- The Xcode scheme includes a `Tests` target; add new tests there as `*Tests.swift` using XCTest.
-- If you add tests, ensure they run via `Cmd+U` or `xcodebuild test` before opening a PR.
+- This fork currently has no dedicated test target in the Xcode project.
+- Validate changes with a local build and, for UI/input-source behavior, a manual run on macOS 10.15.
 
 ## Commit & Pull Request Guidelines
 - Commit messages follow conventional commits with optional scopes, e.g., `feat(UI): add indicator toggle` or `fix: handle nil input source`.

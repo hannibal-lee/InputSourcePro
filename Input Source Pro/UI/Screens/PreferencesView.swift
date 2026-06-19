@@ -102,7 +102,6 @@ struct PreferencesView: View {
         .background(NSColor.background.color)
         .environment(\.managedObjectContext, preferencesVM.container.viewContext)
         .edgesIgnoringSafeArea(.top)
-        .modifier(FeedbackModal())
     }
 }
 

@@ -21,21 +21,21 @@ extension URL {
 }
 
 extension URL {
-    static let website = URL(
-        string: "https://inputsource.pro"
+    static let forkRepository = URL(
+        string: "https://github.com/hannibal-lee/InputSourcePro"
     )!
 
-    static let purchase = URL(
-        string: "https://inputsource.pro/purchase"
+    static let forkReleases = URL(
+        string: "https://github.com/hannibal-lee/InputSourcePro/releases"
     )!
 
-    static let twitter = URL(
-        string: "https://twitter.com/runjuuu"
+    static let forkIssues = URL(
+        string: "https://github.com/hannibal-lee/InputSourcePro/issues"
     )!
 
-    static let emailString = "support@inputsource.pro"
-
-    static let email = URL(string: "mailto:\(emailString)")!
+    static let upstreamRepository = URL(
+        string: "https://github.com/runjuu/InputSourcePro"
+    )!
 
     static let howToEnableAccessbility = URL(
         string: "https://inputsource.pro/help/enable-spotlight-like-apps-support"

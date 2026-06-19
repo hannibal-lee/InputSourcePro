@@ -5,7 +5,7 @@ extension PreferencesWindowController: NSSharingServicePickerToolbarItemDelegate
         // Compose an array of items that are sharable such as text, URLs, etc.
         // depending on the context of your application (i.e. what the user
         // current has selected in the app and/or they tab they're in).
-        let sharableItems = [URL(string: "https://inputsource.pro/")!] as [Any]
+        let sharableItems = [URL.forkRepository] as [Any]
 
         return sharableItems
     }

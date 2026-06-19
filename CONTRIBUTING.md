@@ -63,7 +63,7 @@ Ready to contribute code? Here's how to set up and submit a pull request for thi
     git pull origin main
     git checkout -b feature/your-descriptive-branch-name
     ```
-2.  **Write your code.** Please try to follow the existing code style. If you add new features, consider adding tests if applicable.
+2.  **Write your code.** Please try to follow the existing code style.
 3.  **Ensure the project builds** successfully (Cmd+B).
 4.  **Commit your changes** with clear and concise commit messages. Reference the issue number if your PR addresses a specific issue (e.g., `Fix #123: Resolve crash when switching sources rapidly`).
     ```bash
@@ -84,7 +84,7 @@ Ready to contribute code? Here's how to set up and submit a pull request for thi
     * Explain the **purpose** of your changes.
     * Link to any relevant **issues** (e.g., "Closes #123").
     * Summarize the **changes** made.
-    * Describe any **testing** you performed.
+    * Describe any **manual validation** you performed.
 5.  Submit the Pull Request. Changes intended for non-Catalina macOS releases or general product direction should be proposed to the upstream project instead.
 
 ## Style Guides
