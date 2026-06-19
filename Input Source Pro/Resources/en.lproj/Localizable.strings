@@ -53,9 +53,9 @@
 "Enabled CJKV Fix Shortcut Img" = "CJKVFixEnableShortcut-EN";
 "CJKV Fix Method" = "Fix Method";
 "CJKV Fix Method Switching Focus" = "Switching Focus";
-"CJKV Fix Method Switching Focus Description" = "Briefly switches focus to force macOS to settle the selected input source. This method works better on macOS 26, but does not work for floating apps.";
+"CJKV Fix Method Switching Focus Description" = "Briefly switches focus to force macOS to settle the selected input source. Use this only if shortcut simulation does not work well in your environment.";
 "CJKV Fix Method Shortcut Simulation" = "Shortcut Simulation";
-"CJKV Fix Method Shortcut Simulation Description" = "Simulates the system's “Select the previous input source” shortcut. This works well before macOS 26, but on macOS 26 it may cause unexpected system behavior.";
+"CJKV Fix Method Shortcut Simulation Description" = "Simulates the system's \"Select the previous input source\" shortcut. This is the recommended compatibility method for this Catalina-focused fork.";
 "CJKV Fix Shortcut Method Failed Desc" = "Shortcut Simulation requires the system's “Select the previous input source” shortcut to be enabled.";
 "Open Keyboard Settings" = "Open Keyboard Settings";
 
@@ -188,7 +188,7 @@
 
 "System Reboot Required" = "Changes will apply after restarting your Mac";
 "Cursor Lag Fix" = "Fix Typing/Cursor Lag";
-"Cursor Lag Fix Description" = "macOS 14 Sonoma introduces an experimental text-cursor that shows a small tooltip under the insertion point (e.g. Caps Lock, input-source changes). On some Macs this feature can make CursorUIViewService freeze, causing typing and cursor lag. If you ever encounter this issue, you might try turning on this option to disable the experimental cursor and restore the classic I-beam.";
+"Cursor Lag Fix Description" = "This option is intended for cursor behavior outside the Catalina validation target. It is kept hidden on unsupported systems in this fork.";
 
 "Shortcut Mode" = "Shortcut Mode";
 "Shortcut Type" = "Shortcut Type";

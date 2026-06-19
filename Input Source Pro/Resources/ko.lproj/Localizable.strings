@@ -53,9 +53,9 @@
 "Enabled CJKV Fix Shortcut Img" = "CJKVFixEnableShortcut-EN";
 "CJKV Fix Method" = "수정 방법";
 "CJKV Fix Method Switching Focus" = "포커스 전환";
-"CJKV Fix Method Switching Focus Description" = "잠시 포커스를 전환해 macOS가 선택한 입력 소스를 확정하도록 합니다. 이 방법은 macOS 26에서 더 잘 작동하지만 플로팅 앱에서는 작동하지 않습니다.";
+"CJKV Fix Method Switching Focus Description" = "잠시 포커스를 전환해 macOS가 선택한 입력 소스를 확정하도록 합니다. 단축키 시뮬레이션 방식이 잘 동작하지 않을 때만 사용하십시오.";
 "CJKV Fix Method Shortcut Simulation" = "단축키 시뮬레이션";
-"CJKV Fix Method Shortcut Simulation Description" = "시스템의 \"이전 입력 소스 선택\" 단축키를 시뮬레이션합니다. macOS 26 이전 버전에서는 잘 작동하지만 macOS 26에서는 예상치 못한 시스템 동작이 발생할 수 있습니다.";
+"CJKV Fix Method Shortcut Simulation Description" = "시스템의 \"이전 입력 소스 선택\" 단축키를 시뮬레이션합니다. 이 Catalina 호환 fork에서 권장하는 호환 방식입니다.";
 "CJKV Fix Shortcut Method Failed Desc" = "단축키 시뮬레이션 방식을 사용하려면 시스템의 \"이전 입력 소스 선택\" 단축키를 활성화해야 합니다.";
 "Open Keyboard Settings" = "키보드 설정 열기";
 
@@ -188,7 +188,7 @@
 
 "System Reboot Required"      = "Mac을 다시 시작하면 변경 사항이 적용됩니다";
 "Cursor Lag Fix"              = "입력/커서 지연 해결";
-"Cursor Lag Fix Description"  = "macOS 14 Sonoma에는 삽입 지점 아래에 Caps Lock 상태나 입력 소스 변경 등을 표시하는 작은 툴팁을 보여 주는 실험적 텍스트 커서 기능이 도입되었습니다. 일부 Mac에서는 이 기능이 CursorUIViewService 프로세스를 멈추게 하여 입력 및 커서 지연이 발생할 수 있습니다. 이러한 문제가 발생하면 이 옵션을 켜서 실험적 커서를 비활성화하고 클래식 I-beam 커서를 복원해 보십시오.";
+"Cursor Lag Fix Description"  = "이 옵션은 Catalina 검증 범위 밖의 커서 동작을 위한 것입니다. 이 fork에서는 지원되지 않는 시스템에서 숨겨집니다.";
 
 "Shortcut Mode" = "단축키 모드";
 "Shortcut Type" = "단축키 유형";

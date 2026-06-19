@@ -54,9 +54,9 @@
 "Enabled CJKV Fix Shortcut Img" = "CJKVFixEnableShortcut-CN";
 "CJKV Fix Method" = "修復方式";
 "CJKV Fix Method Switching Focus" = "切換焦點";
-"CJKV Fix Method Switching Focus Description" = "短暫切換焦點，以促使 macOS 確認所選輸入法。此方法在 macOS 26 上效果更好，但不適用於懸浮類 App。";
+"CJKV Fix Method Switching Focus Description" = "短暫切換焦點，以促使 macOS 確認所選輸入法。僅在「模擬快速鍵」方式效果不佳時使用。";
 "CJKV Fix Method Shortcut Simulation" = "模擬快速鍵";
-"CJKV Fix Method Shortcut Simulation Description" = "模擬系統的「選擇上一個輸入法」快速鍵。它在 macOS 26 之前表現穩定，但在 macOS 26 可能引發其他意外的系統行為。";
+"CJKV Fix Method Shortcut Simulation Description" = "模擬系統的「選擇上一個輸入法」快速鍵。這是此 Catalina 相容 fork 建議的相容方式。";
 "CJKV Fix Shortcut Method Failed Desc" = "「模擬快速鍵」方式需要啟用系統的「選擇上一個輸入法」快速鍵。";
 "Open Keyboard Settings" = "打開「鍵盤」設定";
 
@@ -190,7 +190,7 @@
 
 "System Reboot Required" = "重新啟動 Mac 後變更即會生效";
 "Cursor Lag Fix" = "修復輸入／游標延遲";
-"Cursor Lag Fix Description" = "macOS 14 Sonoma 引入了一項實驗性的文字游標功能，會在插入點下方顯示小提示（例如 Caps Lock 狀態、輸入來源切換）。在部分 Mac 上，該功能可能導致 CursorUIViewService 行程凍結，進而造成輸入與游標延遲。若遇到此問題，可嘗試開啟此選項以停用實驗性游標並恢復經典 I-beam 游標。";
+"Cursor Lag Fix Description" = "此選項用於 Catalina 驗證範圍之外的游標行為。本 fork 會在不支援的系統上隱藏它。";
 
 "Shortcut Mode" = "快捷鍵模式";
 "Shortcut Type" = "快捷鍵類型";

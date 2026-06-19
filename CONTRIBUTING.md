@@ -13,11 +13,11 @@ This project and everyone participating in it is governed by our [Code of Conduc
 * **Reporting Bugs:** Report issues that affect this Catalina-compatible fork.
 * **Compatibility Fixes:** Improvements that keep the app usable on macOS 10.15 are welcome.
 * **Documentation Updates:** Clarify fork behavior, build steps, or compatibility limits.
-* **Upstream Features:** For latest macOS support or new product features, prefer the upstream project.
+* **Upstream Features:** For non-Catalina support or new product features, prefer the upstream project.
 
 ## Reporting Bugs
 
-Before submitting a bug report, check this fork's existing GitHub issues to see if someone else has already reported it. If the issue only affects the upstream/latest macOS version, report it to the [upstream project](https://github.com/runjuu/InputSourcePro).
+Before submitting a bug report, check this fork's existing GitHub issues to see if someone else has already reported it. If the issue only affects macOS versions outside this fork's Catalina scope, report it to the [upstream project](https://github.com/runjuu/InputSourcePro).
 
 If not, create a new issue and provide the following information:
 
@@ -85,7 +85,7 @@ Ready to contribute code? Here's how to set up and submit a pull request for thi
     * Link to any relevant **issues** (e.g., "Closes #123").
     * Summarize the **changes** made.
     * Describe any **testing** you performed.
-5.  Submit the Pull Request. Changes intended for newer macOS releases or general product direction should be proposed to the upstream project instead.
+5.  Submit the Pull Request. Changes intended for non-Catalina macOS releases or general product direction should be proposed to the upstream project instead.
 
 ## Style Guides
 

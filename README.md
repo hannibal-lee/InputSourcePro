@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://inputsource.pro" target="_blank">
+    <a href="https://github.com/hannibal-lee/InputSourcePro" target="_blank">
         <img height="200" src="https://inputsource.pro/img/app-icon.png" alt="Input Source Pro Logo">
     </a>
 </p>
@@ -10,11 +10,10 @@
 
 <p align="center">
     <a href="https://github.com/hannibal-lee/InputSourcePro" target="_blank">Fork Repository</a> ·
-    <a href="https://github.com/runjuu/InputSourcePro" target="_blank">Upstream Project</a> ·
-    <a href="https://inputsource.pro" target="_blank">Upstream Website</a>
+    <a href="https://github.com/runjuu/InputSourcePro" target="_blank">Upstream Project</a>
 </p>
 
-> This repository is a Catalina-compatible fork of **Input Source Pro**, a free and open-source macOS utility for multilingual users who frequently switch input sources. It keeps the core app and input-source indicator workflow usable on older macOS versions.
+> This repository is a Catalina-compatible fork of **Input Source Pro**, a free and open-source macOS utility for multilingual users who frequently switch input sources. It keeps the core app and input-source indicator workflow usable on macOS 10.15 Catalina.
 
 ## Compatibility Scope
 
@@ -22,21 +21,17 @@ This fork/build is maintained for **macOS 10.15 Catalina** compatibility.
 
 - Target system: **macOS 10.15.x Catalina**.
 - Tested locally on macOS 10.15.8.
-- Newer macOS versions have not been tested with this fork.
-- If you use a newer macOS release, prefer the [upstream project](https://github.com/runjuu/InputSourcePro) or test this build carefully before relying on it.
-- This fork focuses on compatibility fixes for older macOS, not on tracking every upstream feature.
+- This fork is not validated for non-Catalina macOS releases.
+- If you need support outside macOS 10.15.x, prefer the [upstream project](https://github.com/runjuu/InputSourcePro).
+- This fork focuses on Catalina compatibility fixes, not on tracking every upstream feature.
 
 <table>
     <tr>
         <td>
-            <a href="https://inputsource.pro">
-                <img src="./imgs/switch-keyboard-base-on-app.gif"  alt="Switch Keyboard Based on App" width="100%">
-            </a>
+            <img src="./imgs/switch-keyboard-base-on-app.gif"  alt="Switch Keyboard Based on App" width="100%">
         </td>
         <td>
-            <a href="https://inputsource.pro">
-                <img src="./imgs/switch-keyboard-base-on-browser.gif"  alt="Switch Keyboard Based on Browser" width="100%">
-            </a>
+            <img src="./imgs/switch-keyboard-base-on-browser.gif"  alt="Switch Keyboard Based on Browser" width="100%">
         </td>
     </tr>
 </table>
@@ -69,26 +64,22 @@ Switch input sources via either:
 - **Keyboard Shortcuts**: Use standard key combinations.
 - **Modifier Shortcuts**: Use single or combined modifier keys (e.g., Shift, Command, or Shift + Command), triggered by pressing once or double-tapping.
 
-### 😎 And Much More...
+### Additional Notes
 
-<a href="https://inputsource.pro">
-    <img width="892" alt="image" src="https://github.com/user-attachments/assets/351e2ac9-27d8-402e-8739-21c3f604a3c1" />
-</a>
+Some upstream features may not be present or fully validated in this Catalina-focused fork.
 
 
 ## Installation
 
-### Homebrew
+### Do Not Use Homebrew for This Fork
 
-```bash
-brew install --cask input-source-pro
-```
+Do not install this fork with `brew install --cask input-source-pro`.
 
-The Homebrew cask installs the upstream release, not this Catalina-compatible fork.
+The Homebrew cask installs the upstream release and may overwrite this Catalina-compatible build.
 
-### Manual Download
+### Fork Release or Local Build
 
-Use this fork's releases if available, or build from source.
+Use this fork's release artifacts if available, or build from source and copy the built app to `/Applications`.
 
 ## Building from Source
 
@@ -100,32 +91,22 @@ git clone git@github.com:hannibal-lee/InputSourcePro.git
 
 Then open `Input Source Pro.xcodeproj` in Xcode and build the app.
 
-For Catalina-compatible development, use a macOS 10.15 compatible toolchain such as Xcode 12.x. Newer Xcode/macOS combinations are not the validation target for this fork.
+For Catalina-compatible development, use a macOS 10.15 compatible toolchain such as Xcode 12.x. Other Xcode/macOS combinations are not the validation target for this fork.
 
 Automatic updates from the upstream appcast are disabled in this fork. Release updates should be installed from this fork's own release artifacts when available.
 
 ## Contributing
 
-Contributions to this fork should stay focused on macOS 10.15 compatibility and bug fixes for older macOS environments.
+Contributions to this fork should stay focused on macOS 10.15 compatibility and Catalina bug fixes.
 
 - For fork-specific Catalina issues, use this fork's GitHub issues.
-- For latest macOS support, new feature requests, and upstream behavior, use the [upstream project](https://github.com/runjuu/InputSourcePro).
+- For non-Catalina support, new feature requests, and upstream behavior, use the [upstream project](https://github.com/runjuu/InputSourcePro).
 - For setup and code guidelines, read [Contributing Guidelines](CONTRIBUTING.md).
 - This fork follows the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Upstream Project
 
-This fork is based on [runjuu/InputSourcePro](https://github.com/runjuu/InputSourcePro). The upstream project remains the best source for current releases, official documentation, discussions, and support for newer macOS versions.
-
-## Upstream Star History
-
-<a href="https://www.star-history.com/#runjuu/InputSourcePro&type=date&legend=bottom-right">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=runjuu/InputSourcePro&type=date&theme=dark&legend=bottom-right" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=runjuu/InputSourcePro&type=date&legend=bottom-right" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=runjuu/InputSourcePro&type=date&legend=bottom-right" />
- </picture>
-</a>
+This fork is based on [runjuu/InputSourcePro](https://github.com/runjuu/InputSourcePro). The upstream project remains the best source for official releases, documentation, discussions, and support outside this Catalina-compatible fork.
 
 ## License
 Input Source Pro is licensed under the [GPL-3.0 License](LICENSE).

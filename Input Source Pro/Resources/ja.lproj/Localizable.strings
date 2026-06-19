@@ -53,9 +53,9 @@
 "Enabled CJKV Fix Shortcut Img" = "CJKVFixEnableShortcut-EN";
 "CJKV Fix Method" = "修正方法";
 "CJKV Fix Method Switching Focus" = "フォーカス切り替え";
-"CJKV Fix Method Switching Focus Description" = "一時的にフォーカスを切り替えて、macOS に選択した入力ソースを反映させます。この方法は macOS 26 でより効果的ですが、フローティングアプリでは動作しません。";
+"CJKV Fix Method Switching Focus Description" = "一時的にフォーカスを切り替えて、macOS に選択した入力ソースを反映させます。ショートカットのシミュレーションがうまく動作しない場合のみ使用してください。";
 "CJKV Fix Method Shortcut Simulation" = "ショートカットのシミュレーション";
-"CJKV Fix Method Shortcut Simulation Description" = "システムの「前の入力ソースを選択」ショートカットをシミュレートします。macOS 26 より前ではうまく動作しますが、macOS 26 では予期しないシステム動作を引き起こす場合があります。";
+"CJKV Fix Method Shortcut Simulation Description" = "システムの「前の入力ソースを選択」ショートカットをシミュレートします。この Catalina 対応 fork で推奨される互換方式です。";
 "CJKV Fix Shortcut Method Failed Desc" = "ショートカットのシミュレーション方式を使用するには、システムの「前の入力ソースを選択」ショートカットを有効にする必要があります。";
 "Open Keyboard Settings" = "キーボード設定を開く";
 
@@ -188,7 +188,7 @@
 
 "System Reboot Required" = "Mac を再起動すると変更が適用されます";
 "Cursor Lag Fix" = "入力／カーソル遅延を修正";
-"Cursor Lag Fix Description" = "macOS 14 Sonoma では、挿入ポイントの下に小さなツールチップ（例：Caps Lock、入力ソースの変更など）を表示する実験的なテキストカーソルが導入されています。一部の Mac では、この機能により CursorUIViewService プロセスがフリーズし、入力やカーソルの遅延が発生することがあります。問題が発生した場合は、このオプションをオンにして実験的なカーソルを無効にし、従来の I-beam カーソルに戻してください。";
+"Cursor Lag Fix Description" = "このオプションは Catalina の検証対象外のカーソル動作向けです。この fork では未対応のシステム上では非表示になります。";
 
 "Shortcut Mode" = "ショートカットモード";
 "Shortcut Type" = "ショートカットの種類";

@@ -54,9 +54,9 @@
 "Enabled CJKV Fix Shortcut Img" = "CJKVFixEnableShortcut-CN";
 "CJKV Fix Method" = "修复方式";
 "CJKV Fix Method Switching Focus" = "切换焦点";
-"CJKV Fix Method Switching Focus Description" = "短暂切换焦点，以促使 macOS 确认所选输入法。此方法在 macOS 26 上效果更好，但不适用于悬浮类 App。";
+"CJKV Fix Method Switching Focus Description" = "短暂切换焦点，以促使 macOS 确认所选输入法。仅在「模拟快捷键」方式效果不佳时使用。";
 "CJKV Fix Method Shortcut Simulation" = "模拟快捷键";
-"CJKV Fix Method Shortcut Simulation Description" = "模拟系统的「选择上一个输入法」快捷键。它在 macOS 26 之前表现稳定，但在 macOS 26 可能引发其他意外的系统行为。";
+"CJKV Fix Method Shortcut Simulation Description" = "模拟系统的「选择上一个输入法」快捷键。这是此 Catalina 兼容 fork 推荐的兼容方式。";
 "CJKV Fix Shortcut Method Failed Desc" = "「模拟快捷键」方式需要启用系统的「选择上一个输入法」快捷键。";
 "Open Keyboard Settings" = "打开「键盘」设置";
 
@@ -190,7 +190,7 @@
 
 "System Reboot Required" = "重新启动 Mac 后更改将会生效";
 "Cursor Lag Fix" = "修复输入/光标延迟";
-"Cursor Lag Fix Description" = "macOS 14 Sonoma 引入了一项实验性的文本光标功能，会在插入点下方显示小提示（如 Caps Lock 状态、输入源切换等）。在部分 Mac 上，该功能可能导致 CursorUIViewService 进程冻结，从而出现输入和光标延迟。若遇到此问题，可尝试开启此选项以禁用该实验性光标，并恢复经典 I-beam 光标。";
+"Cursor Lag Fix Description" = "此选项用于 Catalina 验证范围之外的光标行为。本 fork 会在不支持的系统上隐藏它。";
 
 "Shortcut Mode" = "快捷键模式";
 "Shortcut Type" = "快捷键类型";
