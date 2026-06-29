@@ -1,10 +1,11 @@
-"Input Source Pro" = "Input Source Pro";
+"Input Source Pro" = "Input Source Pro 10.15";
+"Input Source Pro 10.15" = "Input Source Pro 10.15";
 "Preferences" = "設定";
 "Changelog" = "変更ログ";
 "Quit" = "終了";
 "Default Keyboard for %@" = "%@のデフォルトキーボード";
 "Current App" = "現在のアプリ";
-"Default Keyboard Tooltip" = "空白のまま (デフォルト) にしておくと、Input Source Pro はキーボードを切り替えません";
+"Default Keyboard Tooltip" = "空白のまま (デフォルト) にしておくと、Input Source Pro 10.15 はキーボードを切り替えません";
 "Default" = "デフォルト";
 
 "General" = "一般";
@@ -20,7 +21,7 @@
 "Display Icon in Menu Bar" = "メニューバーにアイコンを表示";
 "Enhanced Mode" = "拡張モード";
 "Enhanced Mode Description" = "拡張モードを有効にすると、より正確なプロンプトの位置やSpotlightのようなアプリでのサポートが向上します";
-"Enhanced Mode Permission Description" = "Input Source Proは**拡張モード**を有効にするためにアクセシビリティの権限が必要です。";
+"Enhanced Mode Permission Description" = "Input Source Pro 10.15 は**拡張モード**を有効にするためにアクセシビリティの権限が必要です。";
 "Enhanced Mode Required Tips" = "この機能は「拡張モード」が有効になっている必要があります。";
 "Open Accessibility Preferences" = "アクセシビリティ設定を開く";
 
@@ -128,7 +129,7 @@
 
 "Permission Required" = "許可が必要です";
 "Authorized" = "認証済み";
-"Browser Rules Accessibility Permission Description" = "ブラウザタブが切り替わるのを検知するために、Input Source Proには**アクセシビリティ**権限が必要です。";
+"Browser Rules Accessibility Permission Description" = "ブラウザタブが切り替わるのを検知するために、Input Source Pro 10.15 には**アクセシビリティ**権限が必要です。";
 
 "Edit" = "編集";
 "Match" = "マッチ";
@@ -196,10 +197,10 @@
 "Modifier shortcuts require additional permissions to work reliably." = "修飾キーのショートカットを安定して動作させるには追加の権限が必要です。";
 "Accessibility" = "アクセシビリティ";
 "Open Accessibility Settings" = "アクセシビリティ設定を開く";
-"Open Accessibility Settings, find \"Input Source Pro\" in the list and enable the toggle." = "アクセシビリティ設定を開き、一覧で「Input Source Pro」を探してトグルを有効にしてください。";
+"Open Accessibility Settings, find \"Input Source Pro\" in the list and enable the toggle." = "アクセシビリティ設定を開き、一覧で「Input Source Pro 10.15」を探してトグルを有効にしてください。";
 "Input Monitoring" = "入力監視";
 "Open Input Monitoring Settings" = "入力監視設定を開く";
-"Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list." = "入力監視設定を開き、「+」ボタンをクリックして一覧に「Input Source Pro」を追加してください。";
+"Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list." = "入力監視設定を開き、「+」ボタンをクリックして一覧に「Input Source Pro 10.15」を追加してください。";
 "Disabled until permissions are granted" = "権限が付与されるまで無効";
 
 "Settings Backup" = "設定バックアップ";

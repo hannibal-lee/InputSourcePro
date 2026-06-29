@@ -1,10 +1,11 @@
-"Input Source Pro" = "Input Source Pro";
+"Input Source Pro" = "Input Source Pro 10.15";
+"Input Source Pro 10.15" = "Input Source Pro 10.15";
 "Preferences" = "설정";
 "Changelog" = "변경 내역";
 "Quit" = "종료";
 "Default Keyboard for %@" = "%@에 대한 기본 키보드";
 "Current App" = "현재 앱";
-"Default Keyboard Tooltip" = "공백 (기본값)을 두면 Input Source Pro가 키보드를 전환하지 않습니다";
+"Default Keyboard Tooltip" = "공백 (기본값)을 두면 Input Source Pro 10.15가 키보드를 전환하지 않습니다";
 "Default" = "기본값";
 
 "General" = "일반";
@@ -20,7 +21,7 @@
 "Display Icon in Menu Bar" = "메뉴 바에 아이콘 표시";
 "Enhanced Mode" = "고급 모드";
 "Enhanced Mode Description" = "고급 모드를 활성화하면 보다 정확한 프롬프트 위치와 Spotlight와 유사한 앱에 대한 더 나은 지원이 가능합니다";
-"Enhanced Mode Permission Description" = "Input Source Pro는 **고급 모드**를 활성화하기 위해 접근성 권한이 필요합니다.";
+"Enhanced Mode Permission Description" = "Input Source Pro 10.15는 **고급 모드**를 활성화하기 위해 접근성 권한이 필요합니다.";
 "Enhanced Mode Required Tips" = "이 기능은 \"고급 모드\"가 활성화되어야 사용할 수 있습니다.";
 "Open Accessibility Preferences" = "접근성 설정 열기";
 
@@ -128,7 +129,7 @@
 
 "Permission Required" = "권한 필요";
 "Authorized" = "승인됨";
-"Browser Rules Accessibility Permission Description" = "브라우저 탭이 전환되는 것을 알리기 위해, Input Source Pro는 **접근성** 권한이 필요합니다.";
+"Browser Rules Accessibility Permission Description" = "브라우저 탭이 전환되는 것을 알리기 위해, Input Source Pro 10.15는 **접근성** 권한이 필요합니다.";
 
 "Edit" = "편집";
 "Match" = "일치";
@@ -196,10 +197,10 @@
 "Modifier shortcuts require additional permissions to work reliably." = "수정 키 단축키가 안정적으로 작동하려면 추가 권한이 필요합니다.";
 "Accessibility" = "접근성";
 "Open Accessibility Settings" = "접근성 설정 열기";
-"Open Accessibility Settings, find \"Input Source Pro\" in the list and enable the toggle." = "접근성 설정을 열고 목록에서 \"Input Source Pro\"를 찾아 토글을 켜세요.";
+"Open Accessibility Settings, find \"Input Source Pro\" in the list and enable the toggle." = "접근성 설정을 열고 목록에서 \"Input Source Pro 10.15\"를 찾아 토글을 켜세요.";
 "Input Monitoring" = "입력 모니터링";
 "Open Input Monitoring Settings" = "입력 모니터링 설정 열기";
-"Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list." = "입력 모니터링 설정을 열고 \"+\" 버튼을 클릭한 다음 목록에 \"Input Source Pro\"를 추가하세요.";
+"Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list." = "입력 모니터링 설정을 열고 \"+\" 버튼을 클릭한 다음 목록에 \"Input Source Pro 10.15\"를 추가하세요.";
 "Disabled until permissions are granted" = "권한이 허용될 때까지 비활성화됨";
 
 "Settings Backup" = "설정 백업";

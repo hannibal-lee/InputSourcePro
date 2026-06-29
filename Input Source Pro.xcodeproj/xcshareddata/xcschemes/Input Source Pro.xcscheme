@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4A2A172A280BA6A600E13249"
-               BuildableName = "Input Source Pro.app"
+               BuildableName = "Input Source Pro 10.15.app"
                BlueprintName = "Input Source Pro"
                ReferencedContainer = "container:Input Source Pro.xcodeproj">
             </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4A2A172A280BA6A600E13249"
-            BuildableName = "Input Source Pro.app"
+            BuildableName = "Input Source Pro 10.15.app"
             BlueprintName = "Input Source Pro"
             ReferencedContainer = "container:Input Source Pro.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4A2A172A280BA6A600E13249"
-            BuildableName = "Input Source Pro.app"
+            BuildableName = "Input Source Pro 10.15.app"
             BlueprintName = "Input Source Pro"
             ReferencedContainer = "container:Input Source Pro.xcodeproj">
          </BuildableReference>

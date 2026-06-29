@@ -15,7 +15,7 @@ struct PreferencesView: View {
                     VStack {
                         Button(action: {}) {
                             // Trap default focus ring
-                            Text("Input Source Pro")
+                            Text("Input Source Pro 10.15")
                         }
 
                         Spacer()
@@ -74,7 +74,7 @@ struct PreferencesView: View {
                             .frame(width: 20)
 
                         VStack(alignment: .leading, spacing: 0) {
-                            Text("Input Source Pro")
+                            Text("Input Source Pro 10.15")
                                 .font(.system(size: 12, weight: .semibold))
                                 .opacity(0.8)
 

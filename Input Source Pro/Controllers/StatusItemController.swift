@@ -117,7 +117,7 @@ class StatusItemController {
         let menu = NSMenu()
 
         let items = [
-            NSMenuItem(title: "Input Source Pro".i18n(), action: nil, keyEquivalent: ""),
+            NSMenuItem(title: "Input Source Pro 10.15".i18n(), action: nil, keyEquivalent: ""),
             addBrowserRuleMenu ?? addRuleMenu,
             NSMenuItem.separator(),
             changelogMenu,

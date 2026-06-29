@@ -1,19 +1,19 @@
 <p align="center">
     <a href="https://github.com/hannibal-lee/InputSourcePro" target="_blank">
-        <img height="200" src="https://inputsource.pro/img/app-icon.png" alt="Input Source Pro Logo">
+        <img height="200" src="https://inputsource.pro/img/app-icon.png" alt="Input Source Pro 10.15 Logo">
     </a>
 </p>
 
-<h1 align="center">Input Source Pro - Catalina Compatible Fork</h1>
+<h1 align="center">Input Source Pro 10.15</h1>
 
-<p align="center">A macOS 10.15 Catalina compatible build of Input Source Pro</p>
+<p align="center">A macOS 10.15 Catalina compatible build based on Input Source Pro</p>
 
 <p align="center">
     <a href="https://github.com/hannibal-lee/InputSourcePro" target="_blank">Fork Repository</a> ·
     <a href="https://github.com/runjuu/InputSourcePro" target="_blank">Upstream Project</a>
 </p>
 
-> This repository is a Catalina-compatible fork of **Input Source Pro**, a free and open-source macOS utility for multilingual users who frequently switch input sources. It keeps the core app and input-source indicator workflow usable on macOS 10.15 Catalina.
+> **Input Source Pro 10.15** is a Catalina-compatible fork of **Input Source Pro**, a free and open-source macOS utility for multilingual users who frequently switch input sources. It keeps the core app and input-source indicator workflow usable on macOS 10.15 Catalina.
 
 ## Compatibility Scope
 
@@ -89,7 +89,7 @@ Clone this fork and build it with Xcode:
 git clone git@github.com:hannibal-lee/InputSourcePro.git
 ```
 
-Then open `Input Source Pro.xcodeproj` in Xcode and build the app.
+Then open `Input Source Pro.xcodeproj` in Xcode and build `Input Source Pro 10.15`.
 
 For Catalina-compatible development, use a macOS 10.15 compatible toolchain such as Xcode 12.x. Other Xcode/macOS combinations are not the validation target for this fork.
 

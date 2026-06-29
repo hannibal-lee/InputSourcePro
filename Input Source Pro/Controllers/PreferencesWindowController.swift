@@ -49,7 +49,7 @@ class PreferencesWindowController: NSWindowController {
         window?.standardWindowButton(NSWindow.ButtonType.zoomButton)?.isEnabled = false
         window?.standardWindowButton(NSWindow.ButtonType.miniaturizeButton)?.isEnabled = false
 
-        window?.title = "Input Source Pro"
+        window?.title = "Input Source Pro 10.15"
         window?.titleVisibility = .hidden
         window?.titlebarAppearsTransparent = true
         window?.styleMask.insert(.fullSizeContentView)

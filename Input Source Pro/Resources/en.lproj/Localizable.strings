@@ -1,10 +1,11 @@
-"Input Source Pro" = "Input Source Pro";
+"Input Source Pro" = "Input Source Pro 10.15";
+"Input Source Pro 10.15" = "Input Source Pro 10.15";
 "Preferences" = "Settings";
 "Changelog" = "Changelog";
 "Quit" = "Quit";
 "Default Keyboard for %@" = "Default Keyboard for %@";
 "Current App" = "Current App";
-"Default Keyboard Tooltip" = "Leave blank (default) and Input Source Pro won't switch keyboards";
+"Default Keyboard Tooltip" = "Leave blank (default) and Input Source Pro 10.15 won't switch keyboards";
 "Default" = "Default";
 
 "General" = "General";
@@ -20,7 +21,7 @@
 "Display Icon in Menu Bar" = "Display Icon in Menu Bar";
 "Enhanced Mode" = "Enhanced Mode";
 "Enhanced Mode Description" = "Enabling Enhanced Mode allows for more accurate prompt locations and better support for Spotlight-like apps";
-"Enhanced Mode Permission Description" = "Input Source Pro needs Accessibility permission to enable **Enhanced Mode**.";
+"Enhanced Mode Permission Description" = "Input Source Pro 10.15 needs Accessibility permission to enable **Enhanced Mode**.";
 "Enhanced Mode Required Tips" = "This feature requires \"Enhanced Mode\" to be enabled.";
 "Open Accessibility Preferences" = "Open Accessibility Preferences";
 
@@ -128,7 +129,7 @@
 
 "Permission Required" = "Permission Required";
 "Authorized" = "Authorized";
-"Browser Rules Accessibility Permission Description" = "In order to get notified when browser tabs are switched, Input Source Pro needs **Accessibility** permission.";
+"Browser Rules Accessibility Permission Description" = "In order to get notified when browser tabs are switched, Input Source Pro 10.15 needs **Accessibility** permission.";
 
 "Edit" = "Edit";
 "Match" = "Match";
@@ -196,10 +197,10 @@
 "Modifier shortcuts require additional permissions to work reliably." = "Modifier shortcuts require additional permissions to work reliably.";
 "Accessibility" = "Accessibility";
 "Open Accessibility Settings" = "Open Accessibility Settings";
-"Open Accessibility Settings, find \"Input Source Pro\" in the list and enable the toggle." = "Open Accessibility Settings, find \"Input Source Pro\" in the list and enable the toggle.";
+"Open Accessibility Settings, find \"Input Source Pro\" in the list and enable the toggle." = "Open Accessibility Settings, find \"Input Source Pro 10.15\" in the list and enable the toggle.";
 "Input Monitoring" = "Input Monitoring";
 "Open Input Monitoring Settings" = "Open Input Monitoring Settings";
-"Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list." = "Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list.";
+"Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list." = "Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro 10.15\" to the list.";
 "Disabled until permissions are granted" = "Disabled until permissions are granted";
 
 "Settings Backup" = "Settings Backup";

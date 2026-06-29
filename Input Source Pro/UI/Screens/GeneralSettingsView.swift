@@ -274,7 +274,7 @@ struct GeneralSettingsView: View {
 
                 HStack {
                     Spacer()
-                    Text("Catalina-compatible fork based on Input Source Pro")
+                    Text("Input Source Pro 10.15 fork for macOS 10.15 Catalina")
                     Spacer()
                 }
                 .font(.footnote)
@@ -309,7 +309,7 @@ struct GeneralSettingsView: View {
         panel.title = "Export Settings".i18n()
         panel.canCreateDirectories = true
         panel.isExtensionHidden = false
-        panel.nameFieldStringValue = "Input Source Pro Settings"
+        panel.nameFieldStringValue = "Input Source Pro 10.15 Settings"
         panel.setCompatAllowedFileTypes(["json"])
 
         guard panel.runModal() == .OK,

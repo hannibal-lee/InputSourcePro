@@ -1,10 +1,11 @@
-"Input Source Pro" = "Input Source Pro";
+"Input Source Pro" = "Input Source Pro 10.15";
+"Input Source Pro 10.15" = "Input Source Pro 10.15";
 "Preferences" = "設定";
 "Changelog" = "更新紀錄";
 "Quit" = "結束";
 "Default Keyboard for %@" = "為「%@」設定預設輸入法";
 "Current App" = "目前應用程式";
-"Default Keyboard Tooltip" = "選擇空白選項時，Input Source Pro 不會自動切換目前 App 的輸入法";
+"Default Keyboard Tooltip" = "選擇空白選項時，Input Source Pro 10.15 不會自動切換目前 App 的輸入法";
 "Default" = "預設";
 
 "General" = "一般";
@@ -21,7 +22,7 @@
 "Support Spotlight-Like Apps" = "支援 Spotlight 類應用程式";
 "Enhanced Mode" = "增強模式";
 "Enhanced Mode Description" = "啟用增強模式讓輸入法提示位置更為準確，同時為 Spotlight 類應用程式提供更完善的支援";
-"Enhanced Mode Permission Description" = "為了啟用「增強模式」，Input Source Pro 需要您為其開啟系統的「輔助功能」權限。";
+"Enhanced Mode Permission Description" = "為了啟用「增強模式」，Input Source Pro 10.15 需要您為其開啟系統的「輔助功能」權限。";
 "Enhanced Mode Required Tips" = "開啟此功能需先啟用「增強模式」";
 "Open Accessibility Preferences" = "打開「輔助功能」設定";
 
@@ -198,10 +199,10 @@
 "Modifier shortcuts require additional permissions to work reliably." = "修飾鍵快捷鍵需要額外權限才能可靠運作。";
 "Accessibility" = "輔助功能";
 "Open Accessibility Settings" = "打開「輔助功能」設定";
-"Open Accessibility Settings, find \"Input Source Pro\" in the list and enable the toggle." = "打開「輔助功能」設定，在列表中找到「Input Source Pro」，並開啟開關。";
+"Open Accessibility Settings, find \"Input Source Pro\" in the list and enable the toggle." = "打開「輔助功能」設定，在列表中找到「Input Source Pro 10.15」，並開啟開關。";
 "Input Monitoring" = "輸入監控";
 "Open Input Monitoring Settings" = "打開「輸入監控」設定";
-"Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list." = "打開「輸入監控」設定，點擊「+」按鈕並將「Input Source Pro」加入列表。";
+"Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list." = "打開「輸入監控」設定，點擊「+」按鈕並將「Input Source Pro 10.15」加入列表。";
 "Disabled until permissions are granted" = "權限授予前將被停用";
 
 "Settings Backup" = "設定備份";

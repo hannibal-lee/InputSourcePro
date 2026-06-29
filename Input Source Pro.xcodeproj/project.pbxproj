@@ -206,7 +206,7 @@
 		4A20AD6028904B3A00620D14 /* NoAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAnimation.swift; sourceTree = "<group>"; };
 		4A20AD6228926DFA00620D14 /* NavigationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationVM.swift; sourceTree = "<group>"; };
 		4A20AD64289283C600620D14 /* LoopingPlayerNSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingPlayerNSView.swift; sourceTree = "<group>"; };
-		4A2A172B280BA6A600E13249 /* Input Source Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Input Source Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A2A172B280BA6A600E13249 /* Input Source Pro 10.15.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Input Source Pro 10.15.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2A1732280BA6A800E13249 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A2A1735280BA6A800E13249 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4A2A1737280BA6A800E13249 /* Signing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Signing.entitlements; sourceTree = "<group>"; };
@@ -378,7 +378,7 @@
 		4A2A172C280BA6A600E13249 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4A2A172B280BA6A600E13249 /* Input Source Pro.app */,
+				4A2A172B280BA6A600E13249 /* Input Source Pro 10.15.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -717,7 +717,7 @@
 				4A2ACC1B2D23C24100F39923 /* LaunchAtLogin */,
 			);
 			productName = "Input Source Pro";
-			productReference = 4A2A172B280BA6A600E13249 /* Input Source Pro.app */;
+			productReference = 4A2A172B280BA6A600E13249 /* Input Source Pro 10.15.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1123,7 +1123,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.runjuu.Input-Source-Pro";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Input Source Pro 10.15";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1160,7 +1160,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.runjuu.Input-Source-Pro";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Input Source Pro 10.15";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
