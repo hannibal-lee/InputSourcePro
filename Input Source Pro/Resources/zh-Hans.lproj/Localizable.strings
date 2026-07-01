@@ -204,6 +204,9 @@
 "Open Input Monitoring Settings" = "打开「输入监控」设置";
 "Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list." = "打开「输入监控」设置，点击“+”按钮并将“Input Source Pro 10.15”添加到列表中。";
 "Disabled until permissions are granted" = "权限授予前将被禁用";
+"Screen Recording Required" = "需要屏幕录制权限";
+"Window-based indicator positioning requires Screen Recording permission." = "基于窗口的提示位置需要屏幕录制权限才能正常工作。";
+"Open Screen Recording Settings" = "打开「屏幕录制」设置";
 
 "Settings Backup" = "设置备份";
 "Export Settings" = "导出设置";

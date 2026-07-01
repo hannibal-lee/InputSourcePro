@@ -78,8 +78,8 @@ extension BrowserRule {
             .trimmingCharacters(in: CharacterSet(charactersIn: "."))
             .lowercased()
 
-        guard let domain = domain, !domain.isEmpty else { return nil }
-        return domain
+        guard let normalizedDomain = domain, !normalizedDomain.isEmpty else { return nil }
+        return normalizedDomain
     }
 }
 

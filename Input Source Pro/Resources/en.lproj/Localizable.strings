@@ -202,6 +202,9 @@
 "Open Input Monitoring Settings" = "Open Input Monitoring Settings";
 "Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list." = "Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro 10.15\" to the list.";
 "Disabled until permissions are granted" = "Disabled until permissions are granted";
+"Screen Recording Required" = "Screen Recording Required";
+"Window-based indicator positioning requires Screen Recording permission." = "Window-based indicator positioning requires Screen Recording permission.";
+"Open Screen Recording Settings" = "Open Screen Recording Settings";
 
 "Settings Backup" = "Settings Backup";
 "Export Settings" = "Export Settings";

@@ -4,6 +4,7 @@ import SwiftUI
 struct PositionSettingsView: View {
     @EnvironmentObject var preferencesVM: PreferencesVM
     @EnvironmentObject var navigationVM: NavigationVM
+    @EnvironmentObject var permissionsVM: PermissionsVM
 
     @Environment(\.colorScheme) var colorScheme: ColorScheme
 
@@ -13,6 +14,11 @@ struct PositionSettingsView: View {
 
     private var effectiveIndicatorPositionAlignment: IndicatorPosition.Alignment {
         preferencesVM.preferences.indicatorPositionAlignment ?? .bottomRight
+    }
+
+    private var needsScreenRecordingPermission: Bool {
+        preferencesVM.preferences.indicatorPosition != .nearMouse &&
+            !permissionsVM.isScreenRecordingEnabled
     }
 
     var body: some View {
@@ -59,6 +65,10 @@ struct PositionSettingsView: View {
                         .labelsHidden()
                         .pickerStyle(SegmentedPickerStyle())
                         .padding()
+
+                        if needsScreenRecordingPermission {
+                            screenRecordingPermissionWarning
+                        }
 
                         if preferencesVM.preferences.indicatorPosition != .nearMouse {
                             HStack {
@@ -186,6 +196,41 @@ struct PositionSettingsView: View {
         }
         .onAppear(perform: updatePreviewModeOnAppear)
         .background(NSColor.background1.color)
+    }
+
+    private var screenRecordingPermissionWarning: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 8) {
+                Image.compatSystemName("exclamationmark.triangle.fill")
+                    .foregroundColor(.orange)
+
+                Text("Screen Recording Required".i18n())
+                    .fontWeight(.medium)
+            }
+
+            HStack(alignment: .center, spacing: 12) {
+                Text("Window-based indicator positioning requires Screen Recording permission.".i18n())
+                    .foregroundColor(.secondary)
+
+                Spacer()
+
+                Button("Open Screen Recording Settings".i18n()) {
+                    PermissionsVM.checkScreenRecording(prompt: true)
+                    permissionsVM.isScreenRecordingEnabled = PermissionsVM.checkScreenRecording(prompt: false)
+                    NSWorkspace.shared.openScreenRecordingPreferences()
+                }
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.orange.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.orange.opacity(0.3), lineWidth: 1)
+        )
+        .padding(.horizontal)
+        .padding(.bottom)
     }
 
     func updatePreviewModeOnAppear() {

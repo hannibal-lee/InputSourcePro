@@ -202,6 +202,9 @@
 "Open Input Monitoring Settings" = "입력 모니터링 설정 열기";
 "Open Input Monitoring Settings, click the \"+\" button and add \"Input Source Pro\" to the list." = "입력 모니터링 설정을 열고 \"+\" 버튼을 클릭한 다음 목록에 \"Input Source Pro 10.15\"를 추가하세요.";
 "Disabled until permissions are granted" = "권한이 허용될 때까지 비활성화됨";
+"Screen Recording Required" = "화면 기록 권한 필요";
+"Window-based indicator positioning requires Screen Recording permission." = "윈도우 기준 표시 위치를 사용하려면 화면 기록 권한이 필요합니다.";
+"Open Screen Recording Settings" = "화면 기록 설정 열기";
 
 "Settings Backup" = "설정 백업";
 "Export Settings" = "설정 내보내기";
