@@ -1,6 +1,5 @@
 import AXSwift
 import Cocoa
-import RxSwift
 
 class QueryWebAreaService {
     let windowElement: Element

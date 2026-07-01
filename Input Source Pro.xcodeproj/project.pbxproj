@@ -130,12 +130,7 @@
 		D525609529B3F255009EB7BA /* IndicatorWindowController+Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525609429B3F255009EB7BA /* IndicatorWindowController+Indicator.swift */; };
 		D525609729B54E2F009EB7BA /* FeedbackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525609629B54E2F009EB7BA /* FeedbackButton.swift */; };
 		D525609929B56843009EB7BA /* ISPTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525609829B56843009EB7BA /* ISPTextEditor.swift */; };
-		D525609C29B571D2009EB7BA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D525609B29B571D2009EB7BA /* Alamofire */; };
 		D525609E29B58448009EB7BA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525609D29B58448009EB7BA /* LoadingView.swift */; };
-		D52E2C51293D2BAD0017CB7E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D52E2C50293D2BAD0017CB7E /* RxCocoa */; };
-		D52E2C53293D2BAD0017CB7E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = D52E2C52293D2BAD0017CB7E /* RxRelay */; };
-		D52E2C55293D2BAD0017CB7E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D52E2C54293D2BAD0017CB7E /* RxSwift */; };
-		D52E2C57293D31E00017CB7E /* FocusAwareTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E2C56293D31E00017CB7E /* FocusAwareTextField.swift */; };
 		D56A7CFC28A4D5C0002F356A /* AXSwift+Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A7CFB28A4D5C0002F356A /* AXSwift+Browser.swift */; };
 		D57334262A84B40B00C8438F /* IconMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57334252A84B40B00C8438F /* IconMap.swift */; };
 		D579258C2A1AB0A4003B83EA /* NSRunningApplication+WindowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D579258B2A1AB0A4003B83EA /* NSRunningApplication+WindowInfo.swift */; };
@@ -303,7 +298,6 @@
 		D525609629B54E2F009EB7BA /* FeedbackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackButton.swift; sourceTree = "<group>"; };
 		D525609829B56843009EB7BA /* ISPTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISPTextEditor.swift; sourceTree = "<group>"; };
 		D525609D29B58448009EB7BA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		D52E2C56293D31E00017CB7E /* FocusAwareTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusAwareTextField.swift; sourceTree = "<group>"; };
 		D56A7CFB28A4D5C0002F356A /* AXSwift+Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AXSwift+Browser.swift"; sourceTree = "<group>"; };
 		D57334252A84B40B00C8438F /* IconMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconMap.swift; sourceTree = "<group>"; };
 		D579258B2A1AB0A4003B83EA /* NSRunningApplication+WindowInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRunningApplication+WindowInfo.swift"; sourceTree = "<group>"; };
@@ -340,15 +334,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AD6BF9E280E739F0001E3C7 /* CombineExt in Frameworks */,
-				D525609C29B571D2009EB7BA /* Alamofire in Frameworks */,
 				4A2ACC1C2D23C24100F39923 /* LaunchAtLogin in Frameworks */,
 				4AC573832840E940000BF10B /* KeyboardShortcuts in Frameworks */,
-				D52E2C51293D2BAD0017CB7E /* RxCocoa in Frameworks */,
-				D52E2C55293D2BAD0017CB7E /* RxSwift in Frameworks */,
 				D5E8C9332A29BC38008BDABE /* AXSwift in Frameworks */,
 				4A2A17A9280BA8BD00E13249 /* VisualEffects in Frameworks */,
 				4A2A17A4280BA86500E13249 /* SnapKit in Frameworks */,
-				D52E2C53293D2BAD0017CB7E /* RxRelay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,8 +547,7 @@
 				D58168D02894FD2F00E84058 /* ColorBlock.swift */,
 				D58168D228957C5300E84058 /* CJKVFixEnableFailedView.swift */,
 				D58168D428957D5500E84058 /* QuestionMark.swift */,
-				D52E2C56293D31E00017CB7E /* FocusAwareTextField.swift */,
-				D525609629B54E2F009EB7BA /* FeedbackButton.swift */,
+					D525609629B54E2F009EB7BA /* FeedbackButton.swift */,
 				D525609829B56843009EB7BA /* ISPTextEditor.swift */,
 				D525609D29B58448009EB7BA /* LoadingView.swift */,
 				D50821F129FE29C40078ADEC /* EnhancedModeToggle.swift */,
@@ -709,11 +698,7 @@
 				4A2A17A8280BA8BD00E13249 /* VisualEffects */,
 				4AD6BF9D280E739F0001E3C7 /* CombineExt */,
 				4AC573822840E940000BF10B /* KeyboardShortcuts */,
-				D52E2C50293D2BAD0017CB7E /* RxCocoa */,
-				D52E2C52293D2BAD0017CB7E /* RxRelay */,
-				D52E2C54293D2BAD0017CB7E /* RxSwift */,
-				D525609B29B571D2009EB7BA /* Alamofire */,
-				D5E8C9322A29BC38008BDABE /* AXSwift */,
+					D5E8C9322A29BC38008BDABE /* AXSwift */,
 				4A2ACC1B2D23C24100F39923 /* LaunchAtLogin */,
 			);
 			productName = "Input Source Pro";
@@ -753,8 +738,6 @@
 				4A2A17A7280BA8BD00E13249 /* XCRemoteSwiftPackageReference "VisualEffects" */,
 				4AD6BF9C280E739F0001E3C7 /* XCRemoteSwiftPackageReference "CombineExt" */,
 				4AC573812840E940000BF10B /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
-				D52E2C4F293D2BAD0017CB7E /* XCRemoteSwiftPackageReference "RxSwift" */,
-				D525609A29B571D2009EB7BA /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D5E8C9312A29BC38008BDABE /* XCRemoteSwiftPackageReference "AXSwift" */,
 				4A2ACC1A2D23C24100F39923 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Legacy" */,
 			);
@@ -862,7 +845,6 @@
 				4A20AD6328926DFA00620D14 /* NavigationVM.swift in Sources */,
 				D58C184828A808F000F52845 /* KeyboardRestoreStrategy.swift in Sources */,
 				3D25B151766744F888171177 /* ShortcutTrigger.swift in Sources */,
-				D52E2C57293D31E00017CB7E /* FocusAwareTextField.swift in Sources */,
 				4A881A91288BC50B00B76498 /* KeyboardConfig.swift in Sources */,
 				4A093071285DACAA00232089 /* NSToggleView.swift in Sources */,
 				4A0C1CCD284B0D0C00833A16 /* IndicatorAlignmentView.swift in Sources */,
@@ -1230,22 +1212,6 @@
 				version = 1.8.1;
 			};
 		};
-		D525609A29B571D2009EB7BA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = exactVersion;
-				version = 5.4.4;
-			};
-		};
-		D52E2C4F293D2BAD0017CB7E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
-			requirement = {
-				kind = exactVersion;
-				version = 6.7.1;
-			};
-		};
 		D5E8C9312A29BC38008BDABE /* XCRemoteSwiftPackageReference "AXSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/runjuu/AXSwift.git";
@@ -1281,26 +1247,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4AD6BF9C280E739F0001E3C7 /* XCRemoteSwiftPackageReference "CombineExt" */;
 			productName = CombineExt;
-		};
-		D525609B29B571D2009EB7BA /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D525609A29B571D2009EB7BA /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		D52E2C50293D2BAD0017CB7E /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D52E2C4F293D2BAD0017CB7E /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		D52E2C52293D2BAD0017CB7E /* RxRelay */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D52E2C4F293D2BAD0017CB7E /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxRelay;
-		};
-		D52E2C54293D2BAD0017CB7E /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D52E2C4F293D2BAD0017CB7E /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
 		};
 		D5E8C9322A29BC38008BDABE /* AXSwift */ = {
 			isa = XCSwiftPackageProductDependency;
