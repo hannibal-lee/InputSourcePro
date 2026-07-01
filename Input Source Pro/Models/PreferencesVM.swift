@@ -5,6 +5,21 @@ import CombineExt
 import LaunchAtLogin
 import SwiftUI
 
+final class RuntimeRuleChangeNotifier: ObservableObject {
+    @Published private(set) var version = 0
+
+    var changes: AnyPublisher<Void, Never> {
+        $version
+            .dropFirst()
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+
+    func notify() {
+        version += 1
+    }
+}
+
 final class PreferencesVM: ObservableObject {
     @Published
     var preferences = Preferences()
@@ -17,6 +32,12 @@ final class PreferencesVM: ObservableObject {
     var cancelBag = CancelBag()
 
     var appKeyboardCache = AppKeyboardCache()
+
+    let runtimeRuleChangeNotifier = RuntimeRuleChangeNotifier()
+
+    var runtimeRuleChanges: AnyPublisher<Void, Never> {
+        runtimeRuleChangeNotifier.changes
+    }
 
     let container: NSPersistentContainer
     let mainStorage: MainStorage
@@ -66,6 +87,10 @@ final class PreferencesVM: ObservableObject {
         change(&draft)
 
         preferences = draft
+    }
+
+    func notifyRuntimeRulesChanged() {
+        runtimeRuleChangeNotifier.notify()
     }
 
     @discardableResult

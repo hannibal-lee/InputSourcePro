@@ -22,12 +22,16 @@ extension PreferencesVM {
         rule.hideIndicator = hideIndicator
         rule.disabled = false
 
-        saveContext()
+        if saveContext() {
+            notifyRuntimeRulesChanged()
+        }
     }
 
     func deleteBrowserRule(_ rule: BrowserRule) {
         container.viewContext.delete(rule)
-        saveContext()
+        if saveContext() {
+            notifyRuntimeRulesChanged()
+        }
     }
 
     func updateBrowserRule(
@@ -39,19 +43,23 @@ extension PreferencesVM {
         hideIndicator: Bool,
         keyboardRestoreStrategy: KeyboardRestoreStrategy?
     ) {
-        saveContext {
+        if saveContext({
             rule.type = type
             rule.value = value
             rule.sample = sample
             rule.inputSourceId = inputSourceId
             rule.hideIndicator = hideIndicator
             rule.keyboardRestoreStrategyRaw = keyboardRestoreStrategy?.rawValue
+        }) {
+            notifyRuntimeRulesChanged()
         }
     }
 
     func toggleBrowserRule(_ rule: BrowserRule) {
-        saveContext {
+        if saveContext({
             rule.disabled.toggle()
+        }) {
+            notifyRuntimeRulesChanged()
         }
     }
 
@@ -67,7 +75,7 @@ extension PreferencesVM {
     }
 
     func getBrowserRule(url: URL) -> BrowserRule? {
-        return getBrowserRules().first { $0.validate(url: url) }
+        return BrowserRule.firstEnabledRule(matching: url, in: getBrowserRules())
     }
 }
 

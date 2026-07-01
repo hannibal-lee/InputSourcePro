@@ -167,9 +167,16 @@ extension InputSource {
         let inputSourceNSArray = TISCreateInputSourceList(nil, false).takeRetainedValue() as NSArray
         let inputSourceList = inputSourceNSArray as! [TISInputSource]
 
-        return inputSourceList
+        let selectableSources = inputSourceList
             .filter { $0.category == TISInputSource.Category.keyboardInputSource && $0.isSelectable }
             .map { InputSource(tisInputSource: $0) }
+
+        return deduplicatedByPersistentIdentifier(selectableSources)
+    }
+
+    static func deduplicatedByPersistentIdentifier(_ sources: [InputSource]) -> [InputSource] {
+        var seen = Set<String>()
+        return sources.filter { seen.insert($0.persistentIdentifier).inserted }
     }
 
     static func nonCJKVSource() -> InputSource? {
