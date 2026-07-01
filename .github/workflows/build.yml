@@ -33,16 +33,24 @@ jobs:
             CODE_SIGN_IDENTITY="" \
             build
 
-      - name: Package app
+      - name: Package unsigned DMG
         run: |
           set -euo pipefail
           APP_PATH="build/DerivedData/Build/Products/Release/Input Source Pro 10.15.app"
           test -d "$APP_PATH"
           mkdir -p dist
-          ditto -c -k --keepParent "$APP_PATH" "dist/Input Source Pro 10.15-${GITHUB_REF_NAME}.zip"
+          DMG_ROOT="$(mktemp -d)"
+          cp -R "$APP_PATH" "$DMG_ROOT/"
+          ln -s /Applications "$DMG_ROOT/Applications"
+          hdiutil create \
+            -volname "Input Source Pro 10.15" \
+            -srcfolder "$DMG_ROOT" \
+            -ov \
+            -format UDZO \
+            "dist/Input Source Pro 10.15-${GITHUB_REF_NAME}.dmg"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: Input Source Pro 10.15-${{ github.ref_name }}
-          path: dist/*.zip
+          path: dist/*.dmg
