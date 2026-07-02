@@ -21,8 +21,9 @@ jobs:
 
       - name: Build Release
         run: |
-          set -euo pipefail
-          xcodebuild \
+          set -uo pipefail
+          mkdir -p build
+          if ! xcodebuild \
             -project "Input Source Pro.xcodeproj" \
             -scheme "Input Source Pro" \
             -configuration Release \
@@ -32,7 +33,12 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
             EXPANDED_CODE_SIGN_IDENTITY_NAME=- \
-            build
+            build 2>&1 | tee build/xcodebuild.log; then
+            grep -E "error:" build/xcodebuild.log | tail -20 | while IFS= read -r line; do
+              echo "::error::$line"
+            done
+            exit 1
+          fi
 
       - name: Package unsigned DMG
         run: |
